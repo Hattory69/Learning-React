@@ -1,0 +1,32 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.taskList-wrapper {
+  width: 100%;
+  border-radius: 28px;
+  padding: 44px 44px 46px 40px;
+  background-color: #fff;
+}
+
+.taskList-list {
+  min-height: 200px;
+  width: 100%;
+}
+
+.taskList-item {
+  border-bottom: 1px solid #F1F1F1;
+}
+
+.taskList-btnWrapper {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.taskList-btn {
+  background-color: black;
+  color: white;
+}
