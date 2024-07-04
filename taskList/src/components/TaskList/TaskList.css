@@ -1,0 +1,25 @@
+.taskList-wrapper {
+  width: 100%;
+  border-radius: 28px;
+  padding: 44px 44px 46px 40px;
+  background-color: #fff;
+}
+
+.taskList-list {
+  min-height: 200px;
+  width: 100%;
+}
+
+.taskList-item {
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.taskList-btnWrapper {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.taskList-ControleBtn {
+  background: black;
+  color: white;
+}

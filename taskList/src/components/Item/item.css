@@ -1,7 +1,12 @@
 .item-wrapper {
   position: relative;
   overflow: hidden;
-  padding: 0 14px;
+  padding: 16px 14px;
+  border-bottom: 1px solid #F1F1F1;
+}
+
+.item-wrapper:first-child {
+padding-top: 0;
 }
 
 .item-wrapper::before {
@@ -21,27 +26,12 @@
   transform: scaleX(1);
 }
 
-.item-input {
-  border: none;
-  line-height: 24px;
-  font-size: 16px;
-  font-weight: 400;
-  transition: color 0.5s ease;
-  background-color: transparent;
-}
-
-.item-input:focus {
-  box-shadow: none;
-  color: #00aaff;
-  background-color: transparent;
-}
-
-.item-input:hover {
-  background-color: transparent;
-}
-
-.item-checkbox {
-  margin: 23px 14px 23px 0;
+.title-checkbox .ant-checkbox-inner::after {
+  border: 2px solid #fff;
+  border-right: 0;
+  border-bottom: 0;
+  border-top: 0;
+  transform: rotate(90deg) scale(1) translate(-50%, -10%);
 }
 
 .item-deletBtn {

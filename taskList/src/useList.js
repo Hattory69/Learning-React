@@ -1,4 +1,16 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+export const useFocus = () => {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [inputRef]);
+
+  return inputRef;
+};
 
 export function useList() {
   const [list, setList] = useState(restoreTaskList("taskList"));
@@ -14,17 +26,12 @@ export function useList() {
     }
   }
 
-  function saveTaskList(list, title) {
-    localStorage.setItem("taskList", JSON.stringify(list));
-    localStorage.setItem("taskListTitle", JSON.stringify(title));
-  }
-
-  const setTaskTitle = (title) => {
-    setListTitle(title);
-  };
+  useEffect(() => {
+      localStorage.setItem("taskList", JSON.stringify(list));
+      localStorage.setItem("taskListTitle", JSON.stringify(title));
+  }, [list,title])
 
   const clearItemList = () => {
-    localStorage.removeItem("taskList", "taskListTitle");
     setList([]);
     setListTitle("Список задач");
   };
@@ -84,13 +91,11 @@ export function useList() {
     for (const item of list) {
       if (!item.isDone) {
         isToggled = true;
-        mapThrough(true);
         break;
       }
     }
-    if (!isToggled) {
-      mapThrough(false);
-    }
+
+    mapThrough(isToggled)
   };
 
   const deleteItem = (id) => {
@@ -99,12 +104,11 @@ export function useList() {
 
   return {
     title,
-    setTaskTitle,
+    setListTitle,
     list,
     setItemTitle,
     createItem,
     toggleItem,
-    saveTaskList,
     deleteItem,
     toggleAllItems,
     clearItemList,

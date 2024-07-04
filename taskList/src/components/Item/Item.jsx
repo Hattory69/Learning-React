@@ -1,67 +1,48 @@
-import { Checkbox, Input, Flex, ConfigProvider, Button } from "antd";
-import { useEffect, useRef } from "react";
-import "./item.css";
 import { CloseOutlined } from "@ant-design/icons";
+import { Button, ConfigProvider, Flex } from "antd";
+import React from "react";
+import { InputCheckbox } from "../InputCheckbox/InputCheckbox";
+import "./Item.css";
 
-export const Item = ({ id, deleteItem, setItemTitle, toggle, title, isDone }) => {
-  const inputRef = useRef(null);
-  const checked = isDone ? "item-checked" : null;
-
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [inputRef]);
-
-  const handleCheckboxChange = () => {
-    toggle(id);
-  };
-
-  const handleTitleBlur = () => {
-    if (title === "") {
-      deleteItem(id);
-    }
-  };
-
-  const handleTitleChnge = (event) => {
-    setItemTitle(id, event.target.value);
-  };
-
+export const Item = ({ title, isDone, toggleAllItems, toggleItem, id, isLast, deleteItem, setItemTitle, setListTitle, isItem }) => {
   const handleItemDelition = () => {
     deleteItem(id);
   };
 
+  const checked = isDone && isItem ? "item-checked" : null;
   return (
     <Flex
       align="center"
       className={["item-wrapper", checked]}
     >
-      <Checkbox
-        className="item-checkbox"
-        checked={isDone}
-        onChange={handleCheckboxChange}
+      <InputCheckbox
+        isItem={isItem}
+        title={title}
+        isDone={isDone}
+        toggleAllItems={toggleAllItems}
+        toggleItem={toggleItem}
+        setItemTitle={setItemTitle}
+        setListTitle={setListTitle}
+        id={id}
+        isLast={isLast}
+        deleteItem={deleteItem}
       />
-      <Input
-        className="item-input"
-        defaultValue={title}
-        ref={inputRef}
-        onChange={handleTitleChnge}
-        onBlur={handleTitleBlur}
-      />
-      <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: "red",
-          },
-        }}
-      >
-        <Button
-          onClick={handleItemDelition}
-          className="item-deletBtn"
+      {isItem && (
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: "red",
+            },
+          }}
         >
-          <CloseOutlined />
-        </Button>
-      </ConfigProvider>
+          <Button
+            onClick={handleItemDelition}
+            className="item-deletBtn"
+          >
+            <CloseOutlined />
+          </Button>
+        </ConfigProvider>
+      )}
     </Flex>
   );
 };
