@@ -27,9 +27,9 @@ export function useList() {
   }
 
   useEffect(() => {
-      localStorage.setItem("taskList", JSON.stringify(list));
-      localStorage.setItem("taskListTitle", JSON.stringify(title));
-  }, [list,title])
+    localStorage.setItem("taskList", JSON.stringify(list));
+    localStorage.setItem("taskListTitle", JSON.stringify(title));
+  }, [list, title]);
 
   const clearItemList = () => {
     setList([]);
@@ -47,7 +47,7 @@ export function useList() {
     ]);
   };
 
-  const setItemTitle = (id, title) => {
+  const setItemTitle = (title, id) => {
     setList(
       list.map((item) => {
         if (item.id === id) {
@@ -60,42 +60,18 @@ export function useList() {
   };
 
   const toggleItem = (id) => {
-    setList(
-      list.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            isDone: !item.isDone,
-          };
-        } else {
-          return item;
-        }
-      })
-    );
-  };
-
-  const toggleAllItems = () => {
-    let isToggled = false;
-
-    function mapThrough(param) {
+    if (id) {
       setList(
-        list.map((item) => {
-          return {
-            ...item,
-            isDone: param,
-          };
-        })
+        list.map((item) =>
+          item.id === id ? { ...item, isDone: !item.isDone } : item
+        )
+      );
+    } else {
+      const allDone = list.every(item => item.isDone);
+      setList(
+        list.map(item => ({ ...item, isDone: !allDone }))
       );
     }
-
-    for (const item of list) {
-      if (!item.isDone) {
-        isToggled = true;
-        break;
-      }
-    }
-
-    mapThrough(isToggled)
   };
 
   const deleteItem = (id) => {
@@ -110,7 +86,6 @@ export function useList() {
     createItem,
     toggleItem,
     deleteItem,
-    toggleAllItems,
     clearItemList,
   };
 }

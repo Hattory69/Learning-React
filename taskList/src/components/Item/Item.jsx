@@ -4,7 +4,7 @@ import React from "react";
 import { InputCheckbox } from "../InputCheckbox/InputCheckbox";
 import "./Item.css";
 
-export const Item = ({ title, isDone, toggleAllItems, toggleItem, id, isLast, deleteItem, setItemTitle, setListTitle, isItem }) => {
+export const Item = ({ title, isDone, toggleItem, id, isLast, deleteItem, setTitle, isItem }) => {
   const handleItemDelition = () => {
     deleteItem(id);
   };
@@ -19,10 +19,8 @@ export const Item = ({ title, isDone, toggleAllItems, toggleItem, id, isLast, de
         isItem={isItem}
         title={title}
         isDone={isDone}
-        toggleAllItems={toggleAllItems}
         toggleItem={toggleItem}
-        setItemTitle={setItemTitle}
-        setListTitle={setListTitle}
+        setTitle={setTitle}
         id={id}
         isLast={isLast}
         deleteItem={deleteItem}

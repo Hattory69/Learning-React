@@ -3,15 +3,11 @@ import React from "react";
 import { useFocus } from "../../useList";
 import "./InputCheckbox.css";
 
-export const InputCheckbox = ({ isItem, title, isDone, toggleAllItems, toggleItem, id, isLast, deleteItem, setItemTitle, setListTitle }) => {
+export const InputCheckbox = ({ isItem, title, isDone, toggleItem, id, isLast, deleteItem, setTitle }) => {
   const inputRef = useFocus(null);
 
   const handleCheckboxChange = () => {
-    if (toggleItem) {
-      toggleItem(id);
-    } else {
-      toggleAllItems();
-    }
+    toggleItem(id);
   };
 
   const handleTitleBlur = () => {
@@ -21,17 +17,13 @@ export const InputCheckbox = ({ isItem, title, isDone, toggleAllItems, toggleIte
   };
 
   const handleTitleChnge = (event) => {
-    if (setItemTitle) {
-      setItemTitle(id, event.target.value);
-    } else {
-      setListTitle(event.target.value);
-    }
+    setTitle(event.target.value, id);
   };
 
   return (
     <>
       <Checkbox
-        className={!isItem ? "title-checkbox" : ''}
+        className={!isItem ? "title-checkbox" : ""}
         checked={isDone}
         onClick={handleCheckboxChange}
       />

@@ -3,10 +3,11 @@ import { Button, ConfigProvider, Flex, List } from "antd";
 import React from "react";
 import { useList } from "../../useList";
 import { Item } from "../Item/Item";
+import { ItemsList } from "../ItemList/ItemList";
 import "./TaskList.css";
 
 export const TaskList = () => {
-  const { list, title, setListTitle, createItem, setItemTitle, toggleItem, deleteItem, toggleAllItems, clearItemList } = useList();
+  const { list, title, setListTitle, createItem, setItemTitle, toggleItem, deleteItem, clearItemList } = useList();
   return (
     <ConfigProvider
       theme={{
@@ -28,30 +29,34 @@ export const TaskList = () => {
           <Item
             title={title}
             isDone={true}
-            toggleAllItems={toggleAllItems}
-            setListTitle={setListTitle}
+            toggleItem={toggleItem}
+            setTitle={setListTitle}
             isItem={false}
           />
-          {list.map(({ id, isDone, title }, index) => (
-            <Item
-              key={id}
-              id={id}
-              title={title}
-              isItem={true}
-              isDone={isDone}
-              isLast={list.length - 1 === index}
-              deleteItem={deleteItem}
-              setItemTitle={setItemTitle}
-              toggleItem={toggleItem}
-            />
-          ))}
+          <ItemsList
+            list={list}
+            deleteItem={deleteItem}
+            setTitle={setItemTitle}
+            toggleItem={toggleItem}
+          />
         </List>
         <Flex
           justify="space-between"
           className="taskList-btnWrapper"
         >
-          <Button className="taskList-ControleBtn" onClick={createItem}><PlusOutlined />Добавить задачу</Button>
-          <Button className="taskList-ControleBtn" onClick={clearItemList}>Отчистить список</Button>
+          <Button
+            className="taskList-ControleBtn"
+            onClick={createItem}
+          >
+            <PlusOutlined />
+            Добавить задачу
+          </Button>
+          <Button
+            className="taskList-ControleBtn"
+            onClick={clearItemList}
+          >
+            Отчистить список
+          </Button>
         </Flex>
       </Flex>
     </ConfigProvider>
