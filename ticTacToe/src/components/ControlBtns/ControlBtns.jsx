@@ -2,36 +2,33 @@ import { Button, Flex } from "antd";
 import React from "react";
 import "./ControlBtns.css";
 
-export const ControlBtns = ({ listofMooves, undoMove }) => {
-	const firstBtnsClasses = `control-btn ` + (listofMooves.length > 0 ? "active" : "");
-	const secondBtnClass = `control-btn ` + (listofMooves.length > 1 ? "active" : "");
+export const ControlBtns = ({ listOfMoves, undoMove }) => {
+	const getBtnClasses = (threshold) => `control-btn ${listOfMoves.length > threshold ? "active" : ""}`;
 
-	const handeBtnClick = (moves) => {
+	const handelBtnClick = (moves) => {
 		undoMove(moves);
 	};
+
+	const controlBtnsList = [
+		{ key: 1, classes: getBtnClasses(0), innerVal: "Вернуться в начало игры", moves: listOfMoves.length },
+		{ key: 2, classes: getBtnClasses(0), innerVal: "Вернуться на ход назад", moves: 1 },
+		{ key: 3, classes: getBtnClasses(1), innerVal: "Вернуться на два хода назад", moves: 2 },
+	];
+
 	return (
 		<Flex
 			className='control-wrapper'
 			vertical
 		>
-			<Button
-				className={firstBtnsClasses}
-				onClick={() => handeBtnClick(listofMooves.length)}
-			>
-				Вернуться в начло игры
-			</Button>
-			<Button
-				className={firstBtnsClasses}
-				onClick={() => handeBtnClick(1)}
-			>
-				Вернуться на ход назад
-			</Button>
-			<Button
-				className={secondBtnClass}
-				onClick={() => handeBtnClick(2)}
-			>
-				Вернуться на два хода назад
-			</Button>
+			{controlBtnsList.map(({ key, classes, innerVal, moves }) => (
+				<Button
+					key={key}
+					className={classes}
+					onClick={() => handelBtnClick(moves)}
+				>
+					{innerVal}
+				</Button>
+			))}
 		</Flex>
 	);
 };

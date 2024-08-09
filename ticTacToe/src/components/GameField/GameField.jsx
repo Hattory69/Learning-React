@@ -3,7 +3,7 @@ import React from "react";
 import { ButtonWrapper } from "../Button/ButtonWrapper";
 import "./GameField.css";
 
-export const GameField = ({ winner, figure, placeFigure, matrix }) => {
+export const GameField = ({ isGameEnded, figure, placeFigure, matrix }) => {
 	return (
 		<Flex
 			className='game-field-wrapper'
@@ -12,11 +12,11 @@ export const GameField = ({ winner, figure, placeFigure, matrix }) => {
 			{matrix.map((arr, index) => (
 				<Flex
 					className='game-field-buttonWrapper'
-					key={index}
+					key={`row-${index}-${arr[0].id}`}
 				>
 					{arr.map((item) => (
 						<ButtonWrapper
-							winner={winner}
+							isGameEnded={isGameEnded}
 							key={item.id}
 							innerVal={item.innerVal}
 							id={item.id}

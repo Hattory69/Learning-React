@@ -1,27 +1,38 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const useList = () => {
 	const [figure, setFigure] = useState("X");
-	const [listofMooves, setListOfMooves] = useState([]);
-	const [matrix, setMatrix] = useState(
-		Array.from({ length: 3 }, (_, indexA) => Array.from({ length: 3 }, (_, indexB) => ({ id: indexA * 3 + indexB, innerVal: "" })))
-	);
+	const [listOfMoves, setListOfMoves] = useState([]);
+	const [matrix, setMatrix] = useState(createMatrix());
 	const [gameHeader, setGameHeader] = useState("Следующий игрок: X");
-	const [winner, setWinner] = useState("");
+	const [isGameEnded, setWinner] = useState(false);
 
-	function checkWinning(matrix) {
-		let placedFigure = figure === "X" ? "O" : "X";
-		let figureId = listofMooves[listofMooves.length - 1];
+	function createMatrix() {
+		const matrix = [];
+		let counter = 0;
+		for (let row = 0; row < 3; row++) {
+			let newRow = [];
+			for (let index = 0; index < 3; index++) {
+				newRow.push({ id: counter++, innerVal: "" });
+			}
+			matrix.push(newRow);
+		}
+		return matrix;
+	}
+
+	function checkWinning(matrix, movesList) {
+		let placedFigure = figure;
+		let figureId = movesList[movesList.length - 1];
 		let row = Math.floor(figureId / matrix.length);
 		let col = figureId % matrix.length;
 
 		if (matrix[row].every((obj) => obj.innerVal === placedFigure)) {
-			setWinner("figure");
+			setWinner(true);
 			return setGameHeader(`Победил игрок ${placedFigure}!`);
 		}
 
 		if (matrix.every((row) => row[col].innerVal === placedFigure)) {
-			setWinner("figure");
+			setWinner(true);
 			return setGameHeader(`Победил игрок ${placedFigure}!`);
 		}
 
@@ -39,35 +50,42 @@ export const useList = () => {
 			}
 
 			if (rightDiagonalWin || leftDiagonalWin) {
-				setWinner("figure");
+				setWinner(true);
 				return setGameHeader(`Победил игрок ${placedFigure}!`);
 			}
 		}
 	}
 
-	useEffect(() => {
-		setGameHeader(`Следующий игрок: ${figure}`);
-		if (listofMooves.length >= 5) checkWinning(matrix);
-	}, [matrix]);
-
 	const placeFigure = (id) => {
-		setMatrix(
-			matrix.map((row) =>
-				row.map((item) => {
-					if (item.id === id && item.innerVal === "") {
-						setFigure(figure === "X" ? "O" : "X");
-						setListOfMooves([...listofMooves, id]);
-						return { ...item, innerVal: figure };
-					} else {
-						return item;
-					}
-				})
-			)
+		let nextFigure = figure === "X" ? "O" : "X";
+		let newListOfMoves = listOfMoves;
+
+		let isUpdated = false;
+
+		const newMatrix = matrix.map((row) =>
+			row.map((item) => {
+				if (item.id === id && item.innerVal === "") {
+					isUpdated = true;
+					newListOfMoves = [...listOfMoves, id];
+					return { ...item, innerVal: figure };
+				} else {
+					return item;
+				}
+			})
 		);
+
+		if (isUpdated) {
+			setListOfMoves(newListOfMoves);
+			setFigure(nextFigure);
+			setMatrix(newMatrix);
+			setGameHeader(`Следующий игрок: ${nextFigure}`);
+			if (newListOfMoves.length >= 5) checkWinning(newMatrix, newListOfMoves);
+		}
 	};
 
 	const undoMove = (moves) => {
-		let deletedMove = listofMooves.slice(-moves);
+		let deletedMove = listOfMoves.slice(-moves);
+
 		setMatrix(
 			matrix.map((row) =>
 				row.map((item) => {
@@ -79,14 +97,20 @@ export const useList = () => {
 				})
 			)
 		);
-		setFigure(() => {
-			setWinner(null);
+
+		function chooseNextFigure() {
 			if (moves === 1) return figure === "X" ? "O" : "X";
 			if (moves === 2) return figure;
 			return "X";
-		});
-		setListOfMooves(listofMooves.slice(0, -moves));
+		}
+
+		let nextFigure = chooseNextFigure();
+		setFigure(chooseNextFigure);
+
+		setWinner(false);
+		setGameHeader(`Следующий игрок: ${nextFigure}`);
+		setListOfMoves(listOfMoves.slice(0, -moves));
 	};
 
-	return { winner, placeFigure, undoMove, gameHeader, listofMooves, matrix };
+	return { isGameEnded, placeFigure, undoMove, gameHeader, listOfMoves, matrix };
 };

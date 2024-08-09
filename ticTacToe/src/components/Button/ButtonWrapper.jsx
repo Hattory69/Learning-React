@@ -3,13 +3,13 @@ import { Button } from "antd";
 import React from "react";
 import "./ButtonWrapper.css";
 
-export const ButtonWrapper = ({ winner, id, placeFigure, innerVal }) => {
+export const ButtonWrapper = ({ isGameEnded, id, placeFigure, innerVal }) => {
 	const handelClick = () => {
 		placeFigure(id);
 	};
 	return (
 		<Button
-			disabled={winner}
+			disabled={isGameEnded}
 			className='button-wrapper'
 			onClick={handelClick}
 		>

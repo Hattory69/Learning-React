@@ -6,7 +6,7 @@ import { GameField } from "../GameField/GameField";
 import "./GameFieldWrapper.css";
 
 export const GameFieldWrapper = () => {
-	const { winner, placeFigure, listofMooves, matrix, undoMove, gameHeader } = useList();
+	const { isGameEnded, placeFigure, listOfMoves, matrix, undoMove, gameHeader } = useList();
 	return (
 		<Flex
 			vertical
@@ -15,13 +15,13 @@ export const GameFieldWrapper = () => {
 			<h2>{gameHeader}</h2>
 			<Flex className='ticTacToe-field__content'>
 				<GameField
-					winner={winner}
+					isGameEnded={isGameEnded}
 					placeFigure={placeFigure}
 					matrix={matrix}
 				/>
 				<ControlBtns
 					undoMove={undoMove}
-					listofMooves={listofMooves}
+					listOfMoves={listOfMoves}
 				/>
 			</Flex>
 		</Flex>
