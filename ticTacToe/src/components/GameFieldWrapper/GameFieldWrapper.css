@@ -1,0 +1,10 @@
+.ticTacToe-field {
+	margin: 0 auto;
+	max-width: 50%;
+}
+
+.ticTacToe-field__content {
+	gap: 30px;
+	justify-content: space-between;
+  width: 100%;
+}
