@@ -9,10 +9,10 @@ export const GameField = ({ isGameEnded, figure, placeFigure, matrix }) => {
 			className='game-field-wrapper'
 			vertical
 		>
-			{matrix.map((arr, index) => (
+			{matrix.map((arr) => (
 				<Flex
 					className='game-field-buttonWrapper'
-					key={`row-${index}-${arr[0].id}`}
+					key={`${arr[0].id}`}
 				>
 					{arr.map((item) => (
 						<ButtonWrapper

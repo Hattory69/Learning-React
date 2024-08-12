@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createMatrix } from "./createMatrix";
 
 export const useList = () => {
 	const [figure, setFigure] = useState("X");
@@ -6,19 +7,6 @@ export const useList = () => {
 	const [matrix, setMatrix] = useState(createMatrix());
 	const [gameHeader, setGameHeader] = useState("Следующий игрок: X");
 	const [isGameEnded, setWinner] = useState(false);
-
-	function createMatrix() {
-		const matrix = [];
-		let counter = 0;
-		for (let row = 0; row < 3; row++) {
-			let newRow = [];
-			for (let index = 0; index < 3; index++) {
-				newRow.push({ id: counter++, innerVal: "" });
-			}
-			matrix.push(newRow);
-		}
-		return matrix;
-	}
 
 	function checkWinning(matrix, movesList) {
 		let placedFigure = figure;
@@ -85,18 +73,17 @@ export const useList = () => {
 
 	const undoMove = (moves) => {
 		let deletedMove = listOfMoves.slice(-moves);
-
-		setMatrix(
-			matrix.map((row) =>
-				row.map((item) => {
-					if (deletedMove.includes(item.id)) {
-						return { ...item, innerVal: "" };
-					} else {
-						return item;
-					}
-				})
-			)
+		let newMatrix = matrix.map((row) =>
+			row.map((item) => {
+				if (deletedMove.includes(item.id)) {
+					return { ...item, innerVal: "" };
+				} else {
+					return item;
+				}
+			})
 		);
+		
+		setMatrix(newMatrix);
 
 		function chooseNextFigure() {
 			if (moves === 1) return figure === "X" ? "O" : "X";
