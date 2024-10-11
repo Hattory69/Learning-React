@@ -1,0 +1,21 @@
+.selectedFilm-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.selectedFilm-nav li:not(:last-child) {
+  margin-right: 15px;
+}
+
+.selectedFilm-mainPage {
+  max-width: 50%;
+}
+
+.selectedFilm-tags {
+  display: flex;
+  align-items: center;
+}
+
+.selectedFilm-tags >:not(:last-child) {
+  margin-right: 5px;
+}

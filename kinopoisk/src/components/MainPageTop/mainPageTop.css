@@ -1,0 +1,60 @@
+.mainPageTop-wrapper {
+	display: flex;
+	min-height: 300px;
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+.mainPageTop-wrapper::after {
+	position: absolute;
+	bottom: 0;
+	content: "";
+	width: 100%;
+	height: 50px;
+	background: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, -0.91));
+}
+.mainPageTop-title {
+	display: flex;
+	justify-content: center;
+	align-self: center;
+	height: 100%;
+	width: 100%;
+	color: white;
+	font-weight: 900;
+	font-size: xxx-large;
+}
+.mainPageTop-background {
+	position: absolute;
+	top: -100px;
+	left: -32px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	transform: rotate(12deg) scale(2);
+	z-index: -2;
+}
+.mainPageTop-background::after {
+	content: "";
+	position: absolute;
+	background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.4));
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+.mainPageTop-backgroundLine {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 5px;
+	padding: 2.5px;
+	width: 100%;
+}
+.mainPageTop-backgroundLine .ant-image {
+	width: 100%;
+}
+.mainPageTop-backgroundImg {
+	pointer-events: none;
+	user-select: none;
+	width: 100%;
+	display: block;
+}

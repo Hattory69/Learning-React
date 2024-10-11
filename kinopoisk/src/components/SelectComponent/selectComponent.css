@@ -1,0 +1,12 @@
+.selectComponent-menu {
+	max-width: 300px;
+}
+
+ul.ant-menu.ant-menu-sub.ant-menu-inline {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+.ant-tree-node-content-wrapper .ant-tree-iconEle.ant-tree-icon__customize {
+	display: none;
+}

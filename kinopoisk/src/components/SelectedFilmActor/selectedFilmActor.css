@@ -1,0 +1,13 @@
+.selectedFilmActor-slideWrapper {
+	display: flex;
+	flex-direction: column;
+	height: inherit;
+}
+
+.selectedFilmActor-slideWrapper > .ant-image {
+	max-height: 70%;
+}
+
+.ant-image-img.selectedFilmActor-photo {
+  object-fit: contain;
+}

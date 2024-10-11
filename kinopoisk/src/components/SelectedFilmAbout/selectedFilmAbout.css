@@ -1,0 +1,12 @@
+.selectedFilmAbout-mainPage {
+	max-width: 50%;
+}
+
+.selectedFilmAbout-tags {
+	display: flex;
+	align-items: center;
+}
+
+.selectedFilmAbout-tags > :not(:last-child) {
+	margin-right: 5px;
+}

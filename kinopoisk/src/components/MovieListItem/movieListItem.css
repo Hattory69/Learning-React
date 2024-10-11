@@ -1,0 +1,91 @@
+.movieListItem-wrapper {
+	display: flex;
+	position: relative;
+	box-sizing: border-box;
+	flex-direction: column;
+	align-items: center;
+	max-width: 250px;
+	width: 100%;
+	height: 350px;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
+	transition-property: transform, box-shadow;
+
+	transition: transform 0.3s ease, z-index 0.3s ease;
+	position: relative;
+}
+
+.movieListItem-wrapper:active,
+.movieListItem-wrapper:hover,
+.movieListItem-wrapper:focus-within {
+	transform: scale(1.1); /* Увеличивает элемент на 10% при наведении */
+	z-index: 1;
+}
+
+.movieListItem-img {
+	object-fit: fill;
+	height: 100%;
+}
+
+.ant-image {
+	height: 100%;
+}
+
+.ant-image .ant-image-img {
+	height: 100%;
+}
+
+.movieListItem-badges {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	max-height: 25px;
+	height: 100%;
+	font-weight: 700;
+	min-width: 55px;
+	z-index: 2;
+}
+
+.movieListItem-itemInfo {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	visibility: hidden;
+	box-sizing: border-box;
+	padding: 10px;
+	color: white;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
+	transition-property: background opacity, visibility;
+	font-weight: 600;
+	overflow: hidden;
+	background: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0.3));
+}
+
+.movieListItem-itemInfo > *:not(:last-child) {
+	margin-bottom: 5px;
+}
+
+.movieListItem-wrapper:active > .movieListItem-itemInfo,
+.movieListItem-wrapper:hover > .movieListItem-itemInfo,
+.movieListItem-wrapper:focus-within > .movieListItem-itemInfo {
+	visibility: visible;
+	opacity: 1;
+	background: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0.3));
+}
+
+.movieListItem-title {
+	font-size: medium;
+}
+
+.movieListItem-year,
+.movieListItem-genres {
+	font-size: small;
+	color: gray;
+}
