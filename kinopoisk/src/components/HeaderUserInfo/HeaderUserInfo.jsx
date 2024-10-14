@@ -1,12 +1,14 @@
 import { Button, ConfigProvider, Modal } from "antd";
-import React, { useContext, useEffect, useState } from "react";
-import { userContext } from "../AppContextWrapper/AppContextWrapper";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../redux/userSlice";
 import { LoginForm } from "../LoginForm/LoginForm";
 import { RegistrationForm } from "../RegistrationForm/RegistrationForm";
 import "./headerUserInfo.css";
 
 export function HeaderUserInfo({ setIsModalOpen, isModalOpen }) {
-	const { user, setUser } = useContext(userContext);
+	const user = useSelector((state) => state.user.user);
+	const dispatch = useDispatch();
 	const [modalMode, setModalMode] = useState("login");
 
 	useEffect(() => {
@@ -25,7 +27,7 @@ export function HeaderUserInfo({ setIsModalOpen, isModalOpen }) {
 			loggedIn: false,
 		};
 		localStorage.setItem("registrationData", JSON.stringify(updatedData));
-		setUser(null);
+		dispatch(setUser(null));
 		setModalMode("login");
 	}
 

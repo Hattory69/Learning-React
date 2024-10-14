@@ -1,13 +1,25 @@
-.categoryList-mainWrapper {
+.categoryList-wrapper {
+	padding: 0 30px;
 	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
+}
+
+.categoryList-title {
+	font-weight: 900;
+	margin-bottom: 10px;
+}
+
+.categoryList-contentWrapper {
+	display: flex;
 }
 
 .categoryList-paginationAndList {
 	width: 100%;
 }
 
-.categoryList-movieList {
+.categoryList-moviesList {
+	margin: 30px 30px 30px 0;
 	padding: 0;
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
@@ -16,3 +28,29 @@
 	list-style: none;
 }
 
+.rc-virtual-list-holder-inner > .ant-select-item {
+	transition: opacity 0.3s ease;
+}
+
+.rc-virtual-list-holder-inner > .ant-select-item.ant-select-item-option-selected {
+	background-color: orange;
+}
+
+.rc-virtual-list-holder-inner > .ant-select-item.ant-select-item-option-active {
+	opacity: 0.4;
+}
+
+.ant-pagination-item-link .ant-pagination-item-container .anticon.ant-pagination-item-link-icon {
+	opacity: 0.4;
+}
+
+.ant-pagination-item-link:hover .ant-pagination-item-container .anticon.ant-pagination-item-link-icon {
+	opacity: 1;
+}
+
+.ant-pagination:hover .ant-pagination-disabled .ant-pagination-item-link,
+.ant-pagination .ant-pagination-disabled .ant-pagination-item-link {
+	cursor: default;
+	color: white;
+	opacity: 0.5;
+}

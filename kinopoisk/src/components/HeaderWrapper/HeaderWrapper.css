@@ -2,13 +2,12 @@
 	padding: 30px 20px;
 	position: fixed;
 	top: 0;
-	z-index: 1000;
+	z-index: 10;
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-	align-items: center;
-	align-content: center;
+	align-content: baseline;
 	width: 100%;
-	max-height: 30px;
+	max-height: 100px;
 	height: 100%;
 	box-sizing: border-box;
 	transition: transform 0.3s ease-in-out;
@@ -24,7 +23,7 @@
 	transition: all 0.3s ease-in-out;
 	content: "";
 	opacity: 0;
-	height: 150px;
+	height: 100%;
 	position: absolute;
 	z-index: -1;
 	width: 100%;

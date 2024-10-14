@@ -4,7 +4,7 @@ import { testListOfSeries } from "../data/testListOfSeries";
 import { testPosters } from "../data/testPosters";
 
 // eslint-disable-next-line no-undef
-const apiKey = process.env.TOKEN;
+// const apiKey = process.env.TOKEN;
 
 export async function fetchData(searchType, resultAmount, searchData) {
 	const testFetches = {

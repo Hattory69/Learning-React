@@ -1,4 +1,4 @@
-import { Button, Tree, TreeSelect } from "antd";
+import { Button, Tree } from "antd";
 import React, { useState } from "react";
 import "./SelectComponent.css";
 const { DirectoryTree } = Tree;
@@ -12,7 +12,6 @@ export function SelectComponent({ filterParams, setMovies, fetchedMovies }) {
 			const field = film[node];
 
 			if (Array.isArray(field)) {
-
 				return field.some((item) => Object.values(item).includes(key));
 			}
 
@@ -43,18 +42,6 @@ export function SelectComponent({ filterParams, setMovies, fetchedMovies }) {
 		<>
 			<Button onClick={() => setMovies(fetchedMovies)}> Сбросить фильтр</Button>
 
-			<TreeSelect
-				style={{
-					width: "100%",
-				}}
-				dropdownStyle={{
-					maxHeight: 400,
-					overflow: "auto",
-				}}
-				placeholder='Please select'
-				showSearch
-				treeData={filterParams}
-			/>
 			<DirectoryTree
 				className='selectComponent-menu'
 				expandedKeys={expandedKeys}

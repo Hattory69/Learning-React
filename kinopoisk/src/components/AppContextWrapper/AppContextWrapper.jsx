@@ -1,19 +1,15 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUser } from "../../redux/userSlice";
 import { KinopoiskWrapper } from "../KinopoiskWrapper/KinopoiskWrapper";
 
-export const userContext = createContext(null);
-
 export function AppContextWrapper() {
-	const [user, setUser] = useState(null);
-
-	function loadUserData() {
-		const userData = JSON.parse(localStorage.getItem("registrationData"));
-		setUser(userData);
-	}
+	const user = useSelector((state) => state.user.user);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
-		loadUserData();
-	}, []);
+		dispatch(loadUser());
+	}, [dispatch]);
 
 	useEffect(() => {
 		if (user) {
@@ -21,9 +17,5 @@ export function AppContextWrapper() {
 		}
 	}, [user]);
 
-	return (
-		<userContext.Provider value={{ user, setUser }}>
-			<KinopoiskWrapper />
-		</userContext.Provider>
-	);
+	return <KinopoiskWrapper />;
 }

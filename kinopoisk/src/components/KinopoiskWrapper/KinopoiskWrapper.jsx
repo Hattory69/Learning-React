@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { userContext } from "../AppContextWrapper/AppContextWrapper";
+import { setHeaderHeight } from "../../redux/headerSlice";
 import { CategoryList } from "../CategoryList/CategoryList";
 import { HeaderWrapper } from "../HeaderWrapper/HeaderWrapper";
 import { MainPage } from "../MainPage/MainPage";
@@ -9,36 +10,46 @@ import { RandomFilm } from "../RandomFilm/RandomFilm";
 import { SelectedFilm } from "../SelectedFilm/SelectedFilm";
 
 export function KinopoiskWrapper() {
-	const { user } = useContext(userContext);
+	const headerHeight = useSelector((state) => state.header.height);
+	const user = useSelector((state) => state.user.user);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		const header = document.getElementsByTagName("header")[0];
+		dispatch(setHeaderHeight(header.offsetHeight));
+	}, []);
+
 	return (
 		<>
 			<HeaderWrapper />
-			<Routes>
-				<Route
-					path='/'
-					element={<MainPage />}
-				/>
-				<Route
-					path='/section/:sectionHeader/:searchType'
-					element={<CategoryList />}
-				/>
-				<Route
-					path='/about/:id'
-					// path='/'
-					element={<SelectedFilm />}
-				/>
-				{user?.loggedIn && (
+			<section style={{ marginTop: headerHeight + "px" }}>
+				<Routes>
 					<Route
-						path='/random/'
-						// path='/'
-						element={<RandomFilm />}
+						path='/'
+						element={<MainPage />}
 					/>
-				)}
-				<Route
-					path='*'
-					element={<PageNotFound />}
-				/>
-			</Routes>
+					<Route
+						path='/section/:sectionHeader/:searchType'
+						element={<CategoryList />}
+					/>
+					<Route
+						path='/about/:id'
+						// path='/'
+						element={<SelectedFilm />}
+					/>
+					{user?.loggedIn && (
+						<Route
+							path='/random/'
+							// path='/'
+							element={<RandomFilm />}
+						/>
+					)}
+					<Route
+						path='*'
+						element={<PageNotFound />}
+					/>
+				</Routes>
+			</section>
 		</>
 	);
 }

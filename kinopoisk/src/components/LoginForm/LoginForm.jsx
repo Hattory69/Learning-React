@@ -1,10 +1,11 @@
 import { Button, Form, Input } from "antd";
-import React, { useContext, useState } from "react";
-import { userContext } from "../AppContextWrapper/AppContextWrapper";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/userSlice";
 
 export function LoginForm({ setIsModalOpen }) {
 	const [formSubmitted, setFormSubmitted] = useState(false);
-	const { setUser } = useContext(userContext);
+	const dispatch = useDispatch();
 
 	function onFinish(values) {
 		const savedData = JSON.parse(localStorage.getItem("registrationData"));
@@ -16,7 +17,7 @@ export function LoginForm({ setIsModalOpen }) {
 			};
 
 			localStorage.setItem("registrationData", JSON.stringify(updatedData));
-			setUser(updatedData);
+			dispatch(setUser(updatedData));
 			setIsModalOpen(false);
 		} else {
 			alert("Некорректное имя пользователя или пароль.");

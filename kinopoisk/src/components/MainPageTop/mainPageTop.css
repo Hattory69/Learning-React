@@ -3,7 +3,6 @@
 	min-height: 300px;
 	position: relative;
 	overflow: hidden;
-	margin-bottom: 30px;
 }
 .mainPageTop-wrapper::after {
 	position: absolute;

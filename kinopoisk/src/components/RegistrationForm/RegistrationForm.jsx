@@ -1,19 +1,20 @@
 import { Button, Form, Input } from "antd";
-import React, { useContext, useState } from "react";
-import { userContext } from "../AppContextWrapper/AppContextWrapper";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/userSlice";
 
 export function RegistrationForm({ setIsModalOpen }) {
 	const [formSubmitted, setFormSubmitted] = useState(false);
-	const { setUser } = useContext(userContext);
+	const dispatch = useDispatch();
 
 	function onFinish(values) {
 		const registrationData = {
 			...values,
 			loggedIn: true,
-			registrationDate: new Date(),
+			registrationDate: new Date().toISOString(),
 		};
 		localStorage.setItem("registrationData", JSON.stringify(registrationData));
-		setUser(registrationData);
+		dispatch(setUser(registrationData));
 		setIsModalOpen(false);
 	}
 

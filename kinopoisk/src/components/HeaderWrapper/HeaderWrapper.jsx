@@ -1,13 +1,13 @@
 import { SearchOutlined } from "@ant-design/icons";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import kinopoiskLogo from "../../images/Kinopoisk-Logo.svg";
-import { userContext } from "../AppContextWrapper/AppContextWrapper";
 import { HeaderSearch } from "../HeaderSearch/HeaderSearch";
 import { HeaderUserInfo } from "../HeaderUserInfo/HeaderUserInfo";
 import { IconComponent } from "../IconComponent/IconComponent";
 import { LinkComponent } from "../LinkComponent/LinkComponent";
 import "./HeaderWrapper.css";
+import { useSelector } from "react-redux";
 
 export function HeaderWrapper() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,22 +17,21 @@ export function HeaderWrapper() {
 	const [lastScrollY, setLastScrollY] = useState(0);
 	const [isAtTop, setIsAtTop] = useState(true);
 	const location = useLocation();
-	const { user } = useContext(userContext);
+	const user = useSelector((state) => state.user.user);
 
 	const handleScroll = () => {
 		const currentScrollY = window.scrollY;
-
 		setIsAtTop(currentScrollY === 0);
 
 		if (currentScrollY < lastScrollY) {
 			setShowHeader(true);
-		} else {
+			setLastScrollY(currentScrollY);
+		} else if (currentScrollY - lastScrollY >= 200) {
 			setShowHeader(false);
 			setIsSearchOpen(false);
 			setShowSearchInput(false);
+			setLastScrollY(currentScrollY);
 		}
-
-		setLastScrollY(currentScrollY);
 	};
 
 	useEffect(() => {

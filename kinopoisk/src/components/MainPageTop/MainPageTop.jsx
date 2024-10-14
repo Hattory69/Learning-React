@@ -1,12 +1,17 @@
 import { Image } from "antd";
 import React from "react";
+import { useSelector } from "react-redux";
 import { mainPageBackground } from "../../data/mainPageBackground";
 import "./mainPageTop.css";
 
 export function MainPageTop() {
+	const headerHeight = useSelector((state) => state.header.height);
 	return (
-		<div className='mainPageTop-wrapper'>
-			<h1 className="mainPageTop-title">Фильмы и сериалы с Кинопоиском</h1>
+		<div
+			className='mainPageTop-wrapper'
+			style={{ marginTop: -headerHeight + "px" }}
+		>
+			<h1 className='mainPageTop-title'>Фильмы и сериалы с Кинопоиском</h1>
 
 			<div className='mainPageTop-background'>
 				{mainPageBackground.map((line, index) => (
