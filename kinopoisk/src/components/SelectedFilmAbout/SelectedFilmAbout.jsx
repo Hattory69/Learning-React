@@ -25,15 +25,20 @@ export function SelectedFilmAbout({ movieLoading, movieError, movieData, seasons
 					) : (
 						<>{filmRating > 0 && <span style={filmRatingStyle}>{filmRating}</span>}</>
 					)}
-					<span>{filmYear}</span>
-					<span>{genres?.length === 1 ? genres[0].name : genres?.length >= 2 ? `${genres[0].name}, ${genres[1].name}` : null}</span>
-					{seasonsData?.length > 0 && <span>сезонов - {seasonsData?.length}</span>}
-					<span>{countries?.[0].name || ""}</span>
-					<span>{ageRating}+</span>
+					{filmYear && <span>{filmYear}</span>}
+					{genres?.length > 0 && (
+						<span>
+							{genres
+								.slice(0, 2)
+								.map((genre) => genre.name)
+								.join(", ")}
+						</span>
+					)}
+					{seasonsData?.length > 0 && <span>{`сезонов - ${seasonsData?.length}`}</span>}
+					{countries?.[0].name && <span>{countries?.[0].name}</span>}
+					{ageRating !== null && <span>{`${ageRating}+`}</span>}
 				</div>
-				<div>
-					<p>{shortDescription}</p>
-				</div>
+				<div>{shortDescription && <p className="selectedFilmAbout-description">{shortDescription}</p>}</div>
 			</div>
 		</>
 	);

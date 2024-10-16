@@ -31,6 +31,7 @@ export function SelectedFilm() {
 
 	useEffect(() => {
 		setGenres(movieData?.genres.slice(0, 2).map((genre) => genre.name));
+		document.title = `Новый фильм: ${movieData?.name || movieData?.alternativeName}`;
 	}, [movieData]);
 
 	useEffect(() => {
@@ -40,11 +41,12 @@ export function SelectedFilm() {
 	}, [genres]);
 
 	return (
-		<section className='selectedFilm-wrapper'>
+		<div className='selectedFilm-wrapper'>
 			<SelectedFilmNav
 				movieData={movieData}
 				seasonsData={seasonsData}
 				setActiveTab={setActiveTab}
+				activeTab={activeTab}
 			/>
 			{activeTab === "about" && (
 				<SelectedFilmAbout
@@ -91,6 +93,14 @@ export function SelectedFilm() {
 					similarMovieLoading={similarMovieLoading}
 				/>
 			)}
-		</section>
+			<div className='selectedFilm-backdropWrapper'>
+				<div
+					className='selectedFilm-backdrop'
+					style={{
+						backgroundImage: `url(${movieData?.backdrop.url})`,
+					}}
+				></div>
+			</div>
+		</div>
 	);
 }

@@ -18,6 +18,10 @@
 	font-style: 800;
 }
 
+html {
+	scrollbar-gutter: stable;
+}
+
 html body.body {
 	width: 100%;
 	overflow: visible;

@@ -8,6 +8,7 @@ import { MainPage } from "../MainPage/MainPage";
 import { PageNotFound } from "../PageNotFound/PageNotFound";
 import { RandomFilm } from "../RandomFilm/RandomFilm";
 import { SelectedFilm } from "../SelectedFilm/SelectedFilm";
+import './kinopoiskWrapper.css'
 
 export function KinopoiskWrapper() {
 	const headerHeight = useSelector((state) => state.header.height);
@@ -22,7 +23,10 @@ export function KinopoiskWrapper() {
 	return (
 		<>
 			<HeaderWrapper />
-			<section style={{ marginTop: headerHeight + "px" }}>
+			<section
+				className='mainSection'
+				style={{ marginTop: headerHeight + "px" }}
+			>
 				<Routes>
 					<Route
 						path='/'

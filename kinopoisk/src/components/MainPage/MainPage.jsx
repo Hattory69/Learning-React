@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { mainPageCategories } from "../../data/mainPageCategories";
 import { CarouselForCategories } from "../CarouselForCategories/CarouselForCategories";
 import { MainPageTop } from "../MainPageTop/MainPageTop";
 import "./mainPage.css";
 
 export function MainPage() {
+	useEffect(() => {
+		document.title = `Онлайн кинотеатр Кинопоиск`;
+	}, []);
 	return (
 		<>
 			<MainPageTop />

@@ -5,6 +5,7 @@ import { createMenuData } from "../../HelperFunctions/createMenuData";
 import { useFetch } from "../../HelperFunctions/useFetch";
 import { MovieListItem } from "../MovieListItem/MovieListItem";
 import { SelectComponent } from "../SelectComponent/SelectComponent";
+import { useSelector } from "react-redux";
 import "./categoryList.css";
 
 export function CategoryList() {
@@ -14,9 +15,11 @@ export function CategoryList() {
 	const [pageSize, setPageSize] = useState(10);
 	const [filterParams, setFilterParams] = useState(null);
 	const { sectionHeader, searchType } = useParams();
+	const headerHeight = useSelector((state) => state.header.height);
 
 	useEffect(() => {
 		loadMovie(searchType, 100);
+		document.title = `${sectionHeader} - смотреть онлайн в хорошем качестве`;
 	}, []);
 
 	useEffect(() => {
@@ -103,7 +106,7 @@ export function CategoryList() {
 						/>
 					</ConfigProvider>
 				</div>
-				<div className='categoryList-filter'>
+				<div style={{top: headerHeight+'px'}} className='categoryList-filter'>
 					<SelectComponent
 						filterParams={filterParams}
 						fetchedMovies={movieData || []}

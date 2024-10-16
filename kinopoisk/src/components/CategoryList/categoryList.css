@@ -22,7 +22,7 @@
 	margin: 30px 30px 30px 0;
 	padding: 0;
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(6, 1fr);
 	justify-items: center;
 	grid-gap: 25px;
 	list-style: none;
@@ -34,10 +34,6 @@
 
 .rc-virtual-list-holder-inner > .ant-select-item.ant-select-item-option-selected {
 	background-color: orange;
-}
-
-.rc-virtual-list-holder-inner > .ant-select-item.ant-select-item-option-active {
-	opacity: 0.4;
 }
 
 .ant-pagination-item-link .ant-pagination-item-container .anticon.ant-pagination-item-link-icon {
@@ -53,4 +49,11 @@
 	cursor: default;
 	color: white;
 	opacity: 0.5;
+}
+
+.categoryList-filter {
+	position: sticky;
+	max-width: 200px;
+	max-height: 400px;
+	width: 100%;
 }

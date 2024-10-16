@@ -39,7 +39,6 @@ export function HeaderUserInfo({ setIsModalOpen, isModalOpen }) {
 					colorBgBase: "#131317",
 					colorBgContainer: "#0b090a",
 					colorIcon: "gray",
-					boxShadow: "red",
 				},
 			}}
 		>

@@ -1,6 +1,6 @@
-import { Button, Tree } from "antd";
+import { Button, ConfigProvider, Tree } from "antd";
 import React, { useState } from "react";
-import "./SelectComponent.css";
+import "./selectComponent.css";
 const { DirectoryTree } = Tree;
 
 export function SelectComponent({ filterParams, setMovies, fetchedMovies }) {
@@ -39,8 +39,21 @@ export function SelectComponent({ filterParams, setMovies, fetchedMovies }) {
 	}
 
 	return (
-		<>
-			<Button onClick={() => setMovies(fetchedMovies)}> Сбросить фильтр</Button>
+		<ConfigProvider
+			theme={{
+				token: {
+					colorText: "white",
+					colorBgBase: "#030027",
+					colorBgContainer: "#030027",
+				},
+			}}
+		>
+			<Button
+				className='selectComponent-clearBtn'
+				onClick={() => setMovies(fetchedMovies)}
+			>
+				Сбросить фильтр
+			</Button>
 
 			<DirectoryTree
 				className='selectComponent-menu'
@@ -49,6 +62,6 @@ export function SelectComponent({ filterParams, setMovies, fetchedMovies }) {
 				onExpand={onExpand}
 				treeData={filterParams}
 			/>
-		</>
+		</ConfigProvider>
 	);
 }
