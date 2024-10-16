@@ -1,0 +1,35 @@
+.selectedFilmSeries-pagination .swiper-wrapper {
+	display: none;
+}
+
+.selectedFilmSeries-pagination .swiper {
+	height: 60px;
+}
+
+.selectedFilmSeries-pagination .swiper > .swiper-pagination {
+	position: relative;
+	display: flex;
+	align-items: center;
+	height: 100%;
+	bottom: 0;
+}
+
+.selectedFilmSeries-pagination .swiper > .swiper-pagination .swiper-pagination-bullet {
+	padding: 10px;
+	height: 20px;
+	width: auto;
+	align-content: center;
+	opacity: 1;
+	border-radius: 5px;
+	font-weight: 600;
+	background-color: transparent;
+	transition-property: color background-color;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
+}
+
+.selectedFilmSeries-pagination .swiper > .swiper-pagination .swiper-pagination-bullet:focus,
+.selectedFilmSeries-pagination .swiper > .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+	color: orange;
+	background-color: black;
+}

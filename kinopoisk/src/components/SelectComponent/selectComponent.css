@@ -1,0 +1,39 @@
+.selectComponent-clearBtn {
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.categoryList-filter .ant-btn.selectComponent-clearBtn:hover {
+	color: orange;
+	border-color: orange;
+}
+
+.selectComponent-menu {
+	max-height: 400px;
+	overflow: auto;
+}
+
+ul.ant-menu.ant-menu-sub.ant-menu-inline {
+	max-height: 100%;
+	overflow-y: auto;
+}
+
+.ant-tree-node-content-wrapper .ant-tree-iconEle.ant-tree-icon__customize,
+.ant-tree-indent,
+.ant-tree-switcher-noop {
+	display: none;
+}
+
+.ant-tree-treenode .ant-tree-node-content-wrapper-normal {
+	padding-left: 35px;
+}
+
+.ant-tree-treenode:hover {
+	background: #cc5803;
+}
+
+.ant-tree-treenode-selected,
+.ant-tree-list-holder-inner .ant-tree-treenode.ant-tree-treenode-selected::before,
+.ant-tree-list-holder-inner .ant-tree-treenode.ant-tree-treenode-selected:hover::before {
+	background: #cc5803;
+}

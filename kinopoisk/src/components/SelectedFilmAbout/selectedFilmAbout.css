@@ -1,0 +1,32 @@
+.selectedFilmAbout-mainPage {
+	height: 100%;
+	display: flex;
+	max-width: 40%;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.selectedFilmAbout-title {
+	margin-bottom: 10px;
+	font-weight: 900;
+	font-size: 50px;
+}
+
+.selectedFilmAbout-tags {
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	font-weight: 600;
+	font-size: 20px;
+	color: gray;
+	flex-wrap: wrap;
+}
+
+.selectedFilmAbout-tags > :not(:last-child) {
+	margin-right: 5px;
+}
+
+.selectedFilmAbout-description {
+	font-weight: 600;
+	font-size: 30px;
+}
