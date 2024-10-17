@@ -1,3 +1,15 @@
+.selectedFilmSeries-wrapper {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.selectedFilmSeries-wrapper > .defaultCarousel-swiperContainer {
+	max-height: 500px;
+	height: 100%;
+}
+
 .selectedFilmSeries-pagination .swiper-wrapper {
 	display: none;
 }
@@ -31,5 +43,5 @@
 .selectedFilmSeries-pagination .swiper > .swiper-pagination .swiper-pagination-bullet:focus,
 .selectedFilmSeries-pagination .swiper > .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
 	color: orange;
-	background-color: black;
+	background-color: #131317;
 }

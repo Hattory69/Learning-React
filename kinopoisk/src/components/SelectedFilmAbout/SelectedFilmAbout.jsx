@@ -13,7 +13,7 @@ export function SelectedFilmAbout({ movieLoading, movieError, movieData, seasons
 			{movieLoading && <div>Загрузка...</div>}
 			{movieError && <div>Ошибка: {movieError}</div>}
 
-			<div className='selectedFilmAbout-mainPage'>
+			<div className='selectedFilmAbout-wrapper'>
 				<h2 className='selectedFilmAbout-title'>{name || alternativeName}</h2>
 				<div className='selectedFilmAbout-tags'>
 					{top10 || top250 ? (

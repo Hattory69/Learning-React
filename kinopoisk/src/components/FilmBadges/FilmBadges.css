@@ -1,14 +1,18 @@
 .filmBadge-wrapper {
 	display: flex;
-	justify-content: center;
+	flex-wrap: wrap;
+	justify-content: flex-start;
 	align-items: center;
-	height: 30px;
+	height: 25px;
 	font-weight: 600;
+}
+
+.filmBadge-wrapper > *{
+	margin: 0 5px 5px 0;
 }
 
 .filmBadge-ratingWrapper {
 	display: flex;
-	margin-right: 5px;
 	max-width: 60px;
 	height: inherit;
 	width: 100%;
@@ -48,18 +52,22 @@
 .filmBadge-topWrapper {
 	display: flex;
 	height: 100%;
-	padding: 5px;
+	padding: 5px 5px 5px 0;
 	box-sizing: border-box;
 	background-color: black;
 	color: #e2bce8;
+	width: fit-content;
 }
 
 .filmBadge-top {
 	align-content: center;
 }
 
+.filmBadge-lightning {
+	width: 30px;
+}
+
 .filmBadge-placeInTop {
-	margin-left: 5px;
 	height: 100%;
 	aspect-ratio: 1 / 1;
 	text-align: center;

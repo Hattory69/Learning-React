@@ -59,3 +59,11 @@ button {
 	outline: none;
 	cursor: pointer;
 }
+
+.swiper .swiper-wrapper {
+	align-items: start;
+}
+
+.ant-image .ant-image-img {
+	aspect-ratio: 1/1;
+}

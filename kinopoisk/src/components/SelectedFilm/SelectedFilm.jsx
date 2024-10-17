@@ -21,7 +21,7 @@ export function SelectedFilm() {
 
 	const filmRating = Math.max(...Object.values(movieData?.rating || {})).toFixed(1);
 	const filmRatingStyle = selectRatingStyle(filmRating);
-
+	
 	useEffect(() => {
 		loadMovie("specificItem", 1, id);
 		loadPosters("posters", 10, id);
@@ -95,7 +95,7 @@ export function SelectedFilm() {
 			)}
 			<div className='selectedFilm-backdropWrapper'>
 				<div
-					className='selectedFilm-backdrop'
+					className={`selectedFilm-backdrop ${activeTab !== "about" ? "blur" : ""}`}
 					style={{
 						backgroundImage: `url(${movieData?.backdrop.url})`,
 					}}

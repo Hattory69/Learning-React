@@ -1,0 +1,42 @@
+.selectedFilmDetails-top {
+  margin-bottom: 30px;
+	display: flex;
+	align-items: start;
+}
+
+.selectedFilmDetails-filmDetails {
+	max-width: 40%;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+}
+
+.selectedFilmDetails-filmDetails > :not(:last-child) {
+	margin-bottom: 10px;
+}
+
+.selectedFilmDetails-votes {
+	font-weight: 900;
+	font-size: 15px;
+	color: hsla(0, 0%, 100%, 0.6);
+}
+
+.selectedFilmDetails-description {
+	font-weight: 600;
+	font-size: 25px;
+}
+
+.selectedFilmDetails-posters {
+  width: 100%;
+}
+
+.selectedFilmDetails-posters p {
+font-weight: 700;
+font-size: 20px;
+text-align: center;
+}
+
+.defaultCarousel-swiperContainer {
+	max-height: 400px;
+	height: 100%;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import lightning from "../../images/lightning.svg";
 import olive from "../../images/olive-branch.svg";
 import { IconComponent } from "../IconComponent/IconComponent";
-import "./FilmBadges.css";
+import "./filmBadges.css";
 
 export function FilmBadges({ rating, top10, top250, showPlace }) {
 	let style = "";
@@ -37,7 +37,7 @@ export function FilmBadges({ rating, top10, top250, showPlace }) {
 				<div className='filmBadge-topWrapper'>
 					<IconComponent
 						icon={lightning}
-						iconStyle={"ilmRatingIcon-oliveBranch"}
+						iconStyle={"filmBadge-lightning"}
 					/>
 					<span className='filmBadge-top'>{`Top-${top10 ? "10" : "250"}`}</span>
 				</div>

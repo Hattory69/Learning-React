@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { setHeaderHeight } from "../../redux/headerSlice";
 import { CategoryList } from "../CategoryList/CategoryList";
+import { Footer } from "../Footer/Footer";
 import { HeaderWrapper } from "../HeaderWrapper/HeaderWrapper";
 import { MainPage } from "../MainPage/MainPage";
 import { PageNotFound } from "../PageNotFound/PageNotFound";
 import { RandomFilm } from "../RandomFilm/RandomFilm";
 import { SelectedFilm } from "../SelectedFilm/SelectedFilm";
-import './kinopoiskWrapper.css'
+import "./kinopoiskWrapper.css";
 
 export function KinopoiskWrapper() {
 	const headerHeight = useSelector((state) => state.header.height);
@@ -38,7 +39,6 @@ export function KinopoiskWrapper() {
 					/>
 					<Route
 						path='/about/:id'
-						// path='/'
 						element={<SelectedFilm />}
 					/>
 					{user?.loggedIn && (
@@ -54,6 +54,7 @@ export function KinopoiskWrapper() {
 					/>
 				</Routes>
 			</section>
+			<Footer />
 		</>
 	);
 }
