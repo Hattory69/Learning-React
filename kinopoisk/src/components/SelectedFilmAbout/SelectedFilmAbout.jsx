@@ -3,7 +3,7 @@ import { formatReleaseYear } from "../../HelperFunctions/formatReleaseYear";
 import { FilmBadges } from "../FilmBadges/FilmBadges";
 import "./selectedFilmAbout.css";
 
-export function SelectedFilmAbout({ movieLoading, movieError, movieData, seasonsData, filmRating, filmRatingStyle }) {
+export function SelectedFilmAbout({ movieLoading, movieError, movieData, seasonsData, filmRating, filmRatingStyle, isActive }) {
 	const { name, alternativeName, top10, top250, genres, countries, ageRating, shortDescription } = movieData || {};
 
 	const filmYear = formatReleaseYear(movieData);
@@ -13,7 +13,7 @@ export function SelectedFilmAbout({ movieLoading, movieError, movieData, seasons
 			{movieLoading && <div>Загрузка...</div>}
 			{movieError && <div>Ошибка: {movieError}</div>}
 
-			<div className='selectedFilmAbout-wrapper'>
+			<div className={`selectedFilmAbout-wrapper ${isActive && "fade-block" }`}>
 				<h2 className='selectedFilmAbout-title'>{name || alternativeName}</h2>
 				<div className='selectedFilmAbout-tags'>
 					{top10 || top250 ? (
@@ -38,7 +38,7 @@ export function SelectedFilmAbout({ movieLoading, movieError, movieData, seasons
 					{countries?.[0].name && <span>{countries?.[0].name}</span>}
 					{ageRating !== null && <span>{`${ageRating}+`}</span>}
 				</div>
-				<div>{shortDescription && <p className="selectedFilmAbout-description">{shortDescription}</p>}</div>
+				<div>{shortDescription && <p className='selectedFilmAbout-description'>{shortDescription}</p>}</div>
 			</div>
 		</>
 	);

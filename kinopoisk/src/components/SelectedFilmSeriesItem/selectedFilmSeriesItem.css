@@ -20,3 +20,11 @@
 	flex-direction: column;
 	justify-content: center;
 }
+
+.selectedFilmSeriesItem-about p {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 6;
+}

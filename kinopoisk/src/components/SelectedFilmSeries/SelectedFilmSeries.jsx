@@ -7,7 +7,7 @@ import { DefaultCarousel } from "../DefaultCarousel/DefaultCarousel";
 import { SelectedFilmSeriesItem } from "../SelectedFilmSeriesItem/SelectedFilmSeriesItem";
 import "./selectedFilmSeries.css";
 
-export function SelectedFilmSeries({ idForBtns, seasonsData, seasonsError, seasonsLoading }) {
+export function SelectedFilmSeries({ idForBtns, seasonsData, seasonsError, seasonsLoading, isActive }) {
 	const [curSeason, setCurSeason] = useState(0);
 	const [slideToFirst, setSlideToFirst] = useState(false);
 
@@ -27,7 +27,7 @@ export function SelectedFilmSeries({ idForBtns, seasonsData, seasonsError, seaso
 	};
 
 	return (
-		<div className='selectedFilmSeries-wrapper'>
+		<div className={`selectedFilmSeries-wrapper ${isActive && "fade-block"}`}>
 			<div className='selectedFilmSeries-pagination'>
 				<Swiper
 					pagination={pagination}

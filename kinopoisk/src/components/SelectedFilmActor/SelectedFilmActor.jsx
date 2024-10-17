@@ -11,9 +11,9 @@ export function SelectedFilmActor({ actor }) {
 				src={photo}
 			/>
 			<div className='selectedFilmActor-about'>
-				<p>{name || enName}</p>
-				{description && <p>{description}</p>}
-				<p>{profession || enProfession}</p>
+				<p className='selectedFilmActor-name'>{name || enName}</p>
+				{description && <p className='selectedFilmActor-role'>{description}</p>}
+				<p className='selectedFilmActor-profession'>{profession || enProfession}</p>
 			</div>
 		</div>
 	);

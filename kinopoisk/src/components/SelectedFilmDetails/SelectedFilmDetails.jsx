@@ -19,30 +19,18 @@ export function SelectedFilmDetails({
 	postersData,
 	postersError,
 	postersLoading,
+	isActive,
 }) {
 	const { description, persons, top10, top250, votes } = movieData;
+	
 	persons?.sort((a, b) => a?.profession - b?.profession);
 	const votesSum = Object.values(votes ?? {}).reduce((acc, votes) => (acc += votes), 0);
 
 	return (
-		<div className='selectedFilmDetails-wrapper'>
-			<div className='selectedFilmDetails-top'>
-				<div className='selectedFilmDetails-filmDetails'>
-					{top10 || top250 ? (
-						<FilmBadges
-							rating={filmRating}
-							top10={top10}
-							top250={top250}
-							showPlace={top10 || top250}
-						/>
-					) : (
-						<>{filmRating && <span style={filmRatingStyle}>{filmRating}</span>}</>
-					)}
-					{votesSum && <span className='selectedFilmDetails-votes'>{votesSum} оценки</span>}
-					{description && <p className='selectedFilmDetails-description'>{description}</p>}
-				</div>
+		<div className={`selectedFilmDetails-wrapper ${isActive && "fade-block"}`}>
+			<div className='selectedFilmDetails-left'>
 				{postersData?.length > 0 && (
-					<div className="selectedFilmDetails-posters">
+					<div className='selectedFilmDetails-posters'>
 						<Swiper
 							style={{ width: "300px", height: "300px" }}
 							effect={"cards"}
@@ -61,21 +49,35 @@ export function SelectedFilmDetails({
 								))}
 							</ul>
 						</Swiper>
-						<p>Постеры и кадры</p>
 					</div>
 				)}
+				<div className='selectedFilmDetails-filmDetails'>
+					{top10 || top250 ? (
+						<FilmBadges
+							rating={filmRating}
+							top10={top10}
+							top250={top250}
+							showPlace={top10 || top250}
+						/>
+					) : (
+						<>{filmRating > 0 && <span style={filmRatingStyle}>{filmRating}</span>}</>
+					)}
+					{votesSum > 0 && <span className='selectedFilmDetails-votes'>{votesSum} оценки</span>}
+					{description && <p className='selectedFilmDetails-description'>{description}</p>}
+				</div>
 			</div>
-
-			<DefaultCarousel
-				movieError={movieError}
-				movieLoading={movieLoading}
-				renderSlide={(actor) => <SelectedFilmActor actor={actor || []} />}
-				idForBtns={idForBtns + "Actors"}
-				dataToShow={persons || []}
-				slidesPerView={7}
-				slideKey={"id"}
-				showAllSlides={true}
-			/>
+			<div className='selectedFilmDetails-actors'>
+				<DefaultCarousel
+					movieError={movieError}
+					movieLoading={movieLoading}
+					renderSlide={(actor) => <SelectedFilmActor actor={actor || []} />}
+					idForBtns={idForBtns + "Actors"}
+					dataToShow={persons || []}
+					slidesPerView={3}
+					slideKey={"id"}
+					showAllSlides={true}
+				/>
+			</div>
 		</div>
 	);
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectRatingStyle } from "../../HelperFunctions/selectRatingStyle";
 import { useFetch } from "../../HelperFunctions/useFetch";
@@ -18,11 +19,14 @@ export function SelectedFilm() {
 	const { loading: seasonsLoading, error: seasonsError, data: seasonsData, handleFetch: loadSeasons } = useFetch();
 	const { loading: similarMovieLoading, error: similarMovieError, data: similarMovieData, handleFetch: loadSimilarMovie } = useFetch();
 	const { loading: postersLoading, error: postersError, data: postersData, handleFetch: loadPosters } = useFetch();
+	const footerHeight = useSelector((state) => state.footer.height);
+	const headerHeight = useSelector((state) => state.header.height);
 
 	const filmRating = Math.max(...Object.values(movieData?.rating || {})).toFixed(1);
 	const filmRatingStyle = selectRatingStyle(filmRating);
-	
+
 	useEffect(() => {
+		setActiveTab("about");
 		loadMovie("specificItem", 1, id);
 		loadPosters("posters", 10, id);
 		loadSeasons("seasons", 100, id);
@@ -41,7 +45,10 @@ export function SelectedFilm() {
 	}, [genres]);
 
 	return (
-		<div className='selectedFilm-wrapper'>
+		<div
+			className='selectedFilm-wrapper'
+			style={{ height: `calc(100vh - (${footerHeight}px + ${headerHeight}px + 15px))` }}
+		>
 			<SelectedFilmNav
 				movieData={movieData}
 				seasonsData={seasonsData}
@@ -56,6 +63,7 @@ export function SelectedFilm() {
 					movieLoading={movieLoading}
 					filmRatingStyle={filmRatingStyle}
 					filmRating={filmRating}
+					isActive={activeTab === "about"}
 				/>
 			)}
 			{activeTab === "series" && (
@@ -64,6 +72,7 @@ export function SelectedFilm() {
 					seasonsData={seasonsData || []}
 					seasonsError={seasonsError}
 					seasonsLoading={seasonsLoading}
+					isActive={activeTab === "series"}
 				/>
 			)}
 			{activeTab === "details" && (
@@ -80,6 +89,7 @@ export function SelectedFilm() {
 					postersData={postersData}
 					postersError={postersError}
 					postersLoading={postersLoading}
+					isActive={activeTab === "details"}
 				/>
 			)}
 			{activeTab === "similar" && (
@@ -91,13 +101,14 @@ export function SelectedFilm() {
 					similarMovieData={similarMovieData || []}
 					similarMovieError={similarMovieError}
 					similarMovieLoading={similarMovieLoading}
+					isActive={activeTab === "similar"}
 				/>
 			)}
 			<div className='selectedFilm-backdropWrapper'>
 				<div
 					className={`selectedFilm-backdrop ${activeTab !== "about" ? "blur" : ""}`}
 					style={{
-						backgroundImage: `url(${movieData?.backdrop.url})`,
+						backgroundImage: `url(${movieData?.backdrop?.url})`,
 					}}
 				></div>
 			</div>

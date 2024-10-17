@@ -1,5 +1,9 @@
-.carouselForCategories-categoryWrapper {
+.carouselForCategories-categoryWrapper{
 	width: 100%;
+}
+
+.carouselForCategories-categoryWrapper .defaultCarousel-swiperContainer {
+	height: 390px;
 }
 
 .carouselForCategories-titleWrapper {

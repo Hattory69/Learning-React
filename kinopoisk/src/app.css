@@ -61,9 +61,5 @@ button {
 }
 
 .swiper .swiper-wrapper {
-	align-items: start;
-}
-
-.ant-image .ant-image-img {
-	aspect-ratio: 1/1;
+	align-items: center;
 }

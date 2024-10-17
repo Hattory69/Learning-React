@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
+import { setFooterHeight } from "../../redux/footerSlice";
 import { setHeaderHeight } from "../../redux/headerSlice";
 import { CategoryList } from "../CategoryList/CategoryList";
 import { Footer } from "../Footer/Footer";
@@ -18,7 +19,9 @@ export function KinopoiskWrapper() {
 
 	useEffect(() => {
 		const header = document.getElementsByTagName("header")[0];
+		const footer = document.getElementsByTagName("footer")[0];
 		dispatch(setHeaderHeight(header.offsetHeight));
+		dispatch(setFooterHeight(footer.offsetHeight));
 	}, []);
 
 	return (
