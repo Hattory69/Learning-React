@@ -1,0 +1,19 @@
+.header-search .ant-select-single,
+.ant-select-selection-search .ant-input-affix-wrapper {
+	height: 30px;
+}
+
+.header-search .ant-select {
+	max-width: 500px;
+	width: 100%;
+	margin-right: 30px;
+}
+
+.ant-select-dropdown {
+	position: fixed;
+	line-height: normal;
+}
+
+.rc-virtual-list-holder {
+	max-height: 400px;
+}
