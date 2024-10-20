@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { footerReducer } from "./footerSlice";
 import { headerReducer } from "./headerSlice";
+import { kinopoiskApi, kinopoiskApiReducer } from "./kinopoiskApi";
 import { userReducer } from "./userSlice";
 
 export const store = configureStore({
@@ -8,5 +9,7 @@ export const store = configureStore({
 		user: userReducer,
 		header: headerReducer,
 		footer: footerReducer,
+		kinopoiskApi: kinopoiskApiReducer,
 	},
+	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(kinopoiskApi.middleware),
 });

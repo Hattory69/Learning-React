@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { useFetch } from "../../HelperFunctions/useFetch";
 import arrow from "../../images/smallArrow.svg";
+import { useFetchListQuery } from "../../redux/kinopoiskApi";
 import { DefaultCarousel } from "../DefaultCarousel/DefaultCarousel";
 import { IconComponent } from "../IconComponent/IconComponent";
 import { LinkComponent } from "../LinkComponent/LinkComponent";
 import { MovieListItem } from "../MovieListItem/MovieListItem";
 import "./carouselForCategories.css";
 
-export function CarouselForCategories({ sectionHeader, searchType, resultAmount }) {
-	const { loading: movieLoading, error: movieError, data: movieData, handleFetch: loadMovie } = useFetch();
-
-	useEffect(() => {
-		loadMovie(searchType, resultAmount);
-	}, []);
+export function CarouselForCategories({ sectionHeader, searchType, resultAmount, top }) {
+	const {
+		data: moviesData,
+		loading: moviesLoading,
+		error: moviesError,
+	} = useFetchListQuery({ type: searchType, resultAmount: resultAmount, top: top  });
 
 	return (
 		<section className='carouselForCategories-categoryWrapper'>
@@ -29,10 +29,10 @@ export function CarouselForCategories({ sectionHeader, searchType, resultAmount 
 				</h2>
 			</div>
 			<DefaultCarousel
-				loading={movieLoading}
-				error={movieError}
+				loading={moviesLoading}
+				error={moviesError}
 				slidesPerView={7}
-				dataToShow={movieData || []}
+				dataToShow={moviesData || []}
 				showAllSlides={false}
 				renderSlide={(movie) => <MovieListItem movie={movie} />}
 				sectionHeader={sectionHeader}

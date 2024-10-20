@@ -1,5 +1,6 @@
 import { SearchOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import kinopoiskLogo from "../../images/Kinopoisk-Logo.svg";
 import { HeaderSearch } from "../HeaderSearch/HeaderSearch";
@@ -7,7 +8,6 @@ import { HeaderUserInfo } from "../HeaderUserInfo/HeaderUserInfo";
 import { IconComponent } from "../IconComponent/IconComponent";
 import { LinkComponent } from "../LinkComponent/LinkComponent";
 import "./HeaderWrapper.css";
-import { useSelector } from "react-redux";
 
 export function HeaderWrapper() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,29 +49,32 @@ export function HeaderWrapper() {
 				iconStyle={"header-KinopoiskIcon"}
 				viewBox={"0 0 200 30"}
 			/>
-			<ul className={`header-navLinksList ${!showSearchInput ? "fade-in" : "fade-out"}`}>
-				<li className={`header-navLink ${location.pathname === "/" ? "active" : ""}`}>
-					<LinkComponent url={"/"} />
-					<p>Главное</p>
-				</li>
-				{user?.loggedIn && (
-					<li className={`header-navLink ${location.pathname === "/random/" ? "active" : ""}`}>
-						<LinkComponent url={"/random/"} />
-						<p>Рандомный фильм</p>
+
+			{!showSearchInput ? (
+				<ul className={`header-navLinksList ${!showSearchInput ? "fade-block" : ""}`}>
+					<li className={`header-navLink ${location.pathname === "/" ? "active" : ""}`}>
+						<LinkComponent url={"/"} />
+						<p>Главное</p>
 					</li>
-				)}
-				<li className='header-navLink'></li>
-				<button onClick={() => setShowSearchInput(true)}>
-					<SearchOutlined className='header-icons' />
-				</button>
-			</ul>
-			<div className={`header-search ${showSearchInput ? "fade-in" : "fade-out"}`}>
-				<HeaderSearch
-					setIsSearchOpen={setIsSearchOpen}
-					isSearchOpen={isSearchOpen}
-					setShowSearchInput={setShowSearchInput}
-				/>
-			</div>
+					{user?.loggedIn && (
+						<li className={`header-navLink ${location.pathname === "/random/" ? "active" : ""}`}>
+							<LinkComponent url={"/random/"} />
+							<p>Рандомный фильм</p>
+						</li>
+					)}
+					<button onClick={() => setShowSearchInput(true)}>
+						<SearchOutlined className='header-icons' />
+					</button>
+				</ul>
+			) : (
+				<div className={`header-search ${showSearchInput ? "fade-block" : ""}`}>
+					<HeaderSearch
+						setIsSearchOpen={setIsSearchOpen}
+						isSearchOpen={isSearchOpen}
+						setShowSearchInput={setShowSearchInput}
+					/>
+				</div>
+			)}
 			<button
 				className='header-user'
 				onClick={() => setIsModalOpen(true)}

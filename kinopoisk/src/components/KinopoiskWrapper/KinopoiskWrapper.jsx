@@ -47,7 +47,6 @@ export function KinopoiskWrapper() {
 					{user?.loggedIn && (
 						<Route
 							path='/random/'
-							// path='/'
 							element={<RandomFilm />}
 						/>
 					)}

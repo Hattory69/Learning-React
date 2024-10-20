@@ -1,28 +1,34 @@
 import { CloseOutlined } from "@ant-design/icons";
 import { AutoComplete, Input } from "antd";
 import React, { useEffect, useState } from "react";
-import { useFetch } from "../../HelperFunctions/useFetch";
+import { useFetchListQuery, useSearchItemQuery } from "../../redux/kinopoiskApi";
 import { SearchItem } from "../SearchItem/SearchItem";
 import "./headerSearch.css";
 
 export function HeaderSearch({ setShowSearchInput, isSearchOpen, setIsSearchOpen }) {
-	const { loading: moviesLoading, error: moviesError, data: moviesData, handleFetch: loadMovies } = useFetch();
 	const [options, setOptions] = useState([]);
 	const [searchVal, setSearchVal] = useState("");
 	const [timer, setTimer] = useState(null);
 	const [prevFetchVal, setPrevFetchVal] = useState(null);
 
-	function handleFetchMovies(searchType, resultsAmm, inputVal) {
+	const [query, setQuery] = useState("");
+	const { data: { docs: top10Movies } = {} } = useFetchListQuery({ resultAmount: 10, type: "top10" });
+	const { data: { docs: moviesData } = {} } = useSearchItemQuery(query, {
+		skip: !query,
+	});
+
+	function handleFetchMovies(inputVal) {
 		setIsSearchOpen(true);
-		if ((moviesData && searchVal === "") || prevFetchVal === inputVal) return;
+
+		if (prevFetchVal === inputVal) return;
 
 		if (searchVal === "") {
-			loadMovies("top10", 10);
+			setQuery("");
 			return;
 		}
 
 		setPrevFetchVal(inputVal);
-		loadMovies(searchType, resultsAmm, inputVal);
+		setQuery(inputVal);
 	}
 
 	function handleSearchChange(value) {
@@ -33,23 +39,29 @@ export function HeaderSearch({ setShowSearchInput, isSearchOpen, setIsSearchOpen
 		}
 
 		const newTimer = setTimeout(() => {
-			handleFetchMovies("searchItem", 10, value);
+			handleFetchMovies(value);
 		}, 1000);
 
 		return setTimer(newTimer);
 	}
 
-	useEffect(() => {
-		if (moviesData) {
-			const moviesOptions = moviesData.map((film) => ({
-				key: film.id,
-				value: film.name || film.alternativeName,
-				label: <SearchItem film={film} />,
-			}));
+	function handleSearchData(data) {
+		return data?.map((film) => ({
+			key: film.id,
+			value: searchVal,
+			label: <SearchItem film={film} />,
+		}));
+	}
 
+	useEffect(() => {
+		if (searchVal === "" && top10Movies) {
+			const top10Options = handleSearchData(top10Movies);
+			setOptions(top10Options);
+		} else if (moviesData) {
+			const moviesOptions = handleSearchData(moviesData);
 			setOptions(moviesOptions);
 		}
-	}, [moviesData]);
+	}, [moviesData, searchVal, query, top10Movies]);
 
 	return (
 		<>
@@ -68,11 +80,10 @@ export function HeaderSearch({ setShowSearchInput, isSearchOpen, setIsSearchOpen
 				)}
 			>
 				<Input
-					placeholder='Введите текст для поиска'
+					placeholder='Введите название фильма или сериала'
 					value={searchVal}
 					onChange={(e) => handleSearchChange(e.target.value)}
-					onFocus={handleFetchMovies}
-					suffix
+					onFocus={() => handleSearchChange(searchVal)}
 				/>
 			</AutoComplete>
 			<button onClick={() => setShowSearchInput(false)}>

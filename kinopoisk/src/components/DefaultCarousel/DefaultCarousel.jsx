@@ -21,7 +21,7 @@ export function DefaultCarousel({
 	showAllSlides,
 	slideToFirst,
 }) {
-	const slides = showAllSlides ? dataToShow : dataToShow?.slice(0, slidesPerView * 2) || [];
+	const slides = showAllSlides ? dataToShow : dataToShow?.docs?.slice(0, slidesPerView * 2) || [];
 
 	const prevButtonClass = `swiper-button-prev-${idForBtns}`;
 	const nextButtonClass = `swiper-button-next-${idForBtns}`;

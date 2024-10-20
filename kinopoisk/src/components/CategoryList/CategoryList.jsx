@@ -1,35 +1,40 @@
 import { ConfigProvider, Pagination } from "antd";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createMenuData } from "../../HelperFunctions/createMenuData";
-import { useFetch } from "../../HelperFunctions/useFetch";
+import { useFetchListQuery } from "../../redux/kinopoiskApi";
 import { MovieListItem } from "../MovieListItem/MovieListItem";
 import { SelectComponent } from "../SelectComponent/SelectComponent";
-import { useSelector } from "react-redux";
 import "./categoryList.css";
 
 export function CategoryList() {
-	const { loading: movieLoading, error: movieError, data: movieData, handleFetch: loadMovie } = useFetch();
 	const [movies, setMovies] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [pageSize, setPageSize] = useState(10);
 	const [filterParams, setFilterParams] = useState(null);
 	const { sectionHeader, searchType } = useParams();
 	const headerHeight = useSelector((state) => state.header.height);
+	
+	const {
+		data: moviesData,
+		loading: moviesLoading,
+		error: moviesError,
+	} = useFetchListQuery({ type: searchType, resultAmount: 100, top: ["top250", "top10"].includes(searchType) && searchType });
+console.log(searchType);
 
 	useEffect(() => {
-		loadMovie(searchType, 100);
 		document.title = `${sectionHeader} - смотреть онлайн в хорошем качестве`;
 	}, []);
 
 	useEffect(() => {
-		if (movieData) {
-			setFilterParams(createMenuData(movieData));
-			setMovies(movieData);
+		if (moviesData) {
+			setFilterParams(createMenuData(moviesData?.docs));
+			setMovies(moviesData?.docs);
 		} else {
 			setMovies([]);
 		}
-	}, [movieData]);
+	}, [moviesData]);
 
 	function handlePageChange(page, size) {
 		setCurrentPage(page);
@@ -49,8 +54,8 @@ export function CategoryList() {
 
 	return (
 		<div className='categoryList-wrapper'>
-			{movieLoading && <div>Загрузка...</div>}
-			{movieError && <div>Ошибка: {movieError}</div>}
+			{moviesLoading && <div>Загрузка...</div>}
+			{moviesError && <div>Ошибка: {moviesError}</div>}
 
 			<h3 className='categoryList-title'>{sectionHeader}</h3>
 
@@ -106,10 +111,13 @@ export function CategoryList() {
 						/>
 					</ConfigProvider>
 				</div>
-				<div style={{top: headerHeight+'px'}} className='categoryList-filter'>
+				<div
+					style={{ top: headerHeight + "px" }}
+					className='categoryList-filter'
+				>
 					<SelectComponent
 						filterParams={filterParams}
-						fetchedMovies={movieData || []}
+						fetchedMovies={moviesData?.docs || []}
 						setMovies={setMovies}
 					/>
 				</div>

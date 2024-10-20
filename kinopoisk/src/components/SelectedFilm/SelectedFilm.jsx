@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectRatingStyle } from "../../HelperFunctions/selectRatingStyle";
-import { useFetch } from "../../HelperFunctions/useFetch";
+
+import {
+	useFetchMovieImagesQuery,
+	useFetchMovieQuery,
+	useFetchMovieReviewsQuery,
+	useFetchMovieSeasonsQuery,
+	useFetchSimilarMoviesQuery,
+} from "../../redux/kinopoiskApi";
 import { SelectedFilmAbout } from "../SelectedFilmAbout/SelectedFilmAbout";
 import { SelectedFilmDetails } from "../SelectedFilmDetails/SelectedFilmDetails";
 import { SelectedFilmNav } from "../SelectedFilmNav/SelectedFilmNav";
@@ -14,35 +21,33 @@ export function SelectedFilm() {
 	const { id } = useParams();
 	const [genres, setGenres] = useState([]);
 	const [activeTab, setActiveTab] = useState("about");
-	const { loading: movieLoading, error: movieError, data: movieData, handleFetch: loadMovie } = useFetch();
-	const { loading: reviewsLoading, error: reviewsError, data: reviewsData, handleFetch: loadReviews } = useFetch();
-	const { loading: seasonsLoading, error: seasonsError, data: seasonsData, handleFetch: loadSeasons } = useFetch();
-	const { loading: similarMovieLoading, error: similarMovieError, data: similarMovieData, handleFetch: loadSimilarMovie } = useFetch();
-	const { loading: postersLoading, error: postersError, data: postersData, handleFetch: loadPosters } = useFetch();
+	const { loading: movieLoading, error: movieError, data: movieData } = useFetchMovieQuery({ id: id });
+	const { loading: postersLoading, error: postersError, data: { docs: postersData } = {} } = useFetchMovieImagesQuery({ id: id });
+	const { loading: seasonsLoading, error: seasonsError, data: { docs: seasonsData } = {} } = useFetchMovieSeasonsQuery({ id: id });
+	const { loading: reviewsLoading, error: reviewsError, data: { docs: reviewsData } = {} } = useFetchMovieReviewsQuery({ id: id });
+	const {
+		loading: similarMovieLoading,
+		error: similarMovieError,
+		data: { docs: similarMovieData } = {},
+	} = useFetchSimilarMoviesQuery({ genres: genres });
+
 	const footerHeight = useSelector((state) => state.footer.height);
 	const headerHeight = useSelector((state) => state.header.height);
 
-	const filmRating = Math.max(...Object.values(movieData?.rating || {})).toFixed(1);
-	const filmRatingStyle = selectRatingStyle(filmRating);
+	const movieRating = Math.max(...Object.values(movieData?.rating || {})).toFixed(1);
+	const movieRatingStyle = selectRatingStyle(movieRating);
 
 	useEffect(() => {
 		setActiveTab("about");
-		loadMovie("specificItem", 1, id);
-		loadPosters("posters", 10, id);
-		loadSeasons("seasons", 100, id);
-		loadReviews("itemReviews", 10, id);
 	}, [id]);
 
 	useEffect(() => {
-		setGenres(movieData?.genres.slice(0, 2).map((genre) => genre.name));
-		document.title = `Новый фильм: ${movieData?.name || movieData?.alternativeName}`;
-	}, [movieData]);
-
-	useEffect(() => {
-		if (genres?.length > 0) {
-			loadSimilarMovie("similarMovies", 10, genres);
+		if (movieData?.genres) {
+			document.title = `Новый фильм: ${movieData.name || movieData.alternativeName}`;
+			const newGenres = movieData.genres.slice(0, 2).map((genre) => genre.name);
+			setGenres(newGenres);
 		}
-	}, [genres]);
+	}, [movieData?.genres]);
 
 	return (
 		<div
@@ -61,8 +66,8 @@ export function SelectedFilm() {
 					seasonsData={seasonsData || []}
 					movieError={movieError}
 					movieLoading={movieLoading}
-					filmRatingStyle={filmRatingStyle}
-					filmRating={filmRating}
+					movieRatingStyle={movieRatingStyle}
+					movieRating={movieRating}
 					isActive={activeTab === "about"}
 				/>
 			)}
@@ -81,8 +86,8 @@ export function SelectedFilm() {
 					movieError={movieError}
 					movieLoading={movieLoading}
 					idForBtns={id}
-					filmRatingStyle={filmRatingStyle}
-					filmRating={filmRating}
+					movieRatingStyle={movieRatingStyle}
+					movieRating={movieRating}
 					reviewsData={reviewsData}
 					reviewsError={reviewsError}
 					reviewsLoading={reviewsLoading}

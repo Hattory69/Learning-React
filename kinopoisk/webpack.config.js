@@ -5,9 +5,7 @@ const SpriteLoaderPlugin = require("svg-sprite-loader/plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const webpack = require("webpack");
-const dotenv = require("dotenv");
 const path = require("path");
-dotenv.config();
 
 let mode = process.env.NODE_ENV === "development" ? "development" : "production";
 console.log(mode + " mode");

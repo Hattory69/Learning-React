@@ -4,7 +4,6 @@ import { countriesNames } from "../../data/countriesNames";
 import { genresNames } from "../../data/genresNames";
 import { productionCompanies } from "../../data/productionCompanies";
 import { randomMovieTypes } from "../../data/randomMovieTypes";
-import { useFetch } from "../../HelperFunctions/useFetch";
 import { MovieListItem } from "../MovieListItem/MovieListItem";
 import { RandomFilmSelect } from "../RandomFilmSelect/RandomFilmSelect";
 import { RandomFilmSlider } from "../RandomFilmSlider/RandomFilmSlider";
