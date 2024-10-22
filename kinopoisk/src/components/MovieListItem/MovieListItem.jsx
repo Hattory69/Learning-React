@@ -1,16 +1,16 @@
 import { Image } from "antd";
 import React, { useState } from "react";
 import blancImg from "../../images/movieImgNotFound.svg";
-import { FilmBadges } from "../FilmBadges/FilmBadges";
 import { IconComponent } from "../IconComponent/IconComponent";
 import { LinkComponent } from "../LinkComponent/LinkComponent";
+import { MovieBadges } from "../MovieBadges/MovieBadges";
 import "./movieListItem.css";
 
 export function MovieListItem({ movie }) {
 	const [isImgError, setIsImgError] = useState(false);
 	const { name, alternativeName, poster, rating, top10, top250, year, genres } = movie;
 
-	const filmRating = Math.max(...Object.values(rating || [])).toFixed(1);
+	const MovieRating = Math.max(...Object.values(rating || [])).toFixed(1);
 
 	return (
 		<li className='movieListItem-wrapper'>
@@ -28,10 +28,10 @@ export function MovieListItem({ movie }) {
 					onError={() => setIsImgError(true)}
 				/>
 			)}
-			{filmRating > 0.0 && (
+			{MovieRating > 0.0 && (
 				<div className='movieListItem-badges'>
-					<FilmBadges
-						rating={filmRating}
+					<MovieBadges
+						rating={MovieRating}
 						top10={top10}
 						top250={top250}
 					/>

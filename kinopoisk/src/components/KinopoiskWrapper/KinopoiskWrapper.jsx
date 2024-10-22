@@ -8,8 +8,8 @@ import { Footer } from "../Footer/Footer";
 import { HeaderWrapper } from "../HeaderWrapper/HeaderWrapper";
 import { MainPage } from "../MainPage/MainPage";
 import { PageNotFound } from "../PageNotFound/PageNotFound";
-import { RandomFilm } from "../RandomFilm/RandomFilm";
-import { SelectedFilm } from "../SelectedFilm/SelectedFilm";
+import { RandomMovie } from "../RandomMovie/RandomMovie";
+import { SelectedMovie } from "../SelectedMovie/SelectedMovie";
 import "./kinopoiskWrapper.css";
 
 export function KinopoiskWrapper() {
@@ -42,12 +42,12 @@ export function KinopoiskWrapper() {
 					/>
 					<Route
 						path='/about/:id'
-						element={<SelectedFilm />}
+						element={<SelectedMovie />}
 					/>
 					{user?.loggedIn && (
 						<Route
 							path='/random/'
-							element={<RandomFilm />}
+							element={<RandomMovie />}
 						/>
 					)}
 					<Route

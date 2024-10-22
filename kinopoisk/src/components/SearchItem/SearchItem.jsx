@@ -7,13 +7,13 @@ import { IconComponent } from "../IconComponent/IconComponent";
 import { LinkComponent } from "../LinkComponent/LinkComponent";
 import "./searchItem.css";
 
-export function SearchItem({ film }) {
+export function SearchItem({ Movie }) {
 	const [isImgError, setIsImgError] = useState(false);
 
-	const { name, alternativeName, poster, rating, type } = film;
-	const filmRating = Math.max(...Object.values(rating)).toFixed(1);
-	const filmRatingStyle = selectRatingStyle(filmRating);
-	const filmYear = formatReleaseYear(film);
+	const { name, alternativeName, poster, rating, type } = Movie;
+	const MovieRating = Math.max(...Object.values(rating)).toFixed(1);
+	const MovieRatingStyle = selectRatingStyle(MovieRating);
+	const MovieYear = formatReleaseYear(Movie);
 
 	return (
 		<div className='searchItem-wrapper'>
@@ -35,18 +35,18 @@ export function SearchItem({ film }) {
 			<div className='searchItem-about'>
 				<h4 className='searchItem-name'>{name || alternativeName}</h4>
 				<p className='searchItem-info'>
-					{filmRating > 0 && (
+					{MovieRating > 0 && (
 						<span
-							style={filmRatingStyle}
+							style={MovieRatingStyle}
 							className='searchItem-rating'
 						>
-							{filmRating}
+							{MovieRating}
 						</span>
 					)}
-					<span className='searchItem-details'>{filmYear ? `${type}, ${filmYear}` : type}</span>
+					<span className='searchItem-details'>{MovieYear ? `${type}, ${MovieYear}` : type}</span>
 				</p>
 			</div>
-			<LinkComponent url={`/about/${film.id}`} />
+			<LinkComponent url={`/about/${Movie.id}`} />
 		</div>
 	);
 }

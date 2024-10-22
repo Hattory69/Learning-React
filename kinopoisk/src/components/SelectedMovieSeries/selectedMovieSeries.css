@@ -1,0 +1,46 @@
+.selectedMovieSeries-wrapper {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.selectedMovieSeries-wrapper > .defaultCarousel-swiperContainer {
+	height: 100%;
+}
+
+.selectedMovieSeries-pagination .swiper-wrapper {
+	display: none;
+}
+
+.selectedMovieSeries-pagination .swiper {
+	height: 60px;
+}
+
+.selectedMovieSeries-pagination .swiper > .swiper-pagination {
+	position: relative;
+	display: flex;
+	align-items: center;
+	height: 100%;
+	bottom: 0;
+}
+
+.selectedMovieSeries-pagination .swiper > .swiper-pagination .swiper-pagination-bullet {
+	padding: 10px;
+	height: 20px;
+	width: auto;
+	align-content: center;
+	opacity: 1;
+	border-radius: 5px;
+	font-weight: 600;
+	background-color: transparent;
+	transition-property: color background-color;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
+}
+
+.selectedMovieSeries-pagination .swiper > .swiper-pagination .swiper-pagination-bullet:focus,
+.selectedMovieSeries-pagination .swiper > .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+	color: orange;
+	background-color: #131317;
+}

@@ -1,0 +1,66 @@
+.selectedMovieDetails-wrapper {
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+.selectedMovieDetails-left {
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+	height: 100%;
+	align-items: start;
+	justify-content: space-evenly;
+}
+
+.selectedMovieDetails-movieDetails {
+	max-width: 70%;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+}
+
+.selectedMovieDetails-movieDetails > :not(:last-child) {
+	margin-bottom: 10px;
+}
+
+.selectedMovieDetails-posters {
+	width: 100%;
+}
+
+.selectedMovieDetails-posters .mySwiper {
+	width: 300px;
+	height: 350px;
+}
+
+.selectedMovieDetails-posters .mySwiper .swiper-wrapper {
+	height: 300px;
+}
+
+.swiper-pagination-bullet.selectedMovieDetails-posterBullet {
+	background-color: orange;
+	width: 15px;
+	height: 15px;
+}
+
+.selectedMovieDetails-votes {
+	font-weight: 900;
+	font-size: 15px;
+	color: hsla(0, 0%, 100%, 0.6);
+}
+
+.selectedMovieDetails-description {
+	font-weight: 600;
+	font-size: 20px;
+}
+
+.selectedMovieDetails-actors {
+	width: 40%;
+	max-height: 400px;
+	width: 40%;
+	height: 100%;
+}
+
+.selectedMovieDetails-actors .defaultCarousel-swiperContainer {
+	height: 100%;
+}

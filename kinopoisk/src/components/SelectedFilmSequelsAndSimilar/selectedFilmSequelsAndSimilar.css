@@ -1,9 +1,0 @@
-.selectedFilm-similarWrapper {
-	height: 100%;
-	align-content: center;
-}
-
-.selectedFilm-similarWrapper .defaultCarousel-swiperContainer {
-	max-height: 400px;
-	height: 100%;
-}

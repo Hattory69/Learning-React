@@ -1,0 +1,30 @@
+.selectedMovie-nav {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+.selectedMovie-nav li:not(:last-child) {
+	margin-right: 15px;
+}
+
+.selectedMovie-navItem {
+	color: white;
+	padding: 5px;
+	font-weight: 700;
+	border-radius: 5px;
+	opacity: 0.5;
+	transition-property: opacity background;
+	transition-timing-function: ease;
+	transition-duration: 0.3s;
+}
+
+.selectedMovie-navItem:hover {
+	opacity: 1;
+}
+
+.selectedMovie-navItem.active {
+	opacity: 1;
+	background-color: #131317;
+}

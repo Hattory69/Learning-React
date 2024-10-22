@@ -44,10 +44,10 @@ export function createMenuData(data) {
 		},
 	];
 
-	for (const film of data) {
-		addToMenuData("year", film.year);
-		addToMenuData("ageRating", film.ageRating);
-		addToMenuData("countries", film.countries, "name");
+	for (const Movie of data) {
+		addToMenuData("year", Movie.year);
+		addToMenuData("ageRating", Movie.ageRating);
+		addToMenuData("countries", Movie.countries, "name");
 	}
 	menuData.forEach((item) => {
 		item?.children?.sort((a, b) => {

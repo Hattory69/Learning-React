@@ -8,8 +8,8 @@ export function SelectComponent({ filterParams, setMovies, fetchedMovies }) {
 	const [expandedKeys, setExpandedKeys] = useState([]);
 
 	function filterMovieList(node, key) {
-		const filteredList = fetchedMovies.filter((film) => {
-			const field = film[node];
+		const filteredList = fetchedMovies.filter((Movie) => {
+			const field = Movie[node];
 
 			if (Array.isArray(field)) {
 				return field.some((item) => Object.values(item).includes(key));

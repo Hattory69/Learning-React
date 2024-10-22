@@ -1,11 +1,11 @@
-export function formatReleaseYear(film) {
-	if (film?.type?.includes("series")) {
-		const releasePeriod = film.releaseYears?.[0];
+export function formatReleaseYear(Movie) {
+	if (Movie?.type?.includes("series")) {
+		const releasePeriod = Movie.releaseYears?.[0];
 
 		if (releasePeriod && releasePeriod.start != null) {
 			return `${releasePeriod.start} - ${releasePeriod.end || "..."}`;
 		}
 	}
 
-	return film.year || "";
+	return Movie.year || "";
 }
