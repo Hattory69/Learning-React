@@ -1,0 +1,19 @@
+.footer-wrapper {
+	padding: 30px;
+	max-height: 100%;
+	height: var(--footer-height);
+	box-sizing: border-box;
+	border-block-start: 0.1rem solid hsla(0, 0%, 100%, 0.1);
+	color: hsla(0, 0%, 100%, 0.5);
+	font-weight: 400;
+	font-size: 13px;
+}
+
+.footer-wrapper > :not(:last-child) {
+	margin-bottom: 10px;
+}
+
+.footer-wrapper a {
+	text-decoration: none;
+	color: inherit;
+}

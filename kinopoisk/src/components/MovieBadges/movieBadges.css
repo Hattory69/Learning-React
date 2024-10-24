@@ -1,0 +1,78 @@
+.movieBadge-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
+	height: 25px;
+	font-weight: 600;
+}
+
+.movieBadge-wrapper > * {
+	margin: 0 5px 5px 0;
+}
+
+.movieBadge-ratingWrapper {
+	display: flex;
+	max-width: 60px;
+	height: inherit;
+	width: 100%;
+	justify-content: center;
+}
+
+.onTop {
+	background-color: #b38728;
+	color: black;
+}
+
+.goodRating {
+	background-color: green;
+}
+
+.averageRating {
+	background-color: gray;
+}
+
+.lowRating {
+	background-color: red;
+}
+
+.movieBadge-rating {
+	align-content: center;
+}
+
+.movieBadge-oliveBranch {
+	width: 20px;
+	height: 100%;
+}
+
+.rotateIcon {
+	transform: rotateY(180deg);
+}
+
+.movieBadge-topWrapper {
+	display: flex;
+	height: 100%;
+	padding: 5px 5px 5px 0;
+	box-sizing: border-box;
+	background-color: black;
+	color: #e2bce8;
+	width: fit-content;
+}
+
+.movieBadge-top {
+	align-content: center;
+}
+
+.movieBadge-lightning {
+	width: 30px;
+}
+
+.movieBadge-placeInTop {
+	height: 100%;
+	aspect-ratio: 1 / 1;
+	text-align: center;
+	align-content: center;
+	background-color: #e2bce8;
+	border-radius: 50%;
+	color: black;
+}

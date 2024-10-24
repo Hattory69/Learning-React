@@ -1,0 +1,25 @@
+.selectedMovieActor-slideWrapper {
+	display: flex;
+	flex-direction: column;
+	height: inherit;
+}
+
+.selectedMovieActor-slideWrapper > .ant-image {
+	margin-bottom: 10px;
+	max-height: 80%;
+	height: 100%;
+	aspect-ratio: 1/1;
+}
+
+.ant-image-img.selectedMovieActor-photo {
+	height: 100%;
+	object-fit: cover;
+}
+
+.selectedMovieActor-name {
+	font-weight: 600;
+}
+
+.selectedMovieActor-about p:not(:last-child) {
+	margin-bottom: 2.5px;
+}
