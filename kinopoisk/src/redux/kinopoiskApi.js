@@ -79,6 +79,25 @@ export const kinopoiskApi = createApi({
 						},
 				  }
 		),
+		fetchRandomMovie: builder.query(
+			isTest
+				? { queryFn: () => ({ data: selectedMovie }) }
+				: {
+						query: ({ searchData }) => {
+							const { year, country, genre, type, production, kpRating } = searchData;
+							const yearRange = `${year[0]}-${year[1]}`;
+							const countriesParams = country ? "&" + country.map((c) => `countries.name=${encodeURIComponent(c)}`).join("&") : "";
+							const genresParams = genre ? "&" + genre.map((g) => `genres.name=${encodeURIComponent(g.toLowerCase())}`).join("&") : "";
+							const typeParams = type ? "&" + type.map((type) => `type=${encodeURIComponent(type.toLowerCase())}`).join("&") : "";
+							const productionParams = production
+								? "&" + production.map((production) => `countries.name=${encodeURIComponent(production)}`).join("&")
+								: "";
+							const kpRatingParam = kpRating ? "&" + `rating.kp=${kpRating?.toFixed(1)}-10` : "";
+
+							return `/movie/random?year=${yearRange}${countriesParams}${genresParams}${typeParams}${productionParams}${kpRatingParam}`;
+						},
+				  }
+		),
 	}),
 });
 
@@ -90,6 +109,7 @@ export const {
 	useFetchMovieSeasonsQuery,
 	useFetchMovieReviewsQuery,
 	useFetchSimilarMoviesQuery,
+	useLazyFetchRandomMovieQuery,
 } = kinopoiskApi;
 
 export const kinopoiskApiReducer = kinopoiskApi.reducer;

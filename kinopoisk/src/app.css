@@ -78,3 +78,9 @@ button {
 .fade-block {
 	animation: fadeBlock 0.3s ease-in-out forwards;
 }
+
+:root {
+	--header-height: 100px;
+	--footer-height: 190px;
+	--section-padding: 15px;
+}

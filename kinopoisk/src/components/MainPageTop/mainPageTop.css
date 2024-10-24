@@ -1,4 +1,6 @@
 .mainPageTop-wrapper {
+	margin-top: calc(-1 * var(--header-height));
+
 	display: flex;
 	min-height: 400px;
 	position: relative;

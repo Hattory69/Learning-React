@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { setFooterHeight } from "../../redux/footerSlice";
-import { setHeaderHeight } from "../../redux/headerSlice";
 import { CategoryList } from "../CategoryList/CategoryList";
 import { Footer } from "../Footer/Footer";
 import { HeaderWrapper } from "../HeaderWrapper/HeaderWrapper";
@@ -13,24 +11,12 @@ import { SelectedMovie } from "../SelectedMovie/SelectedMovie";
 import "./kinopoiskWrapper.css";
 
 export function KinopoiskWrapper() {
-	const headerHeight = useSelector((state) => state.header.height);
 	const user = useSelector((state) => state.user.user);
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		const header = document.getElementsByTagName("header")[0];
-		const footer = document.getElementsByTagName("footer")[0];
-		dispatch(setHeaderHeight(header.offsetHeight));
-		dispatch(setFooterHeight(footer.offsetHeight));
-	}, []);
 
 	return (
 		<>
 			<HeaderWrapper />
-			<section
-				className='mainSection'
-				style={{ marginTop: headerHeight + "px" }}
-			>
+			<section className='mainSection'>
 				<Routes>
 					<Route
 						path='/'

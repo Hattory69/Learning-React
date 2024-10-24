@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectRatingStyle } from "../../HelperFunctions/selectRatingStyle";
 import {
@@ -31,9 +30,6 @@ export function SelectedMovie() {
 		data: { docs: similarMovieData } = {},
 	} = useFetchSimilarMoviesQuery({ genres: genres });
 
-	const footerHeight = useSelector((state) => state.footer.height);
-	const headerHeight = useSelector((state) => state.header.height);
-
 	const movieRating = Math.max(...Object.values(movieData?.rating || {})).toFixed(1);
 	const movieRatingStyle = selectRatingStyle(movieRating);
 
@@ -50,10 +46,7 @@ export function SelectedMovie() {
 	}, [movieData?.genres]);
 
 	return (
-		<div
-			className='selectedMovie-wrapper'
-			style={{ height: `calc(100vh - (${footerHeight}px + ${headerHeight}px + 15px))` }}
-		>
+		<div className='selectedMovie-wrapper'>
 			<SelectedMovieNav
 				movieData={movieData}
 				seasonsData={seasonsData}

@@ -1,3 +1,4 @@
 .mainSection {
-	padding-bottom: 15px;
+	margin-top: var(--header-height);
+	padding-bottom: var(--section-padding);
 }
