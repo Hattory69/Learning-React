@@ -18,21 +18,23 @@ export function MovieBadges({ rating, top10, top250, showPlace }) {
 
 	return (
 		<div className='movieBadge-wrapper'>
-			<div className={`movieBadge-ratingWrapper ${style}`}>
-				{(top10 || top250) && (
-					<IconComponent
-						icon={olive}
-						iconStyle={"movieBadge-oliveBranch"}
-					/>
-				)}
-				<span className={`movieBadge-rating`}>{rating}</span>
-				{(top10 || top250) && (
-					<IconComponent
-						icon={olive}
-						iconStyle={"movieBadge-oliveBranch rotateIcon"}
-					/>
-				)}
-			</div>
+			{rating > 0 && (
+				<div className={`movieBadge-ratingWrapper ${style}`}>
+					{(top10 || top250) && (
+						<IconComponent
+							icon={olive}
+							iconStyle={"movieBadge-oliveBranch"}
+						/>
+					)}
+					<span className={`movieBadge-rating`}>{rating}</span>
+					{(top10 || top250) && (
+						<IconComponent
+							icon={olive}
+							iconStyle={"movieBadge-oliveBranch rotateIcon"}
+						/>
+					)}
+				</div>
+			)}
 			{(top10 || top250) && (
 				<div className='movieBadge-topWrapper'>
 					<IconComponent
@@ -42,7 +44,7 @@ export function MovieBadges({ rating, top10, top250, showPlace }) {
 					<span className='movieBadge-top'>{`Top-${top10 ? "10" : "250"}`}</span>
 				</div>
 			)}
-			{showPlace && <span className='movieBadge-placeInTop'>{top10 || top250}</span>}
+			{showPlace && (top10 || top250) && <span className='movieBadge-placeInTop'>{top10 || top250}</span>}
 		</div>
 	);
 }

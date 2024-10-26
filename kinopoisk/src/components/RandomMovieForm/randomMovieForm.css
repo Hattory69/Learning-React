@@ -1,0 +1,48 @@
+.randomMovie-form {
+	padding: 0 30px 15px 30px;
+	height: 45%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.randomMovie-form > div {
+	margin-bottom: 10px;
+}
+
+.randomMovie-formInput .ant-input-number-handler-wrap {
+	display: none;
+}
+
+.randomMovie-formInput .ant-select-arrow,
+.randomMovie-formInput .ant-select-clear,
+.randomMovie-inputDropdown * .ant-select-item.ant-select-item-option > [class*="ant-select-item-option-state"] {
+	color: white;
+}
+
+.randomMovie-formInput .ant-select-clear:hover {
+	color: white;
+	opacity: 0.4;
+}
+
+.randomMovie-inputDropdown * .rc-virtual-list-holder-inner > [class*="ant-select-item-option-active"] {
+	background-color: gray;
+}
+
+.randomMovie-inputDropdown * .rc-virtual-list-holder-inner > [class*="ant-select-item-option-disabled"] {
+	color: gray;
+}
+
+.randomMovie-inputsWrapper {
+	width: 50%;
+}
+
+.randomMovie-inputsWrapper > :not(:last-child) {
+	margin-bottom: 10px;
+}
+
+.randomMovie-kpRating {
+	display: flex;
+	justify-self: center;
+	width: 50%;
+}

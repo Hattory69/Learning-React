@@ -1,5 +1,6 @@
 import { Slider } from "antd";
 import React from "react";
+import "./randomMovieSlider.css";
 
 export function RandomMovieSlider({ onChange, defaultYearValue }) {
 	const startYear = defaultYearValue[0];
@@ -18,6 +19,7 @@ export function RandomMovieSlider({ onChange, defaultYearValue }) {
 	return (
 		<Slider
 			range
+			className='randomMovie-slider'
 			marks={marks}
 			min={startYear}
 			max={currentYear}

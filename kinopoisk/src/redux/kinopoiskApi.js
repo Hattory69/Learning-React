@@ -94,7 +94,7 @@ export const kinopoiskApi = createApi({
 								: "";
 							const kpRatingParam = kpRating ? "&" + `rating.kp=${kpRating?.toFixed(1)}-10` : "";
 
-							return `/movie/random?year=${yearRange}${countriesParams}${genresParams}${typeParams}${productionParams}${kpRatingParam}`;
+							return `/movie/random?&notNullFields=externalId.kpHD&year=${yearRange}${countriesParams}${genresParams}${typeParams}${productionParams}${kpRatingParam}`;
 						},
 				  }
 		),

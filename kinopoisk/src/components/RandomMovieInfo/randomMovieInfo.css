@@ -1,0 +1,38 @@
+.randomMovie-movieInfoWrapper {
+	display: flex;
+	justify-content: center;
+	height: 55%;
+	width: 70%;
+	align-self: center;
+}
+
+.randomMovie-movieInfoWrapper .ant-image {
+	margin-right: 30px;
+}
+
+.ant-image .randomMovie-poster {
+	height: 100%;
+}
+
+.randomMovie-movieInfo {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	position: relative;
+}
+
+.randomMovie-movieInfo > *:not(:last-child) {
+	margin-bottom: 5px;
+}
+
+.randomMovie-movieTitle {
+	font-size: 30px;
+}
+
+.randomMovie-yearAndType {
+	color: gray;
+}
+
+.randomMovie-description {
+	font-size: 20px;
+}

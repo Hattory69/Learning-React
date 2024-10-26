@@ -14,14 +14,12 @@ export function CategoryList() {
 	const [pageSize, setPageSize] = useState(10);
 	const [filterParams, setFilterParams] = useState(null);
 	const { sectionHeader, searchType } = useParams();
-	const headerHeight = useSelector((state) => state.header.height);
-	
+
 	const {
 		data: moviesData,
 		loading: moviesLoading,
 		error: moviesError,
 	} = useFetchListQuery({ type: searchType, resultAmount: 100, top: ["top250", "top10"].includes(searchType) && searchType });
-console.log(searchType);
 
 	useEffect(() => {
 		document.title = `${sectionHeader} - смотреть онлайн в хорошем качестве`;
@@ -112,7 +110,6 @@ console.log(searchType);
 					</ConfigProvider>
 				</div>
 				<div
-					style={{ top: headerHeight + "px" }}
 					className='categoryList-filter'
 				>
 					<SelectComponent

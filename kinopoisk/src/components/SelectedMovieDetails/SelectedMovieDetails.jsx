@@ -5,6 +5,7 @@ import "swiper/css/effect-cards";
 import "swiper/css/pagination";
 import { EffectCards, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { countVotes } from "../../HelperFunctions/CountVotes";
 import { DefaultCarousel } from "../DefaultCarousel/DefaultCarousel";
 import { MovieBadges } from "../MovieBadges/MovieBadges";
 import { SelectedMovieActor } from "../SelectedMovieActor/SelectedMovieActor";
@@ -25,13 +26,11 @@ export function SelectedMovieDetails({
 	const { description, persons, top10, top250, votes } = movieData;
 
 	const sortedActors = [...persons]?.sort((a, b) => a?.profession - b?.profession);
-	const votesSum = Object.values(votes ?? {}).reduce((acc, votes) => (acc += votes), 0);
+	const votesSum = countVotes(votes);
 
 	const pagination = {
 		clickable: true,
-		renderBullet: (index, className) => (
-			`<span key=${index} class="${className} selectedMovieDetails-posterBullet"></span>`
-		),
+		renderBullet: (index, className) => `<span key=${index} class="${className} selectedMovieDetails-posterBullet"></span>`,
 	};
 
 	return (

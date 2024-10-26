@@ -1,33 +1,21 @@
-import { Image } from "antd";
-import React, { useState } from "react";
-import blancImg from "../../images/movieImgNotFound.svg";
-import { IconComponent } from "../IconComponent/IconComponent";
+import React from "react";
 import { LinkComponent } from "../LinkComponent/LinkComponent";
 import { MovieBadges } from "../MovieBadges/MovieBadges";
+import { PosterComponent } from "../PosterComponent/PosterComponent";
 import "./movieListItem.css";
 
 export function MovieListItem({ movie }) {
-	const [isImgError, setIsImgError] = useState(false);
 	const { name, alternativeName, poster, rating, top10, top250, year, genres } = movie;
 
 	const MovieRating = Math.max(...Object.values(rating || [])).toFixed(1);
 
 	return (
 		<li className='movieListItem-wrapper'>
-			{isImgError ? (
-				<IconComponent
-					icon={blancImg}
-					iconStyle='movieListItem-img'
-				/>
-			) : (
-				<Image
-					className='movieListItem-img'
-					src={poster?.url || "noImg"}
-					placeholder={false}
-					alt={`Постер к ${name || alternativeName}`}
-					onError={() => setIsImgError(true)}
-				/>
-			)}
+			<PosterComponent
+				poster={poster}
+				imgClassName='movieListItem-img'
+				movieName={name || alternativeName}
+			/>
 			{MovieRating > 0.0 && (
 				<div className='movieListItem-badges'>
 					<MovieBadges

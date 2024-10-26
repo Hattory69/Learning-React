@@ -4,6 +4,8 @@ import React from "react";
 export function RandomMovieSelect({ onChange, optionsPlaceholder, optionsData }) {
 	return (
 		<Select
+		className='randomMovie-formInput'
+		popupClassName='randomMovie-inputDropdown'
 			mode='multiple'
 			style={{
 				width: "100%",
@@ -12,6 +14,7 @@ export function RandomMovieSelect({ onChange, optionsPlaceholder, optionsData })
 			placeholder={optionsPlaceholder}
 			options={optionsData}
 			allowClear
+			maxCount={3}
 		/>
 	);
 }

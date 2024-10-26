@@ -30,7 +30,7 @@ export function SelectedMovie() {
 		data: { docs: similarMovieData } = {},
 	} = useFetchSimilarMoviesQuery({ genres: genres });
 
-	const movieRating = Math.max(...Object.values(movieData?.rating || {})).toFixed(1);
+	const movieRating = movieData?.rating?.kp?.toFixed(1);
 	const movieRatingStyle = selectRatingStyle(movieRating);
 
 	useEffect(() => {
