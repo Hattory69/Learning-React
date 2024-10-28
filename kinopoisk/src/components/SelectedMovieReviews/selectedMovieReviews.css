@@ -1,0 +1,13 @@
+.selectedMovie-reviewsModal [class*="ant-modal-body"] {
+	display: flex;
+}
+
+.selectedMovie-reviewsModal [class*="swiper-horizontal"] {
+	display: flex;
+	flex-direction: column;
+}
+
+.selectedMovie-reviewsModal .swiper > [class*="swiper-pagination"] {
+	position: relative;
+	bottom: 0;
+}

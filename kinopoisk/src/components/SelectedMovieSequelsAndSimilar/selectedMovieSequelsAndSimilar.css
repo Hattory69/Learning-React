@@ -4,6 +4,6 @@
 }
 
 .selectedMovie-similarWrapper .defaultCarousel-swiperContainer {
-	max-height: 400px;
+	max-height: 60%;
 	height: 100%;
 }

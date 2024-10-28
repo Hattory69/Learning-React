@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import arrow from "../../images/smallArrow.svg";
@@ -9,12 +9,30 @@ import { LinkComponent } from "../LinkComponent/LinkComponent";
 import { MovieListItem } from "../MovieListItem/MovieListItem";
 import "./carouselForCategories.css";
 
-export function CarouselForCategories({ sectionHeader, searchType, resultAmount, top }) {
+export function CarouselForCategories({ sectionHeader, searchType, top, resultAmount }) {
+	const [slidesPerView, setSlidesPerView] = useState(7);
+	const spaceBetweenSlides = 15;
+	const minSlideWidth = 250;
+
 	const {
 		data: moviesData,
 		loading: moviesLoading,
 		error: moviesError,
-	} = useFetchListQuery({ type: searchType, resultAmount: resultAmount, top: top  });
+	} = useFetchListQuery({ type: searchType, resultAmount: resultAmount, top: top });
+
+	const updateSlidesPerView = () => {
+		const containerWidth = window.innerWidth;
+		const maxSlides = Math.floor(containerWidth / (minSlideWidth + spaceBetweenSlides));
+		setSlidesPerView(maxSlides);
+	};
+
+	useEffect(() => {
+		updateSlidesPerView();
+
+		window.addEventListener("resize", updateSlidesPerView);
+
+		return () => window.removeEventListener("resize", updateSlidesPerView);
+	}, []);
 
 	return (
 		<section className='carouselForCategories-categoryWrapper'>
@@ -29,9 +47,10 @@ export function CarouselForCategories({ sectionHeader, searchType, resultAmount,
 				</h2>
 			</div>
 			<DefaultCarousel
+				spaceBetweenSlides={spaceBetweenSlides}
 				loading={moviesLoading}
 				error={moviesError}
-				slidesPerView={7}
+				slidesPerView={slidesPerView}
 				dataToShow={moviesData || []}
 				showAllSlides={false}
 				renderSlide={(movie) => <MovieListItem movie={movie} />}

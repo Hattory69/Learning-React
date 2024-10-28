@@ -37,7 +37,7 @@
 	height: 300px;
 }
 
-.swiper-pagination-bullet.selectedMovieDetails-posterBullet {
+.swiper-pagination .swiper-pagination-bullet {
 	background-color: orange;
 	width: 15px;
 	height: 15px;
@@ -50,6 +50,7 @@
 }
 
 .selectedMovieDetails-description {
+	margin-bottom: 30px;
 	font-weight: 600;
 	font-size: 20px;
 }

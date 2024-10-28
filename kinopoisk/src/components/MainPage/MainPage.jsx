@@ -8,11 +8,12 @@ export function MainPage() {
 	useEffect(() => {
 		document.title = `Онлайн кинотеатр Кинопоиск`;
 	}, []);
+
 	return (
 		<>
 			<MainPageTop />
 			<div className='mainPage-contentWrapper'>
-				{mainPageCategories.map(({ sectionHeader, searchType, resultAmount, top }, index) => (
+				{mainPageCategories.map(({ sectionHeader, searchType, top, resultAmount }, index) => (
 					<CarouselForCategories
 						key={sectionHeader + index}
 						sectionHeader={sectionHeader}

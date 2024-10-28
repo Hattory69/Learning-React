@@ -1,14 +1,15 @@
-import { Image } from "antd";
-import React from "react";
+import { Button, Image } from "antd";
+import React, { useState } from "react";
 import "swiper/css";
-import "swiper/css/effect-cards";
+import "swiper/css/effect-creative";
 import "swiper/css/pagination";
-import { EffectCards, Pagination } from "swiper/modules";
+import { EffectCreative, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { countVotes } from "../../HelperFunctions/CountVotes";
 import { DefaultCarousel } from "../DefaultCarousel/DefaultCarousel";
 import { MovieBadges } from "../MovieBadges/MovieBadges";
 import { SelectedMovieActor } from "../SelectedMovieActor/SelectedMovieActor";
+import { SelectedMovieReviews } from "../SelectedMovieReviews/SelectedMovieReviews";
 import "./selectedMovieDetails.css";
 
 export function SelectedMovieDetails({
@@ -21,9 +22,11 @@ export function SelectedMovieDetails({
 	postersData,
 	postersError,
 	postersLoading,
+	reviewsData,
 	isActive,
 }) {
 	const { description, persons, top10, top250, votes } = movieData;
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const sortedActors = [...persons]?.sort((a, b) => a?.profession - b?.profession);
 	const votesSum = countVotes(votes);
@@ -39,12 +42,21 @@ export function SelectedMovieDetails({
 				{postersData?.length > 0 && (
 					<div className='selectedMovieDetails-posters'>
 						<Swiper
-							effect={"cards"}
 							grabCursor={true}
-							modules={[EffectCards, Pagination]}
+							effect={"creative"}
+							creativeEffect={{
+								prev: {
+									shadow: true,
+									translate: [0, 0, -400],
+								},
+								next: {
+									translate: ["100%", 0, 0],
+								},
+							}}
+							modules={[EffectCreative, Pagination]}
 							pagination={pagination}
-							className='mySwiper'
 							loop={true}
+							className='mySwiper'
 						>
 							<ul>
 								{postersData?.map((poster, index) => (
@@ -58,7 +70,7 @@ export function SelectedMovieDetails({
 						</Swiper>
 					</div>
 				)}
-				<div className='selectedMovieDetails-MovieDetails'>
+				<div className='selectedMovieDetails-movieDetails'>
 					{top10 || top250 ? (
 						<MovieBadges
 							rating={movieRating}
@@ -71,6 +83,14 @@ export function SelectedMovieDetails({
 					)}
 					{votesSum > 0 && <span className='selectedMovieDetails-votes'>{votesSum} оценки</span>}
 					{description && <p className='selectedMovieDetails-description'>{description}</p>}
+
+					<SelectedMovieReviews
+						setIsModalOpen={setIsModalOpen}
+						isModalOpen={isModalOpen}
+						reviewsData={reviewsData}
+					/>
+
+					<Button onClick={() => setIsModalOpen(true)}>Отзывы </Button>
 				</div>
 			</div>
 			<div className='selectedMovieDetails-actors'>

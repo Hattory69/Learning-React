@@ -1,6 +1,5 @@
 import { ConfigProvider, Pagination } from "antd";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createMenuData } from "../../HelperFunctions/createMenuData";
 import { useFetchListQuery } from "../../redux/kinopoiskApi";
@@ -109,9 +108,7 @@ export function CategoryList() {
 						/>
 					</ConfigProvider>
 				</div>
-				<div
-					className='categoryList-filter'
-				>
+				<div className='categoryList-filter'>
 					<SelectComponent
 						filterParams={filterParams}
 						fetchedMovies={moviesData?.docs || []}

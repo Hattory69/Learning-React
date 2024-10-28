@@ -20,6 +20,7 @@ export function DefaultCarousel({
 	slideKey,
 	showAllSlides,
 	slideToFirst,
+	spaceBetweenSlides,
 }) {
 	const slides = showAllSlides ? (dataToShow ? dataToShow : []) : dataToShow?.docs?.slice(0, slidesPerView * 2) || [];
 
@@ -43,7 +44,7 @@ export function DefaultCarousel({
 				<Swiper
 					ref={swiperRef}
 					modules={[Navigation]}
-					spaceBetween={10}
+					spaceBetween={spaceBetweenSlides || 10}
 					slidesPerView={slidesPerView}
 					slidesPerGroup={slidesPerView}
 					speed={1000}

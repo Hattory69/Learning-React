@@ -19,7 +19,7 @@ export function RandomMovie() {
 	return (
 		<div className='randomMovie-wrapper'>
 			<RandomMovieForm handleMovieFetch={handleMovieFetch} />
-			{isFetching ? <div className='loader'>Загрузка...</div> : movieData && <RandomMovieInfo movie={movieData} />}
+			{isFetching ? <div className='loader'>Подбираем фильм...</div> : movieData && <RandomMovieInfo movie={movieData} />}
 		</div>
 	);
 }
