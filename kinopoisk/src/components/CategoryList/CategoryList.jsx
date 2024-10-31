@@ -1,4 +1,5 @@
-import { ConfigProvider, Pagination } from "antd";
+import { FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
+import { Button, ConfigProvider, Pagination } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { createMenuData } from "../../HelperFunctions/createMenuData";
@@ -11,8 +12,14 @@ export function CategoryList() {
 	const [movies, setMovies] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [pageSize, setPageSize] = useState(10);
+	const [showFilters, setShowFilters] = useState(false);
 	const [filterParams, setFilterParams] = useState(null);
 	const { sectionHeader, searchType } = useParams();
+	const [customLocale, setCustomLocale] = useState({
+		Pagination: {
+			items_per_page: "/ на странице",
+		},
+	});
 
 	const {
 		data: moviesData,
@@ -22,6 +29,26 @@ export function CategoryList() {
 
 	useEffect(() => {
 		document.title = `${sectionHeader} - смотреть онлайн в хорошем качестве`;
+	}, []);
+
+	useEffect(() => {
+		const handleResize = () => {
+			setCustomLocale((prevLocale) => ({
+				...prevLocale,
+				Pagination: {
+					...prevLocale.Pagination,
+					items_per_page: window.innerWidth > 768 ? "/ на странице" : "",
+				},
+			}));
+		};
+
+		handleResize();
+
+		window.addEventListener("resize", handleResize);
+
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
 	}, []);
 
 	useEffect(() => {
@@ -40,15 +67,6 @@ export function CategoryList() {
 
 	const moviesItems = movies.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
-	const customLocale = {
-		Pagination: {
-			items_per_page: "/ на странице",
-			jump_to: "Перейти на",
-			jump_to_confirm: "подтвердить",
-			page: "страницу",
-		},
-	};
-
 	return (
 		<div className='categoryList-wrapper'>
 			{moviesLoading && <div>Загрузка...</div>}
@@ -56,24 +74,23 @@ export function CategoryList() {
 
 			<h3 className='categoryList-title'>{sectionHeader}</h3>
 
-			<div className='categoryList-contentWrapper'>
-				<div className='categoryList-paginationAndList'>
-					<ConfigProvider
-						locale={customLocale}
-						theme={{
-							token: {
-								colorPrimary: "orange",
-								colorText: "white",
-								colorBgBase: "#131317",
-								colorBgTextHover: "orange",
-							},
-						}}
-					>
+			<ConfigProvider
+				locale={customLocale}
+				theme={{
+					token: {
+						colorPrimary: "orange",
+						colorText: "white",
+						colorBgBase: "#131317",
+						colorBgTextHover: "orange",
+					},
+				}}
+			>
+				<div className='categoryList-contentWrapper'>
+					<div className='categoryList-paginationAndList'>
 						<Pagination
 							current={currentPage}
 							total={movies.length}
 							showSizeChanger
-							showQuickJumper
 							pageSize={pageSize}
 							pageSizeOptions={[10, 20, 50]}
 							onChange={handlePageChange}
@@ -81,7 +98,27 @@ export function CategoryList() {
 								handlePageChange(1, size);
 							}}
 						/>
+						<div className='categoryList-filterWrapper'>
+							<Button
+								className='categoryList-showFiltersBtn'
+								onClick={() => setShowFilters(!showFilters)}
+							>
+								<span className={`categoryList-filterIcon ${showFilters ? "showFilter" : "hideFilter"}`}>
+									{showFilters ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
+								</span>
+								<span className='categoryList-filterBtnText'>Фильтры</span>
+							</Button>
 
+							<div className='categoryList-filter'>
+								{showFilters && (
+									<SelectComponent
+										filterParams={filterParams}
+										fetchedMovies={moviesData?.docs || []}
+										setMovies={setMovies}
+									/>
+								)}
+							</div>
+						</div>
 						<ul className='categoryList-moviesList'>
 							{moviesItems.length > 0 ? (
 								moviesItems.map((movie) => (
@@ -98,7 +135,6 @@ export function CategoryList() {
 							current={currentPage}
 							total={movies.length}
 							showSizeChanger
-							showQuickJumper
 							pageSize={pageSize}
 							pageSizeOptions={[10, 20, 50]}
 							onChange={handlePageChange}
@@ -106,16 +142,9 @@ export function CategoryList() {
 								handlePageChange(1, size);
 							}}
 						/>
-					</ConfigProvider>
+					</div>
 				</div>
-				<div className='categoryList-filter'>
-					<SelectComponent
-						filterParams={filterParams}
-						fetchedMovies={moviesData?.docs || []}
-						setMovies={setMovies}
-					/>
-				</div>
-			</div>
+			</ConfigProvider>
 		</div>
 	);
 }

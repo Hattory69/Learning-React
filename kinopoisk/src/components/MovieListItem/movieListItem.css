@@ -45,7 +45,7 @@
 	height: 100%;
 	font-weight: 700;
 	min-width: 55px;
-	z-index: 2;
+	z-index: 1;
 }
 
 .movieListItem-itemInfo {

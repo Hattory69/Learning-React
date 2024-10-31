@@ -1,6 +1,9 @@
 .selectComponent-clearBtn {
 	width: 100%;
-	margin-bottom: 5px;
+}
+
+.categoryList-filter {
+	z-index: 10;
 }
 
 .categoryList-filter .ant-btn.selectComponent-clearBtn:hover {
@@ -36,4 +39,14 @@ ul.ant-menu.ant-menu-sub.ant-menu-inline {
 .ant-tree-list-holder-inner .ant-tree-treenode.ant-tree-treenode-selected::before,
 .ant-tree-list-holder-inner .ant-tree-treenode.ant-tree-treenode-selected:hover::before {
 	background: #cc5803;
+}
+
+@media (max-width: 768px) {
+	.categoryList-filter {
+		position: absolute;
+
+		top: 100%;
+		width: 100%;
+		left: 0;
+	}
 }

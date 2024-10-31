@@ -17,3 +17,9 @@
 .rc-virtual-list-holder {
 	max-height: 400px;
 }
+
+@media (max-width: 470px) {
+	.header-search .ant-select {
+		margin-right: 15px;
+	}
+}

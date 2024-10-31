@@ -2,3 +2,15 @@
 	margin-top: var(--header-height);
 	padding-bottom: var(--section-padding);
 }
+
+@media (max-width: 768px) {
+	.mainSection {
+		margin-top: var(--tablet-headerHeight);
+	}
+}
+
+@media (max-width: 470px) {
+	.mainSection {
+		margin-top: var(--header-height);
+	}
+}

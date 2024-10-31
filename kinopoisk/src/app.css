@@ -72,6 +72,7 @@ button {
 
 :root {
 	--header-height: 100px;
+	--tablet-headerHeight: 150px;
 	--footer-height: 190px;
 	--section-padding: 15px;
 	--scroll-width: 10px;

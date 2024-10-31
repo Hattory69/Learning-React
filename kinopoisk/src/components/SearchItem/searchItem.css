@@ -16,7 +16,7 @@
 .ant-image .searchItem-img,
 .searchItem-img {
 	width: 80px;
-	height: 90px;
+	height: 100%;
 	object-fit: contain;
 }
 
@@ -58,4 +58,24 @@
 	top: 0;
 	left: 0;
 	cursor: "pointer";
+}
+
+@media (max-width: 768px) {
+	.searchItem-wrapper {
+		height: 70px;
+	}
+
+	.ant-image .searchItem-img {
+		width: 40px;
+	}
+}
+
+@media (max-width: 470px) {
+	.rc-virtual-list-holder-inner .ant-select-item {
+		padding: 5px 0;
+	}
+
+	.searchItem-wrapper {
+		height: 50px;
+	}
 }

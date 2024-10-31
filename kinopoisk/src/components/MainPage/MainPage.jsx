@@ -13,12 +13,11 @@ export function MainPage() {
 		<>
 			<MainPageTop />
 			<div className='mainPage-contentWrapper'>
-				{mainPageCategories.map(({ sectionHeader, searchType, top, resultAmount }, index) => (
+				{mainPageCategories.map(({ sectionHeader, searchType, top }, index) => (
 					<CarouselForCategories
 						key={sectionHeader + index}
 						sectionHeader={sectionHeader}
 						searchType={searchType}
-						resultAmount={resultAmount}
 						top={top}
 					/>
 				))}

@@ -5,15 +5,12 @@
 	left: 0;
 	right: 0;
 	z-index: 10;
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	align-content: baseline;
+	display: flex;
 	width: calc(100vw - var(--scroll-width));
-	max-height: 100px;
 	height: var(--header-height);
 	box-sizing: border-box;
 	transition: transform 0.3s ease-in-out;
-
+	align-items: center;
 	font-size: x-large;
 }
 
@@ -24,12 +21,13 @@
 .header-wrapper::after {
 	transition: all 0.3s ease-in-out;
 	content: "";
+	top: 0;
 	opacity: 0;
 	right: -10px;
 	height: 100%;
 	position: absolute;
 	z-index: -1;
-	width: 100%;
+	width: calc(100% + var(--scroll-width));
 	background: linear-gradient(
 		180deg,
 		rgba(0, 0, 0, 1),
@@ -73,18 +71,17 @@
 
 .header-KinopoiskIcon {
 	align-self: flex-start;
-	grid-column: 1/5;
-	height: 30px;
+	height: 100%;
 }
 
 .header-search,
 .header-navLinksList {
-	grid-column: 5/9;
 	grid-row: 1;
 	margin: 0 auto;
 	display: flex;
 	justify-content: center;
 	width: 100%;
+	margin: 0 15px;
 }
 
 .header-navLinksList {
@@ -113,8 +110,6 @@
 }
 
 .header-user {
-	grid-column: 9/13;
-	justify-self: right;
 	color: gray;
 	transition: color 0.3s ease;
 }
@@ -132,4 +127,34 @@
 
 .header-icons:hover {
 	color: white;
+}
+
+@media (max-width: 768px) {
+	.header-wrapper {
+		flex-wrap: wrap;
+		justify-content: space-between;
+		row-gap: 10px;
+		height: var(--tablet-headerHeight);
+		align-content: space-between;
+	}
+
+	.header-KinopoiskIcon {
+		height: 40px;
+		width: 40%;
+	}
+
+	.header-search,
+	.header-navLinksList {
+		order: 3;
+		width: 100%;
+		margin: 0;
+	}
+}
+
+@media (max-width: 470px) {
+	.header-wrapper {
+		padding: 15px 10px 15px 20px;
+		font-size: small;
+		height: var(--header-height);
+	}
 }

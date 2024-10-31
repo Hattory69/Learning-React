@@ -9,16 +9,12 @@ import { LinkComponent } from "../LinkComponent/LinkComponent";
 import { MovieListItem } from "../MovieListItem/MovieListItem";
 import "./carouselForCategories.css";
 
-export function CarouselForCategories({ sectionHeader, searchType, top, resultAmount }) {
+export function CarouselForCategories({ sectionHeader, searchType, top }) {
 	const [slidesPerView, setSlidesPerView] = useState(7);
 	const spaceBetweenSlides = 15;
 	const minSlideWidth = 250;
 
-	const {
-		data: moviesData,
-		loading: moviesLoading,
-		error: moviesError,
-	} = useFetchListQuery({ type: searchType, resultAmount: resultAmount, top: top });
+	const { data: moviesData, loading: moviesLoading, error: moviesError } = useFetchListQuery({ type: searchType, resultAmount: 14, top: top });
 
 	const updateSlidesPerView = () => {
 		const containerWidth = window.innerWidth;

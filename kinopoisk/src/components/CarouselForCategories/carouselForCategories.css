@@ -18,7 +18,6 @@
 
 .carouselForCategories-categoryTitle {
 	display: flex;
-	text-decoration: none;
 	margin: 0 0 10px 30px;
 	color: white;
 	font-weight: 900;
@@ -41,4 +40,10 @@
 	align-items: center;
 	justify-content: space-between;
 	height: 350px;
+}
+
+@media (min-width: 1440px) {
+	.carouselForCategories-categoryTitle {
+font-size: x-large;
+	}
 }
