@@ -1,25 +1,11 @@
-export function createMenuData(data) {
-	function addToMenuData(key, data, valueKey = null) {
-		if (data === null || data === undefined) return;
-
-		const item = menuData.find((el) => el.value === key);
-
-		if (Array.isArray(data)) {
-			data.forEach((entry) => {
-				const value = valueKey ? entry[valueKey] : entry;
-
-				if (item && !item.children.some((child) => child.value === value)) {
-					item.children.push({ title: value, value: value, isLeaf: true, key: value, section: key });
-				}
-			});
-			return;
-		}
-
-		if (item && !item.children.some((child) => child.value === data)) {
-			item.children.push({ title: data, value: data, isLeaf: true, key: data, section: key });
-		}
+const uniqueMenuChild = (children, title, value, section) => {
+	// проверяем menuData на наличие подобного value
+	if (!children.some((child) => child?.value === value) && value !== null) {
+		return { title, value, isLeaf: true, key: value, section };
 	}
+};
 
+export function createMenuData(data) {
 	const menuData = [
 		{
 			title: "Год выхода",
@@ -44,19 +30,26 @@ export function createMenuData(data) {
 		},
 	];
 
-	for (const Movie of data) {
-		addToMenuData("year", Movie.year);
-		addToMenuData("ageRating", Movie.ageRating);
-		addToMenuData("countries", Movie.countries, "name");
-	}
-	menuData.forEach((item) => {
-		item?.children?.sort((a, b) => {
+	data.forEach((movie) => {
+		const { year, ageRating, countries } = movie;
+		const yearChild = uniqueMenuChild(menuData[0].children, year, year, "year");
+		if (yearChild) menuData[0].children.push(yearChild);
+
+		const ageRatingChild = uniqueMenuChild(menuData[1].children, ageRating, ageRating, "ageRating");
+		if (ageRatingChild) menuData[1].children.push(ageRatingChild);
+
+		countries.forEach((country) => {
+			const countryChild = uniqueMenuChild(menuData[2].children, country.name, country.name, "countries");
+			if (countryChild) menuData[2].children.push(countryChild);
+		});
+	});
+	menuData.forEach((param) => {
+		param.children?.sort((a, b) => {
 			if (!isNaN(a.value) && !isNaN(b.value)) {
 				return a.value - b.value;
 			}
 			return a.value.localeCompare(b.value);
 		});
 	});
-
 	return menuData;
 }

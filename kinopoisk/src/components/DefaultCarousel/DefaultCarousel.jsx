@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { spaceBetweenSlides } from "../../data/constants";
 import { LinkComponent } from "../LinkComponent/LinkComponent";
 import "./defaultCarousel.css";
 
@@ -20,7 +21,6 @@ export function DefaultCarousel({
 	slideKey,
 	showAllSlides,
 	slideToFirst,
-	spaceBetweenSlides,
 }) {
 	const slides = showAllSlides ? (dataToShow ? dataToShow : []) : dataToShow?.docs?.slice(0, slidesPerView * 2) || [];
 
@@ -61,7 +61,8 @@ export function DefaultCarousel({
 					{showMoreBtn && (
 						<SwiperSlide className='defaultCarousel-viewAllWrapper'>
 							<span className='defaultCarousel-viewAllText'>
-								<ArrowRightOutlined className='defaultCarousel-arrowSvg' /> Показать всё
+								<ArrowRightOutlined className='defaultCarousel-arrowSvg' />
+								Показать всё
 							</span>
 							<LinkComponent url={`/section/${sectionHeader}/${searchType}`} />
 						</SwiperSlide>

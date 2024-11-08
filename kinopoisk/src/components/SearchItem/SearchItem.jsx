@@ -5,11 +5,11 @@ import { LinkComponent } from "../LinkComponent/LinkComponent";
 import { PosterComponent } from "../PosterComponent/PosterComponent";
 import "./searchItem.css";
 
-export function SearchItem({ Movie }) {
-	const { name, alternativeName, poster, rating, type } = Movie;
-	const MovieRating = rating?.kp?.toFixed(1);
-	const MovieRatingStyle = selectRatingStyle(MovieRating);
-	const MovieYear = formatReleaseYear(Movie);
+export function SearchItem({ movie }) {
+	const { name, alternativeName, poster, rating, type } = movie;
+	const movieRating = rating?.kp?.toFixed(1);
+	const movieRatingStyle = selectRatingStyle(movieRating);
+	const movieYear = formatReleaseYear(movie);
 
 	return (
 		<div className='searchItem-wrapper'>
@@ -21,18 +21,18 @@ export function SearchItem({ Movie }) {
 			<div className='searchItem-about'>
 				<h4 className='searchItem-name'>{name || alternativeName}</h4>
 				<p className='searchItem-info'>
-					{MovieRating > 0 && (
+					{movieRating > 0 && (
 						<span
-							style={MovieRatingStyle}
+							style={movieRatingStyle}
 							className='searchItem-rating'
 						>
-							{MovieRating}
+							{movieRating}
 						</span>
 					)}
-					<span className='searchItem-details'>{MovieYear ? `${type}, ${MovieYear}` : type}</span>
+					<span className='searchItem-details'>{movieYear ? `${type}, ${movieYear}` : type}</span>
 				</p>
 			</div>
-			<LinkComponent url={`/about/${Movie.id}`} />
+			<LinkComponent url={`/about/${movie.id}`} />
 		</div>
 	);
 }

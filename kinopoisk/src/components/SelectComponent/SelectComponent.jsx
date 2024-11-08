@@ -39,31 +39,29 @@ export function SelectComponent({ filterParams, setMovies, fetchedMovies }) {
 	}
 
 	return (
-		<div className="fade-block">
-			<ConfigProvider
-				theme={{
-					token: {
-						colorText: "white",
-						colorBgBase: "#030027",
-						colorBgContainer: "#030027",
-					},
-				}}
+		<ConfigProvider
+			theme={{
+				token: {
+					colorText: "white",
+					colorBgBase: "#030027",
+					colorBgContainer: "#030027",
+				},
+			}}
+		>
+			<Button
+				className='selectComponent-clearBtn'
+				onClick={() => setMovies(fetchedMovies)}
 			>
-				<Button
-					className='selectComponent-clearBtn'
-					onClick={() => setMovies(fetchedMovies)}
-				>
-					Сбросить фильтр
-				</Button>
+				Сбросить фильтр
+			</Button>
 
-				<DirectoryTree
-					className='selectComponent-menu'
-					expandedKeys={expandedKeys}
-					onSelect={onSelect}
-					onExpand={onExpand}
-					treeData={filterParams}
-				/>
-			</ConfigProvider>
-		</div>
+			<DirectoryTree
+				className='selectComponent-menu'
+				expandedKeys={expandedKeys}
+				onSelect={onSelect}
+				onExpand={onExpand}
+				treeData={filterParams}
+			/>
+		</ConfigProvider>
 	);
 }

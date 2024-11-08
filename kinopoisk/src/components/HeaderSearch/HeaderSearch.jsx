@@ -46,10 +46,10 @@ export function HeaderSearch({ setShowSearchInput, isSearchOpen, setIsSearchOpen
 	}
 
 	function handleSearchData(data) {
-		return data?.map((Movie) => ({
-			key: Movie.id,
+		return data?.map((movie) => ({
+			key: movie.id,
 			value: searchVal,
-			label: <SearchItem Movie={Movie} />,
+			label: <SearchItem movie={movie} />,
 		}));
 	}
 

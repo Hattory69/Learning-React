@@ -29,19 +29,19 @@ export function CategoryList() {
 
 	useEffect(() => {
 		document.title = `${sectionHeader} - смотреть онлайн в хорошем качестве`;
-	}, []);
+	}, [sectionHeader]);
+
+	function handleResize() {
+		setCustomLocale((prevLocale) => ({
+			...prevLocale,
+			Pagination: {
+				...prevLocale.Pagination,
+				items_per_page: window.innerWidth > 768 ? "/ на странице" : "",
+			},
+		}));
+	}
 
 	useEffect(() => {
-		const handleResize = () => {
-			setCustomLocale((prevLocale) => ({
-				...prevLocale,
-				Pagination: {
-					...prevLocale.Pagination,
-					items_per_page: window.innerWidth > 768 ? "/ на странице" : "",
-				},
-			}));
-		};
-
 		handleResize();
 
 		window.addEventListener("resize", handleResize);
@@ -109,15 +109,15 @@ export function CategoryList() {
 								<span className='categoryList-filterBtnText'>Фильтры</span>
 							</Button>
 
-							<div className='categoryList-filter'>
-								{showFilters && (
+							{showFilters && (
+								<div className='categoryList-filter fade-block'>
 									<SelectComponent
 										filterParams={filterParams}
 										fetchedMovies={moviesData?.docs || []}
 										setMovies={setMovies}
 									/>
-								)}
-							</div>
+								</div>
+							)}
 						</div>
 						<ul className='categoryList-moviesList'>
 							{moviesItems.length > 0 ? (

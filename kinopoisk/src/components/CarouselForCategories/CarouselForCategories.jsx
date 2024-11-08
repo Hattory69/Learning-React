@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
+import { minSlideWidth, spaceBetweenSlides } from "../../data/constants";
 import arrow from "../../images/smallArrow.svg";
 import { useFetchListQuery } from "../../redux/kinopoiskApi";
 import { DefaultCarousel } from "../DefaultCarousel/DefaultCarousel";
@@ -11,8 +12,6 @@ import "./carouselForCategories.css";
 
 export function CarouselForCategories({ sectionHeader, searchType, top }) {
 	const [slidesPerView, setSlidesPerView] = useState(7);
-	const spaceBetweenSlides = 15;
-	const minSlideWidth = 250;
 
 	const { data: moviesData, loading: moviesLoading, error: moviesError } = useFetchListQuery({ type: searchType, resultAmount: 14, top: top });
 
@@ -43,7 +42,6 @@ export function CarouselForCategories({ sectionHeader, searchType, top }) {
 				</h2>
 			</div>
 			<DefaultCarousel
-				spaceBetweenSlides={spaceBetweenSlides}
 				loading={moviesLoading}
 				error={moviesError}
 				slidesPerView={slidesPerView}

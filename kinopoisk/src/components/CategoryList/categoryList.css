@@ -72,7 +72,7 @@
 	flex-direction: column;
 	max-width: 200px;
 	width: 100%;
-	z-index: 2;
+	z-index: 4;
 }
 
 .categoryList-showFiltersBtn {
@@ -81,6 +81,10 @@
 	height: 40px;
 	border: none;
 	cursor: pointer;
+}
+
+.ant-tree-list-holder-inner .ant-tree-treenode::before {
+	height: 0px;
 }
 
 .categoryList-filterIcon {
@@ -130,9 +134,20 @@
 	}
 
 	.categoryList-moviesList [class="movieBadge-wrapper"] {
-		font-size: x-small;
+		font-size: 7px;
 	}
 	.categoryList-moviesList [class="movieBadge-lightning"] {
 		width: 20px;
+	}
+
+	.categoryList-moviesList [class="movieBadge-wrapper"] .movieBadge-ratingWrapper .movieBadge-oliveBranch,
+	.categoryList-moviesList .movieListItem-wrapper .movieListItem-badges .movieBadge-topWrapper,
+	.categoryList-moviesList [class="movieListItem-itemInfo"] {
+		display: none;
+	}
+
+	.categoryList-moviesList [class="movieBadge-wrapper"] {
+		height: 20px;
+		width: 40px;
 	}
 }
