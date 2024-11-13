@@ -10,7 +10,7 @@
 .searchItem-wrapper .ant-image {
 	display: flex;
 	align-items: center;
-	z-index: 2;
+	z-index: 3;
 }
 
 .ant-image .searchItem-img,

@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { spaceBetweenSlides } from "../../data/constants";
+import { SPACE_BETWEEN_SLIDES } from "../../data/constants";
 import { LinkComponent } from "../LinkComponent/LinkComponent";
 import "./defaultCarousel.css";
 
@@ -44,7 +44,7 @@ export function DefaultCarousel({
 				<Swiper
 					ref={swiperRef}
 					modules={[Navigation]}
-					spaceBetween={spaceBetweenSlides || 10}
+					spaceBetween={SPACE_BETWEEN_SLIDES || 10}
 					slidesPerView={slidesPerView}
 					slidesPerGroup={slidesPerView}
 					speed={1000}

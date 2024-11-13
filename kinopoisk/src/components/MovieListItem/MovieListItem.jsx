@@ -7,22 +7,14 @@ import "./movieListItem.css";
 export function MovieListItem({ movie }) {
 	const { name, alternativeName, poster, rating, top10, top250, year, genres } = movie;
 
-	const MovieRating = Math.max(...Object.values(rating || [])).toFixed(1);
+	const movieRating = rating ? Math.max(...Object.values(rating)).toFixed(1) : "0.0";
 
 	return (
 		<li className='movieListItem-wrapper'>
-			<PosterComponent
-				poster={poster}
-				imgClassName='movieListItem-img'
-				movieName={name || alternativeName}
-			/>
-			{MovieRating > 0.0 && (
+			<PosterComponent poster={poster} imgClassName='movieListItem-img' movieName={name || alternativeName} />
+			{movieRating > 0.0 && (
 				<div className='movieListItem-badges'>
-					<MovieBadges
-						rating={MovieRating}
-						top10={top10}
-						top250={top250}
-					/>
+					<MovieBadges rating={movieRating} top10={top10} top250={top250} />
 				</div>
 			)}
 			<div className='movieListItem-itemInfo'>

@@ -10,7 +10,7 @@ import { LinkComponent } from "../LinkComponent/LinkComponent";
 import "./HeaderWrapper.css";
 
 export function HeaderWrapper() {
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	
 	const [isSearchOpen, setIsSearchOpen] = useState(false);
 	const [showSearchInput, setShowSearchInput] = useState(false);
 	const [showHeader, setShowHeader] = useState(true);
@@ -19,28 +19,37 @@ export function HeaderWrapper() {
 	const location = useLocation();
 	const user = useSelector((state) => state.user.user);
 
-	const handleScroll = () => {
+	function debounce(func, delay) {
+		let timeout;
+		return (...args) => {
+			clearTimeout(timeout);
+			timeout = setTimeout(() => func(...args), delay);
+		};
+	}
+
+	function handleScroll() {
 		const currentScrollY = window.scrollY;
 		setIsAtTop(currentScrollY === 0);
 
 		if (currentScrollY < lastScrollY) {
 			setShowHeader(true);
-			setLastScrollY(currentScrollY);
 		} else if (currentScrollY - lastScrollY >= 200) {
 			setShowHeader(false);
 			setIsSearchOpen(false);
 			setShowSearchInput(false);
-			setLastScrollY(currentScrollY);
 		}
-	};
+		setLastScrollY(currentScrollY);
+	}
+
+	const debouncedHandleScroll = debounce(handleScroll, 100);
 
 	useEffect(() => {
-		window.addEventListener("scroll", handleScroll);
+		window.addEventListener("scroll", debouncedHandleScroll);
 
 		return () => {
-			window.removeEventListener("scroll", handleScroll);
+			window.removeEventListener("scroll", debouncedHandleScroll);
 		};
-	}, [lastScrollY]);
+	}, [debouncedHandleScroll]);
 
 	return (
 		<header className={`header-wrapper ${showHeader ? "visible" : "hidden"} ${isAtTop ? "atTopPosition" : "notAtTopPosition"}`}>
@@ -75,16 +84,7 @@ export function HeaderWrapper() {
 					/>
 				</div>
 			)}
-			<button
-				className='header-user'
-				onClick={() => setIsModalOpen(true)}
-			>
-				{user?.loggedIn ? user?.username : "Войти"}
-			</button>
-
 			<HeaderUserInfo
-				setIsModalOpen={setIsModalOpen}
-				isModalOpen={isModalOpen}
 			/>
 		</header>
 	);

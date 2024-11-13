@@ -6,7 +6,7 @@ import "./selectedMovieAbout.css";
 export function SelectedMovieAbout({ movieLoading, movieError, movieData, seasonsData, movieRating, movieRatingStyle, isActive }) {
 	const { name, alternativeName, top10, top250, genres, countries, ageRating, shortDescription } = movieData || {};
 
-	const MovieYear = formatReleaseYear(movieData);
+	const movieYear = formatReleaseYear(movieData);
 
 	return (
 		<>
@@ -25,7 +25,7 @@ export function SelectedMovieAbout({ movieLoading, movieError, movieData, season
 					) : (
 						<>{movieRating > 0 && <span style={movieRatingStyle}>{movieRating}</span>}</>
 					)}
-					{MovieYear && <span>{MovieYear}</span>}
+					{movieYear && <span>{movieYear}</span>}
 					{genres?.length > 0 && (
 						<span>
 							{genres

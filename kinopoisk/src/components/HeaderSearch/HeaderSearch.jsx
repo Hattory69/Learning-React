@@ -1,6 +1,7 @@
 import { CloseOutlined } from "@ant-design/icons";
 import { AutoComplete, Input } from "antd";
 import React, { useEffect, useState } from "react";
+import { TOP_10 } from "../../data/constants";
 import { useFetchListQuery, useSearchItemQuery } from "../../redux/kinopoiskApi";
 import { SearchItem } from "../SearchItem/SearchItem";
 import "./headerSearch.css";
@@ -12,17 +13,19 @@ export function HeaderSearch({ setShowSearchInput, isSearchOpen, setIsSearchOpen
 	const [prevFetchVal, setPrevFetchVal] = useState(null);
 
 	const [query, setQuery] = useState("");
-	const { data: { docs: top10Movies } = {} } = useFetchListQuery({ resultAmount: 10, type: "top10" });
+	const { data: { docs: top10Movies } = {} } = useFetchListQuery({ resultAmount: 10, type: TOP_10 });
 	const { data: { docs: moviesData } = {} } = useSearchItemQuery(query, {
 		skip: !query,
 	});
+
+	const isDataEmpty = searchVal === "";
 
 	function handleFetchMovies(inputVal) {
 		setIsSearchOpen(true);
 
 		if (prevFetchVal === inputVal) return;
 
-		if (searchVal === "") {
+		if (isDataEmpty) {
 			setQuery("");
 			return;
 		}
@@ -54,7 +57,7 @@ export function HeaderSearch({ setShowSearchInput, isSearchOpen, setIsSearchOpen
 	}
 
 	useEffect(() => {
-		if (searchVal === "" && top10Movies) {
+		if (isDataEmpty && top10Movies) {
 			const top10Options = handleSearchData(top10Movies);
 			setOptions(top10Options);
 		} else if (moviesData) {
@@ -74,7 +77,7 @@ export function HeaderSearch({ setShowSearchInput, isSearchOpen, setIsSearchOpen
 				onBlur={() => setIsSearchOpen(false)}
 				dropdownRender={(menu) => (
 					<div>
-						{searchVal === "" && <span>Входит в топ 10 за месяц</span>}
+						{isDataEmpty && <span>Входит в топ 10 за месяц</span>}
 						{menu}
 					</div>
 				)}

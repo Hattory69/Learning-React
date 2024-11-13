@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { minSlideWidth, spaceBetweenSlides } from "../../data/constants";
+import { calcSlidesPerView } from "../../HelperFunctions/calcSlidesPerView";
+import { useSlidesPerView } from "../../HelperFunctions/useSlidesPerView";
 import arrow from "../../images/smallArrow.svg";
 import { useFetchListQuery } from "../../redux/kinopoiskApi";
 import { DefaultCarousel } from "../DefaultCarousel/DefaultCarousel";
@@ -11,33 +12,18 @@ import { MovieListItem } from "../MovieListItem/MovieListItem";
 import "./carouselForCategories.css";
 
 export function CarouselForCategories({ sectionHeader, searchType, top }) {
-	const [slidesPerView, setSlidesPerView] = useState(7);
+	const [slidesPerView, setSlidesPerView] = useState(calcSlidesPerView());
 
 	const { data: moviesData, loading: moviesLoading, error: moviesError } = useFetchListQuery({ type: searchType, resultAmount: 14, top: top });
 
-	const updateSlidesPerView = () => {
-		const containerWidth = window.innerWidth;
-		const maxSlides = Math.floor(containerWidth / (minSlideWidth + spaceBetweenSlides));
-		setSlidesPerView(maxSlides);
-	};
-
-	useEffect(() => {
-		updateSlidesPerView();
-
-		window.addEventListener("resize", updateSlidesPerView);
-
-		return () => window.removeEventListener("resize", updateSlidesPerView);
-	}, []);
+	useSlidesPerView(setSlidesPerView);
 
 	return (
 		<section className='carouselForCategories-categoryWrapper'>
 			<div className='carouselForCategories-titleWrapper'>
 				<h2 className='carouselForCategories-categoryTitle'>
 					{sectionHeader}
-					<IconComponent
-						icon={arrow}
-						iconStyle={"arrowIcon"}
-					/>
+					<IconComponent icon={arrow} iconStyle={"arrowIcon"} />
 					<LinkComponent url={`/section/${sectionHeader}/${searchType}`} />
 				</h2>
 			</div>

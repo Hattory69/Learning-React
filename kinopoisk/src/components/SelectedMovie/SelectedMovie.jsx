@@ -35,73 +35,72 @@ export function SelectedMovie() {
 
 	useEffect(() => {
 		setActiveTab("about");
-	}, [id]);
+		document.title = `Новый фильм: ${movieData?.name || movieData?.alternativeName}`;
+	}, [id, movieData]);
 
 	useEffect(() => {
 		if (movieData?.genres) {
-			document.title = `Новый фильм: ${movieData.name || movieData.alternativeName}`;
 			const newGenres = movieData.genres.slice(0, 2).map((genre) => genre.name);
 			setGenres(newGenres);
 		}
 	}, [movieData?.genres]);
 
+	const tabComponents = {
+		about: (
+			<SelectedMovieAbout
+				movieData={movieData || []}
+				seasonsData={seasonsData || []}
+				movieError={movieError}
+				movieLoading={movieLoading}
+				movieRatingStyle={movieRatingStyle}
+				movieRating={movieRating}
+				isActive={activeTab === "about"}
+			/>
+		),
+		series: (
+			<SelectedMovieSeries
+				idForBtns={id}
+				seasonsData={seasonsData || []}
+				seasonsError={seasonsError}
+				seasonsLoading={seasonsLoading}
+				isActive={activeTab === "series"}
+			/>
+		),
+		details: (
+			<SelectedMovieDetails
+				movieData={movieData || []}
+				movieError={movieError}
+				movieLoading={movieLoading}
+				idForBtns={id}
+				movieRatingStyle={movieRatingStyle}
+				movieRating={movieRating}
+				reviewsData={reviewsData}
+				reviewsError={reviewsError}
+				reviewsLoading={reviewsLoading}
+				postersData={postersData}
+				postersError={postersError}
+				postersLoading={postersLoading}
+				isActive={activeTab === "details"}
+			/>
+		),
+		similar: (
+			<SelectedMovieSequelsAndSimilar
+				movieData={movieData || []}
+				movieError={movieError}
+				movieLoading={movieLoading}
+				idForBtns={id}
+				similarMovieData={similarMovieData || []}
+				similarMovieError={similarMovieError}
+				similarMovieLoading={similarMovieLoading}
+				isActive={activeTab === "similar"}
+			/>
+		),
+	};
+
 	return (
 		<div className='selectedMovie-wrapper'>
-			<SelectedMovieNav
-				movieData={movieData}
-				seasonsData={seasonsData}
-				setActiveTab={setActiveTab}
-				activeTab={activeTab}
-			/>
-			{activeTab === "about" && (
-				<SelectedMovieAbout
-					movieData={movieData || []}
-					seasonsData={seasonsData || []}
-					movieError={movieError}
-					movieLoading={movieLoading}
-					movieRatingStyle={movieRatingStyle}
-					movieRating={movieRating}
-					isActive={activeTab === "about"}
-				/>
-			)}
-			{activeTab === "series" && (
-				<SelectedMovieSeries
-					idForBtns={id}
-					seasonsData={seasonsData || []}
-					seasonsError={seasonsError}
-					seasonsLoading={seasonsLoading}
-					isActive={activeTab === "series"}
-				/>
-			)}
-			{activeTab === "details" && (
-				<SelectedMovieDetails
-					movieData={movieData || []}
-					movieError={movieError}
-					movieLoading={movieLoading}
-					idForBtns={id}
-					movieRatingStyle={movieRatingStyle}
-					movieRating={movieRating}
-					reviewsData={reviewsData}
-					reviewsError={reviewsError}
-					reviewsLoading={reviewsLoading}
-					postersData={postersData}
-					postersError={postersError}
-					postersLoading={postersLoading}
-					isActive={activeTab === "details"}
-				/>
-			)}
-			{activeTab === "similar" && (
-				<SelectedMovieSequelsAndSimilar
-					movieData={movieData || []}
-					movieError={movieError}
-					movieLoading={movieLoading}
-					idForBtns={id}
-					similarMovieData={similarMovieData || []}
-					similarMovieError={similarMovieError}
-					similarMovieLoading={similarMovieLoading}
-					isActive={activeTab === "similar"}
-				/>
-			)}
+			<SelectedMovieNav movieData={movieData} seasonsData={seasonsData} setActiveTab={setActiveTab} activeTab={activeTab} />
+			{tabComponents[activeTab] || tabComponents.about}
 			<div className='selectedMovie-backdropWrapper'>
 				<div
 					className={`selectedMovie-backdrop ${activeTab !== "about" ? "blur" : ""}`}

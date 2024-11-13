@@ -1,5 +1,4 @@
 const uniqueMenuChild = (children, title, value, section) => {
-	// проверяем menuData на наличие подобного value
 	if (!children.some((child) => child?.value === value) && value !== null) {
 		return { title, value, isLeaf: true, key: value, section };
 	}
@@ -43,6 +42,7 @@ export function createMenuData(data) {
 			if (countryChild) menuData[2].children.push(countryChild);
 		});
 	});
+
 	menuData.forEach((param) => {
 		param.children?.sort((a, b) => {
 			if (!isNaN(a.value) && !isNaN(b.value)) {

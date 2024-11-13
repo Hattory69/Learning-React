@@ -20,27 +20,14 @@ export function MovieBadges({ rating, top10, top250, showPlace }) {
 		<div className='movieBadge-wrapper'>
 			{rating > 0 && (
 				<div className={`movieBadge-ratingWrapper ${style}`}>
-					{(top10 || top250) && (
-						<IconComponent
-							icon={olive}
-							iconStyle={"movieBadge-oliveBranch"}
-						/>
-					)}
+					{(top10 || top250) && <IconComponent icon={olive} iconStyle={"movieBadge-oliveBranch"} />}
 					<span className={`movieBadge-rating`}>{rating}</span>
-					{(top10 || top250) && (
-						<IconComponent
-							icon={olive}
-							iconStyle={"movieBadge-oliveBranch rotateIcon"}
-						/>
-					)}
+					{(top10 || top250) && <IconComponent icon={olive} iconStyle={"movieBadge-oliveBranch rotateIcon"} />}
 				</div>
 			)}
 			{(top10 || top250) && (
 				<div className='movieBadge-topWrapper'>
-					<IconComponent
-						icon={lightning}
-						iconStyle={"movieBadge-lightning"}
-					/>
+					<IconComponent icon={lightning} iconStyle={"movieBadge-lightning"} />
 					<span className='movieBadge-top'>{`Top-${top10 ? "10" : "250"}`}</span>
 				</div>
 			)}

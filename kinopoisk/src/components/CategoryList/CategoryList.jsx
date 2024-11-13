@@ -2,6 +2,7 @@ import { FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
 import { Button, ConfigProvider, Pagination } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { TOP_10, TOP_250 } from "../../data/constants";
 import { createMenuData } from "../../HelperFunctions/createMenuData";
 import { useFetchListQuery } from "../../redux/kinopoiskApi";
 import { MovieListItem } from "../MovieListItem/MovieListItem";
@@ -25,11 +26,9 @@ export function CategoryList() {
 		data: moviesData,
 		loading: moviesLoading,
 		error: moviesError,
-	} = useFetchListQuery({ type: searchType, resultAmount: 100, top: ["top250", "top10"].includes(searchType) && searchType });
+	} = useFetchListQuery({ type: searchType, resultAmount: 100, top: [TOP_10, TOP_250].includes(searchType) && searchType });
 
-	useEffect(() => {
-		document.title = `${sectionHeader} - смотреть онлайн в хорошем качестве`;
-	}, [sectionHeader]);
+	document.title = `${sectionHeader} - смотреть онлайн в хорошем качестве`;
 
 	function handleResize() {
 		setCustomLocale((prevLocale) => ({
@@ -99,10 +98,7 @@ export function CategoryList() {
 							}}
 						/>
 						<div className='categoryList-filterWrapper'>
-							<Button
-								className='categoryList-showFiltersBtn'
-								onClick={() => setShowFilters(!showFilters)}
-							>
+							<Button className='categoryList-showFiltersBtn' onClick={() => setShowFilters(!showFilters)}>
 								<span className={`categoryList-filterIcon ${showFilters ? "showFilter" : "hideFilter"}`}>
 									{showFilters ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
 								</span>
@@ -111,25 +107,12 @@ export function CategoryList() {
 
 							{showFilters && (
 								<div className='categoryList-filter fade-block'>
-									<SelectComponent
-										filterParams={filterParams}
-										fetchedMovies={moviesData?.docs || []}
-										setMovies={setMovies}
-									/>
+									<SelectComponent filterParams={filterParams} fetchedMovies={moviesData?.docs || []} setMovies={setMovies} />
 								</div>
 							)}
 						</div>
 						<ul className='categoryList-moviesList'>
-							{moviesItems.length > 0 ? (
-								moviesItems.map((movie) => (
-									<MovieListItem
-										key={movie.id}
-										movie={movie}
-									/>
-								))
-							) : (
-								<li>Фильмы не найдены</li>
-							)}
+							{moviesItems.length > 0 ? moviesItems.map((movie) => <MovieListItem key={movie.id} movie={movie} />) : <li>Фильмы не найдены</li>}
 						</ul>
 						<Pagination
 							current={currentPage}

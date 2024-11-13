@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { calcSlidesPerView } from "../../HelperFunctions/calcSlidesPerView";
+import { useSlidesPerView } from "../../HelperFunctions/useSlidesPerView";
 import { DefaultCarousel } from "../DefaultCarousel/DefaultCarousel";
 import { MovieListItem } from "../MovieListItem/MovieListItem";
 import "./selectedMovieSequelsAndSimilar.css";
 
 export function SelectedMovieSequelsAndSimilar({ movieData, movieError, movieLoading, idForBtns, similarMovieData, isActive }) {
+	const [slidesPerView, setSlidesPerView] = useState(calcSlidesPerView());
+
+	useSlidesPerView(setSlidesPerView);
 	const updatedSimilarMovieData = [...(similarMovieData || [])];
 	updatedSimilarMovieData.unshift(...(movieData?.sequelsAndPrequels || []));
 
@@ -12,7 +17,7 @@ export function SelectedMovieSequelsAndSimilar({ movieData, movieError, movieLoa
 			<DefaultCarousel
 				loading={movieLoading}
 				error={movieError}
-				slidesPerView={Math.min(updatedSimilarMovieData.length, 7)}
+				slidesPerView={slidesPerView}
 				dataToShow={updatedSimilarMovieData}
 				showAllSlides={true}
 				renderSlide={(movie) => <MovieListItem movie={movie} />}

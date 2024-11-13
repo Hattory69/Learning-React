@@ -18,28 +18,11 @@ export function KinopoiskWrapper() {
 			<HeaderWrapper />
 			<section className='mainSection'>
 				<Routes>
-					<Route
-						path='/'
-						element={<MainPage />}
-					/>
-					<Route
-						path='/section/:sectionHeader/:searchType'
-						element={<CategoryList />}
-					/>
-					<Route
-						path='/about/:id'
-						element={<SelectedMovie />}
-					/>
-					{user?.loggedIn && (
-						<Route
-							path='/random/'
-							element={<RandomMovie />}
-						/>
-					)}
-					<Route
-						path='*'
-						element={<PageNotFound />}
-					/>
+					<Route path='/' element={<MainPage />} />
+					<Route path='/section/:sectionHeader/:searchType' element={<CategoryList />} />
+					<Route path='/about/:id' element={<SelectedMovie />} />
+					{user?.loggedIn && <Route path='/random/' element={<RandomMovie />} />}
+					<Route path='*' element={<PageNotFound />} />
 				</Routes>
 			</section>
 			<Footer />

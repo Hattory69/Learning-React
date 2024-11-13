@@ -6,7 +6,8 @@ import { LoginForm } from "../LoginForm/LoginForm";
 import { RegistrationForm } from "../RegistrationForm/RegistrationForm";
 import "./headerUserInfo.css";
 
-export function HeaderUserInfo({ setIsModalOpen, isModalOpen }) {
+export function HeaderUserInfo() {
+	const [isModalOpen, setIsModalOpen] = useState(false);
 	const user = useSelector((state) => state.user.user);
 	const dispatch = useDispatch();
 	const [modalMode, setModalMode] = useState("login");
@@ -57,10 +58,7 @@ export function HeaderUserInfo({ setIsModalOpen, isModalOpen }) {
 						<p>Имя: {user?.firstName}</p>
 						<p>Год рождения: {user?.yearOfBirth}</p>
 						<p>Дата регистрации: {new Date(user?.registrationDate).toLocaleDateString()}</p>
-						<Button
-							type='primary'
-							onClick={handleLogout}
-						>
+						<Button type='primary' onClick={handleLogout}>
 							Выйти
 						</Button>
 					</>
@@ -71,10 +69,7 @@ export function HeaderUserInfo({ setIsModalOpen, isModalOpen }) {
 								<LoginForm setIsModalOpen={setIsModalOpen} />
 								<p>
 									Нет аккаунта?{" "}
-									<Button
-										type='link'
-										onClick={() => setModalMode("register")}
-									>
+									<Button type='link' onClick={() => setModalMode("register")}>
 										Зарегистрироваться
 									</Button>
 								</p>
@@ -84,10 +79,7 @@ export function HeaderUserInfo({ setIsModalOpen, isModalOpen }) {
 								<RegistrationForm setIsModalOpen={setIsModalOpen} />
 								<p>
 									Уже есть аккаунт?{" "}
-									<Button
-										type='link'
-										onClick={() => setModalMode("login")}
-									>
+									<Button type='link' onClick={() => setModalMode("login")}>
 										Войти
 									</Button>
 								</p>
@@ -96,6 +88,9 @@ export function HeaderUserInfo({ setIsModalOpen, isModalOpen }) {
 					</>
 				)}
 			</Modal>
+			<button className='header-user' onClick={() => setIsModalOpen(true)}>
+				{user?.loggedIn ? user?.username : "Войти"}
+			</button>
 		</ConfigProvider>
 	);
 }
