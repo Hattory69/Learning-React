@@ -4,8 +4,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { SPACE_BETWEEN_SLIDES } from "../../data/constants";
-import { LinkComponent } from "../LinkComponent/LinkComponent";
+import { SPACE_BETWEEN_SLIDES } from "~data/constants";
+import { LinkComponent } from "../LinkComponent";
 import "./defaultCarousel.css";
 
 export function DefaultCarousel({
@@ -17,13 +17,10 @@ export function DefaultCarousel({
 	sectionHeader,
 	showMoreBtn,
 	dataToShow,
-	slidesPerView,
 	slideKey,
-	showAllSlides,
 	slideToFirst,
+	breakpoints,
 }) {
-	const slides = showAllSlides ? (dataToShow ? dataToShow : []) : dataToShow?.docs?.slice(0, slidesPerView * 2) || [];
-
 	const prevButtonClass = `swiper-button-prev-${idForBtns}`;
 	const nextButtonClass = `swiper-button-next-${idForBtns}`;
 
@@ -45,17 +42,20 @@ export function DefaultCarousel({
 					ref={swiperRef}
 					modules={[Navigation]}
 					spaceBetween={SPACE_BETWEEN_SLIDES || 10}
-					slidesPerView={slidesPerView}
-					slidesPerGroup={slidesPerView}
+					slidesPerView='auto'
+					slidesPerGroupAuto={true}
 					speed={1000}
-					allowTouchMove={false}
 					navigation={{
 						nextEl: `.${nextButtonClass}`,
 						prevEl: `.${prevButtonClass}`,
 						disabledClass: "swiper-button-disabled",
 					}}
+					simulateTouch={true}
+					allowTouchMove={true}
+					touchRatio={1}
+					breakpoints={breakpoints || {}}
 				>
-					{slides.map((slide, index) => (
+					{dataToShow.map((slide, index) => (
 						<SwiperSlide key={`${slide[slideKey]}-${index}`}>{renderSlide(slide)}</SwiperSlide>
 					))}
 					{showMoreBtn && (

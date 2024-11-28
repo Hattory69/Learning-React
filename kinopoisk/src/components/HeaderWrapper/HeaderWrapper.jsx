@@ -2,15 +2,14 @@ import { SearchOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import kinopoiskLogo from "../../images/Kinopoisk-Logo.svg";
-import { HeaderSearch } from "../HeaderSearch/HeaderSearch";
-import { HeaderUserInfo } from "../HeaderUserInfo/HeaderUserInfo";
-import { IconComponent } from "../IconComponent/IconComponent";
-import { LinkComponent } from "../LinkComponent/LinkComponent";
+import kinopoiskLogo from "~images/Kinopoisk-Logo.svg";
+import { HeaderSearch } from "../HeaderSearch";
+import { HeaderUserInfo } from "../HeaderUserInfo";
+import { IconComponent } from "../IconComponent";
+import { LinkComponent } from "../LinkComponent";
 import "./HeaderWrapper.css";
 
 export function HeaderWrapper() {
-	
 	const [isSearchOpen, setIsSearchOpen] = useState(false);
 	const [showSearchInput, setShowSearchInput] = useState(false);
 	const [showHeader, setShowHeader] = useState(true);
@@ -53,11 +52,7 @@ export function HeaderWrapper() {
 
 	return (
 		<header className={`header-wrapper ${showHeader ? "visible" : "hidden"} ${isAtTop ? "atTopPosition" : "notAtTopPosition"}`}>
-			<IconComponent
-				icon={kinopoiskLogo}
-				iconStyle={"header-KinopoiskIcon"}
-				viewBox={"0 0 200 30"}
-			/>
+			<IconComponent icon={kinopoiskLogo} iconStyle={"header-KinopoiskIcon"} viewBox={"0 0 200 30"} />
 
 			{!showSearchInput ? (
 				<ul className={`header-navLinksList ${!showSearchInput ? "fade-block" : ""}`}>
@@ -77,15 +72,10 @@ export function HeaderWrapper() {
 				</ul>
 			) : (
 				<div className={`header-search ${showSearchInput ? "fade-block" : ""}`}>
-					<HeaderSearch
-						setIsSearchOpen={setIsSearchOpen}
-						isSearchOpen={isSearchOpen}
-						setShowSearchInput={setShowSearchInput}
-					/>
+					<HeaderSearch setIsSearchOpen={setIsSearchOpen} isSearchOpen={isSearchOpen} setShowSearchInput={setShowSearchInput} />
 				</div>
 			)}
-			<HeaderUserInfo
-			/>
+			<HeaderUserInfo />
 		</header>
 	);
 }

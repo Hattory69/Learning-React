@@ -1,0 +1,1 @@
+export { MovieBadges } from "./MovieBadges";

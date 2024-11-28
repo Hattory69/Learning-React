@@ -1,9 +1,31 @@
 .selectedMovie-similarWrapper {
 	height: 100%;
 	align-content: center;
+	flex-grow: 1;
 }
 
 .selectedMovie-similarWrapper .defaultCarousel-swiperContainer {
-	max-height: 60%;
+	max-height: 80%;
 	height: 100%;
+	flex-grow: 1;
+}
+
+.selectedMovie-similarWrapper [class="swiper-wrapper"] .swiper-slide {
+	max-width: 350px;
+}
+
+@media (max-width: 768px) {
+	.selectedMovie-similarWrapper {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.selectedMovie-similarWrapper,
+	.selectedMovie-similarWrapper .defaultCarousel-swiperContainer {
+		flex-grow: 1;
+	}
+
+	.defaultCarousel-swiperContainer .swiper-horizontal {
+		height: unset;
+	}
 }

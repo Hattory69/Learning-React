@@ -1,6 +1,6 @@
 import React from "react";
-import { formatReleaseYear } from "../../HelperFunctions/formatReleaseYear";
-import { MovieBadges } from "../MovieBadges/MovieBadges";
+import { formatReleaseYear } from "~helperFunctions/formatReleaseYear";
+import { MovieBadges } from "../MovieBadges";
 import "./selectedMovieAbout.css";
 
 export function SelectedMovieAbout({ movieLoading, movieError, movieData, seasonsData, movieRating, movieRatingStyle, isActive }) {
@@ -17,11 +17,7 @@ export function SelectedMovieAbout({ movieLoading, movieError, movieData, season
 				<h2 className='selectedMovieAbout-title'>{name || alternativeName}</h2>
 				<div className='selectedMovieAbout-tags'>
 					{top10 || top250 ? (
-						<MovieBadges
-							rating={movieRating}
-							top10={top10}
-							top250={top250}
-						/>
+						<MovieBadges rating={movieRating} top10={top10} top250={top250} />
 					) : (
 						<>{movieRating > 0 && <span style={movieRatingStyle}>{movieRating}</span>}</>
 					)}
@@ -38,7 +34,7 @@ export function SelectedMovieAbout({ movieLoading, movieError, movieData, season
 					{countries?.[0].name && <span>{countries?.[0].name}</span>}
 					{ageRating !== null && <span>{`${ageRating}+`}</span>}
 				</div>
-				<div>{shortDescription && <p className='selectedMovieAbout-description'>{shortDescription}</p>}</div>
+				{shortDescription && <p className='selectedMovieAbout-description'>{shortDescription}</p>}
 			</div>
 		</>
 	);

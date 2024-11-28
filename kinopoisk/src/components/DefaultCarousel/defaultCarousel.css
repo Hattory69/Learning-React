@@ -2,6 +2,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	align-items: stretch;
 }
 
 .defaultCarousel-swiperContainer .swiper-horizontal {
@@ -17,7 +18,6 @@
 .swiper-slide {
 	display: flex;
 	justify-content: center;
-	width: 250px;
 }
 
 [class^="swiper-button-prev-"],
@@ -26,7 +26,7 @@
 	top: 0;
 	right: 0;
 	left: 0;
-	height: 100%;
+	height: unset;
 	width: 50px;
 	transition-duration: 0.3s;
 	transition-timing-function: ease;

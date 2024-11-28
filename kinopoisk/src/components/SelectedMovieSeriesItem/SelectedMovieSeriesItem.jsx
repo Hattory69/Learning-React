@@ -1,6 +1,6 @@
 import React from "react";
-import blankIng from "../../images/test.svg";
-import { IconComponent } from "../IconComponent/IconComponent";
+import blankIng from "~images/test.svg";
+import { IconComponent } from "../IconComponent";
 import "./selectedMovieSeriesItem.css";
 
 export function SelectedMovieSeriesItem({ episode }) {
@@ -8,10 +8,7 @@ export function SelectedMovieSeriesItem({ episode }) {
 	return (
 		<>
 			<div className='selectedMovieSeriesItem-imgWrapper'>
-				<IconComponent
-					icon={blankIng}
-					iconStyle={"selectedMovieSeriesItem-img"}
-				/>
+				<IconComponent icon={blankIng} iconStyle={"selectedMovieSeriesItem-img"} />
 			</div>
 			<div className='selectedMovieSeriesItem-about'>
 				<h3>

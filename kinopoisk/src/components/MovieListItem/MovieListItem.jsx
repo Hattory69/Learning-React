@@ -1,7 +1,7 @@
 import React from "react";
-import { LinkComponent } from "../LinkComponent/LinkComponent";
-import { MovieBadges } from "../MovieBadges/MovieBadges";
-import { PosterComponent } from "../PosterComponent/PosterComponent";
+import { LinkComponent } from "../LinkComponent";
+import { MovieBadges } from "../MovieBadges";
+import { PosterComponent } from "../PosterComponent";
 import "./movieListItem.css";
 
 export function MovieListItem({ movie }) {

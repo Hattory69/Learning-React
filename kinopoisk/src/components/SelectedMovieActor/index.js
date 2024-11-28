@@ -1,0 +1,1 @@
+export { SelectedMovieActor } from './SelectedMovieActor';

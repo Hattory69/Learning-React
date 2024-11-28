@@ -1,9 +1,9 @@
 import { CloseOutlined } from "@ant-design/icons";
 import { AutoComplete, Input } from "antd";
 import React, { useEffect, useState } from "react";
-import { TOP_10 } from "../../data/constants";
-import { useFetchListQuery, useSearchItemQuery } from "../../redux/kinopoiskApi";
-import { SearchItem } from "../SearchItem/SearchItem";
+import { TOP_10 } from "~data/constants";
+import { useFetchListQuery, useSearchItemQuery } from "~redux/kinopoiskApi";
+import { SearchItem } from "../SearchItem";
 import "./headerSearch.css";
 
 export function HeaderSearch({ setShowSearchInput, isSearchOpen, setIsSearchOpen }) {

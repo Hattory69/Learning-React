@@ -1,7 +1,7 @@
 import { Button, Form, Input } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../redux/userSlice";
+import { setUser } from "~redux/userSlice";
 
 export function RegistrationForm({ setIsModalOpen }) {
 	const [formSubmitted, setFormSubmitted] = useState(false);

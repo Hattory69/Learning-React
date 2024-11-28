@@ -1,7 +1,7 @@
 import { Button, Form, Input } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../redux/userSlice";
+import { setUser } from "~redux/userSlice";
 
 export function LoginForm({ setIsModalOpen }) {
 	const [formSubmitted, setFormSubmitted] = useState(false);
@@ -62,11 +62,7 @@ export function LoginForm({ setIsModalOpen }) {
 			</Form.Item>
 
 			<Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-				<Button
-					type='primary'
-					htmlType='submit'
-					onClick={() => setFormSubmitted(true)}
-				>
+				<Button type='primary' htmlType='submit' onClick={() => setFormSubmitted(true)}>
 					Log In
 				</Button>
 			</Form.Item>

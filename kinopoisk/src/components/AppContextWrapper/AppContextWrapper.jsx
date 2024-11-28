@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadUser } from "../../redux/userSlice";
-import { KinopoiskWrapper } from "../KinopoiskWrapper/KinopoiskWrapper";
+import { loadUser } from "~redux/userSlice";
+import { KinopoiskWrapper } from "../KinopoiskWrapper";
 
 export function AppContextWrapper() {
 	const user = useSelector((state) => state.user.user);

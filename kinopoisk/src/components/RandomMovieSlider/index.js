@@ -1,0 +1,1 @@
+export { RandomMovieSlider } from "./RandomMovieSlider";

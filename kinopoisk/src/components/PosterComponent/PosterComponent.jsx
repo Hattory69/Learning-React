@@ -1,7 +1,7 @@
 import { Image } from "antd";
 import React, { useState } from "react";
-import blancImg from "../../images/movieImgNotFound.svg";
-import { IconComponent } from "../IconComponent/IconComponent";
+import blancImg from "~images/movieImgNotFound.svg";
+import { IconComponent } from "../IconComponent";
 
 export function PosterComponent({ poster, imgClassName, movieName }) {
 	const [isImgError, setIsImgError] = useState(false);

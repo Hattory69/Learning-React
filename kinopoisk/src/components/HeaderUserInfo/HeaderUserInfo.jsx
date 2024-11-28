@@ -1,9 +1,9 @@
 import { Button, ConfigProvider, Modal } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../../redux/userSlice";
-import { LoginForm } from "../LoginForm/LoginForm";
-import { RegistrationForm } from "../RegistrationForm/RegistrationForm";
+import { setUser } from "~redux/userSlice";
+import { LoginForm } from "../LoginForm";
+import { RegistrationForm } from "../RegistrationForm";
 import "./headerUserInfo.css";
 
 export function HeaderUserInfo() {

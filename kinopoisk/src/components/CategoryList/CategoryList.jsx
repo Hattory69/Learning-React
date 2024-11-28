@@ -2,11 +2,11 @@ import { FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
 import { Button, ConfigProvider, Pagination } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { TOP_10, TOP_250 } from "../../data/constants";
-import { createMenuData } from "../../HelperFunctions/createMenuData";
-import { useFetchListQuery } from "../../redux/kinopoiskApi";
-import { MovieListItem } from "../MovieListItem/MovieListItem";
-import { SelectComponent } from "../SelectComponent/SelectComponent";
+import { TOP_10, TOP_250 } from "~data/constants";
+import { createMenuData } from "~helperFunctions/createMenuData";
+import { useFetchListQuery } from "~redux/kinopoiskApi";
+import { MovieListItem } from "../MovieListItem";
+import { SelectComponent } from "../SelectComponent";
 import "./categoryList.css";
 
 export function CategoryList() {

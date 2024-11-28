@@ -149,5 +149,6 @@
 	.categoryList-moviesList [class="movieBadge-wrapper"] {
 		height: 20px;
 		width: 40px;
+		text-align: center;
 	}
 }

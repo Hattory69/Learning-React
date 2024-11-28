@@ -76,4 +76,7 @@ button {
 	--footer-height: 190px;
 	--section-padding: 15px;
 	--scroll-width: 10px;
+	--selectedMovie-padding: 30px;
+	--selectedMovie-tablet-padding: 15px;
+	--movieSlide-max-width: 250px;
 }

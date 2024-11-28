@@ -20,12 +20,8 @@ export function SelectComponent({ filterParams, setMovies, fetchedMovies }) {
 		setMovies(filteredList);
 	}
 
-	function onExpand(keys, { expanded, node }) {
-		if (expanded) {
-			setExpandedKeys([node.key]);
-		} else {
-			setExpandedKeys([]);
-		}
+	function onExpand(_, { expanded, node }) {
+		setExpandedKeys(expanded ? [node.key] : []);
 	}
 
 	function onSelect(key, info) {
@@ -48,20 +44,11 @@ export function SelectComponent({ filterParams, setMovies, fetchedMovies }) {
 				},
 			}}
 		>
-			<Button
-				className='selectComponent-clearBtn'
-				onClick={() => setMovies(fetchedMovies)}
-			>
+			<Button className='selectComponent-clearBtn' onClick={() => setMovies(fetchedMovies)}>
 				Сбросить фильтр
 			</Button>
 
-			<DirectoryTree
-				className='selectComponent-menu'
-				expandedKeys={expandedKeys}
-				onSelect={onSelect}
-				onExpand={onExpand}
-				treeData={filterParams}
-			/>
+			<DirectoryTree className='selectComponent-menu' expandedKeys={expandedKeys} onSelect={onSelect} onExpand={onExpand} treeData={filterParams} />
 		</ConfigProvider>
 	);
 }

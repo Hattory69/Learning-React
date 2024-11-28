@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { mainPageCategories } from "../../data/mainPageCategories";
-import { CarouselForCategories } from "../CarouselForCategories/CarouselForCategories";
-import { MainPageTop } from "../MainPageTop/MainPageTop";
+import { mainPageCategories } from "~data/mainPageCategories";
+import { CarouselForCategories } from "../CarouselForCategories";
+import { MainPageTop } from "../MainPageTop";
 import "./mainPage.css";
 
 export function MainPage() {
@@ -14,12 +14,7 @@ export function MainPage() {
 			<MainPageTop />
 			<div className='mainPage-contentWrapper'>
 				{mainPageCategories.map(({ sectionHeader, searchType, top }, index) => (
-					<CarouselForCategories
-						key={sectionHeader + index}
-						sectionHeader={sectionHeader}
-						searchType={searchType}
-						top={top}
-					/>
+					<CarouselForCategories key={sectionHeader + index} sectionHeader={sectionHeader} searchType={searchType} top={top} />
 				))}
 			</div>
 		</>

@@ -1,13 +1,13 @@
 import { Slider } from "antd";
 import React, { useCallback } from "react";
-import { createSliderMarks } from "../../HelperFunctions/createSliderMarks";
+import { createSliderMarks } from "~helperFunctions/createSliderMarks";
 import "./randomMovieSlider.css";
 
 export function RandomMovieSlider({ onChange, defaultYearValue }) {
 	const startYear = defaultYearValue[0];
 	const currentYear = defaultYearValue[1];
 
-	const marks = useCallback(() => createSliderMarks(startYear, currentYear), [, startYear, currentYear]);
+	const marks = useCallback(() => createSliderMarks(startYear, currentYear), [startYear, currentYear]);
 
 	return (
 		<Slider

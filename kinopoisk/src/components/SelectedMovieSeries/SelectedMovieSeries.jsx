@@ -3,18 +3,13 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
-import { calcSlidesPerView } from "../../HelperFunctions/calcSlidesPerView";
-import { useSlidesPerView } from "../../HelperFunctions/useSlidesPerView";
-import { DefaultCarousel } from "../DefaultCarousel/DefaultCarousel";
-import { SelectedMovieSeriesItem } from "../SelectedMovieSeriesItem/SelectedMovieSeriesItem";
+import { DefaultCarousel } from "../DefaultCarousel";
+import { SelectedMovieSeriesItem } from "../SelectedMovieSeriesItem";
 import "./selectedMovieSeries.css";
 
 export function SelectedMovieSeries({ idForBtns, seasonsData, seasonsError, seasonsLoading, isActive }) {
 	const [curSeason, setCurSeason] = useState(0);
 	const [slideToFirst, setSlideToFirst] = useState(false);
-	const [slidesPerView, setSlidesPerView] = useState(calcSlidesPerView());
-
-	useSlidesPerView(setSlidesPerView);
 
 	const sortedSeasonsData = [...seasonsData].sort((a, b) => a?.number - b?.number);
 	const seasonsNames = sortedSeasonsData?.map((season) => season.name);
@@ -46,7 +41,6 @@ export function SelectedMovieSeries({ idForBtns, seasonsData, seasonsError, seas
 			<DefaultCarousel
 				loading={seasonsLoading}
 				error={seasonsError}
-				slidesPerView={slidesPerView}
 				showAllSlides={true}
 				dataToShow={seasonsData[curSeason]?.episodes || []}
 				renderSlide={(episode) => <SelectedMovieSeriesItem episode={episode || []} />}

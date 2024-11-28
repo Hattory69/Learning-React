@@ -6,10 +6,7 @@ export function SelectedMovieActor({ actor }) {
 	const { photo, name, enName, description, profession, enProfession } = actor;
 	return (
 		<div className='selectedMovieActor-slideWrapper'>
-			<Image
-				className='selectedMovieActor-photo'
-				src={photo}
-			/>
+			<Image className='selectedMovieActor-photo' src={photo} />
 			<div className='selectedMovieActor-about'>
 				<p className='selectedMovieActor-name'>{name || enName}</p>
 				{description && <p className='selectedMovieActor-role'>{description}</p>}

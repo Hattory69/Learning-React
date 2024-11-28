@@ -1,0 +1,1 @@
+export { SelectedMovieReviewSlide } from "./SelectedMovieReviewSlide";

@@ -1,11 +1,11 @@
 import { Button, ConfigProvider, InputNumber } from "antd";
 import React, { useState } from "react";
-import { countriesNames } from "../../data/countriesNames";
-import { genresNames } from "../../data/genresNames";
-import { productionCompanies } from "../../data/productionCompanies";
-import { randomMovieTypes } from "../../data/randomMovieTypes";
-import { RandomMovieSelect } from "../RandomMovieSelect/RandomMovieSelect";
-import { RandomMovieSlider } from "../RandomMovieSlider/RandomMovieSlider";
+import { countriesNames } from "~data/countriesNames";
+import { genresNames } from "~data/genresNames";
+import { productionCompanies } from "~data/productionCompanies";
+import { randomMovieTypes } from "~data/randomMovieTypes";
+import { RandomMovieSelect } from "../RandomMovieSelect";
+import { RandomMovieSlider } from "../RandomMovieSlider";
 import "./randomMovieForm.css";
 
 export function RandomMovieForm({ handleMovieFetch }) {
@@ -48,11 +48,7 @@ export function RandomMovieForm({ handleMovieFetch }) {
 						optionsData={countriesNames}
 						onChange={(value) => handleInputChange("country", value)}
 					/>
-					<RandomMovieSelect
-						optionsPlaceholder='Выберете жанр'
-						optionsData={genresNames}
-						onChange={(value) => handleInputChange("genre", value)}
-					/>
+					<RandomMovieSelect optionsPlaceholder='Выберете жанр' optionsData={genresNames} onChange={(value) => handleInputChange("genre", value)} />
 					<RandomMovieSelect
 						optionsPlaceholder='Выберете тип'
 						optionsData={randomMovieTypes}
@@ -71,15 +67,8 @@ export function RandomMovieForm({ handleMovieFetch }) {
 						onChange={(value) => handleInputChange("kpRating", value)}
 					/>
 				</div>
-				<RandomMovieSlider
-					onChange={(value) => handleInputChange("year", value)}
-					defaultYearValue={defaultYearValue}
-				/>
-				<Button
-					size='large'
-					className='randomMovie-submitBtn'
-					htmlType='submit'
-				>
+				<RandomMovieSlider onChange={(value) => handleInputChange("year", value)} defaultYearValue={defaultYearValue} />
+				<Button size='large' className='randomMovie-submitBtn' htmlType='submit'>
 					Поиск
 				</Button>
 			</ConfigProvider>

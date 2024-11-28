@@ -1,6 +1,6 @@
 .selectedMovie-wrapper {
 	height: calc(100vh - (var(--header-height) + var(--footer-height) + var(--section-padding)));
-	padding: 15px 30px;
+	padding: 15px 0;
 	width: 100%;
 	box-sizing: border-box;
 	position: relative;
@@ -36,7 +36,7 @@
 	height: 100%;
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: center;
+	background-position: right;
 	position: relative;
 	transition: filter 0.3s ease;
 }
@@ -59,8 +59,8 @@
 	position: absolute;
 	width: 50%;
 	height: 100%;
-	top: 0;
-	left: 0;
+	left: -1px;
+	bottom: -1px;
 	background: linear-gradient(
 		90deg,
 		#000 0%,
@@ -73,4 +73,29 @@
 		rgba(0, 0, 0, 0.2) 80%,
 		transparent 100%
 	);
+}
+
+@media (max-width: 1024px) {
+	.selectedMovie-backdropWrapper {
+		max-width: 100%;
+	}
+
+	.selectedMovie-backdrop::after {
+		width: 70%;
+	}
+}
+
+@media (max-width: 768px) {
+	.selectedMovie-wrapper {
+		min-height: 400px;
+		height: 100%;
+	}
+
+	.selectedMovieAbout-wrapper {
+		padding: 0 30px;
+	}
+
+	.selectedMovie-backdrop::after {
+		width: 100%;
+	}
 }

@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { calcSlidesPerView } from "../../HelperFunctions/calcSlidesPerView";
-import { useSlidesPerView } from "../../HelperFunctions/useSlidesPerView";
-import arrow from "../../images/smallArrow.svg";
-import { useFetchListQuery } from "../../redux/kinopoiskApi";
-import { DefaultCarousel } from "../DefaultCarousel/DefaultCarousel";
-import { IconComponent } from "../IconComponent/IconComponent";
-import { LinkComponent } from "../LinkComponent/LinkComponent";
-import { MovieListItem } from "../MovieListItem/MovieListItem";
+import arrow from "~images/smallArrow.svg";
+import { useFetchListQuery } from "~redux/kinopoiskApi";
+import { DefaultCarousel } from "../DefaultCarousel";
+import { IconComponent } from "../IconComponent";
+import { LinkComponent } from "../LinkComponent";
+import { MovieListItem } from "../MovieListItem";
 import "./carouselForCategories.css";
 
 export function CarouselForCategories({ sectionHeader, searchType, top }) {
-	const [slidesPerView, setSlidesPerView] = useState(calcSlidesPerView());
-
-	const { data: moviesData, loading: moviesLoading, error: moviesError } = useFetchListQuery({ type: searchType, resultAmount: 14, top: top });
-
-	useSlidesPerView(setSlidesPerView);
+	const {
+		data: { docs: moviesData } = {},
+		loading: moviesLoading,
+		error: moviesError,
+	} = useFetchListQuery({ type: searchType, resultAmount: 14, top: top });
 
 	return (
 		<section className='carouselForCategories-categoryWrapper'>
@@ -30,7 +28,6 @@ export function CarouselForCategories({ sectionHeader, searchType, top }) {
 			<DefaultCarousel
 				loading={moviesLoading}
 				error={moviesError}
-				slidesPerView={slidesPerView}
 				dataToShow={moviesData || []}
 				showAllSlides={false}
 				renderSlide={(movie) => <MovieListItem movie={movie} />}
@@ -39,6 +36,12 @@ export function CarouselForCategories({ sectionHeader, searchType, top }) {
 				searchType={searchType}
 				showMoreBtn={true}
 				slideKey={"id"}
+				breakpoints={{
+					1024: {
+						simulateTouch: false,
+						allowTouchMove: false,
+					},
+				}}
 			/>
 		</section>
 	);

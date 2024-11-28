@@ -1,4 +1,5 @@
 .selectedMovieAbout-wrapper {
+	padding: 0 var(--selectedMovie-padding);
 	height: 100%;
 	display: flex;
 	max-width: 40%;
@@ -19,7 +20,7 @@
 .selectedMovieAbout-title {
 	margin-bottom: 10px;
 	font-weight: 900;
-	font-size: 50px;
+	font-size: 40px;
 }
 
 .selectedMovieAbout-tags {
@@ -27,7 +28,7 @@
 	display: flex;
 	align-items: center;
 	font-weight: 600;
-	font-size: 20px;
+	font-size: 17px;
 	color: gray;
 	flex-wrap: wrap;
 }
@@ -38,5 +39,44 @@
 
 .selectedMovieAbout-description {
 	font-weight: 600;
-	font-size: 30px;
+	font-size: 20px;
+}
+
+@media (max-width: 1024px) {
+	.selectedMovieAbout-title {
+		font-size: 30px;
+	}
+
+	.selectedMovieAbout-tags {
+		font-size: 15px;
+	}
+
+	.selectedMovieAbout-description {
+		font-size: 15px;
+	}
+}
+
+@media (max-width: 768px) {
+	.selectedMovieAbout-wrapper {
+		max-width: 80%;
+		flex-grow: 1;
+	}
+
+	.selectedMovieAbout-title {
+		font-size: 20px;
+	}
+
+	.selectedMovieAbout-tags {
+		font-size: 15px;
+	}
+
+	.selectedMovieAbout-description {
+		font-size: 15px;
+	}
+}
+
+@media (max-width: 470px) {
+	.selectedMovieAbout-wrapper {
+		max-width: 100%;
+	}
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useLazyFetchRandomMovieQuery } from "../../redux/kinopoiskApi";
-import { RandomMovieForm } from "../RandomMovieForm/RandomMovieForm";
-import { RandomMovieInfo } from "../RandomMovieInfo/RandomMovieInfo";
+import { useLazyFetchRandomMovieQuery } from "~redux/kinopoiskApi";
+import { RandomMovieForm } from "../RandomMovieForm";
+import { RandomMovieInfo } from "../RandomMovieInfo";
 import "./randomMovie.css";
 
 export function RandomMovie() {

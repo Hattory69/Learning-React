@@ -1,15 +1,14 @@
-import { Button, Image } from "antd";
-import React, { useState } from "react";
+import { Image } from "antd";
+import React from "react";
 import "swiper/css";
 import "swiper/css/effect-creative";
 import "swiper/css/pagination";
 import { EffectCreative, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { countVotes } from "../../HelperFunctions/CountVotes";
-import { DefaultCarousel } from "../DefaultCarousel/DefaultCarousel";
-import { MovieBadges } from "../MovieBadges/MovieBadges";
-import { SelectedMovieActor } from "../SelectedMovieActor/SelectedMovieActor";
-import { SelectedMovieReviews } from "../SelectedMovieReviews/SelectedMovieReviews";
+import { countVotes } from "~helperFunctions/CountVotes";
+import { MovieBadges } from "../MovieBadges";
+import { SelectedMovieActors } from "../SelectedMovieActors";
+import { SelectedMovieReviews } from "../SelectedMovieReviews";
 import "./selectedMovieDetails.css";
 
 export function SelectedMovieDetails({
@@ -26,9 +25,7 @@ export function SelectedMovieDetails({
 	isActive,
 }) {
 	const { description, persons, top10, top250, votes } = movieData;
-	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const sortedActors = [...persons]?.sort((a, b) => a?.profession - b?.profession);
 	const votesSum = countVotes(votes);
 
 	const pagination = {
@@ -72,39 +69,17 @@ export function SelectedMovieDetails({
 				)}
 				<div className='selectedMovieDetails-movieDetails'>
 					{top10 || top250 ? (
-						<MovieBadges
-							rating={movieRating}
-							top10={top10}
-							top250={top250}
-							showPlace={top10 || top250}
-						/>
+						<MovieBadges rating={movieRating} top10={top10} top250={top250} showPlace={top10 || top250} />
 					) : (
 						<>{movieRating > 0 && <span style={movieRatingStyle}>{movieRating}</span>}</>
 					)}
 					{votesSum > 0 && <span className='selectedMovieDetails-votes'>{votesSum} оценки</span>}
 					{description && <p className='selectedMovieDetails-description'>{description}</p>}
 
-					<SelectedMovieReviews
-						setIsModalOpen={setIsModalOpen}
-						isModalOpen={isModalOpen}
-						reviewsData={reviewsData}
-					/>
-
-					<Button onClick={() => setIsModalOpen(true)}>Отзывы </Button>
+					<SelectedMovieReviews reviewsData={reviewsData} />
 				</div>
 			</div>
-			<div className='selectedMovieDetails-actors'>
-				<DefaultCarousel
-					movieError={movieError}
-					movieLoading={movieLoading}
-					renderSlide={(actor) => <SelectedMovieActor actor={actor || []} />}
-					idForBtns={idForBtns + "Actors"}
-					dataToShow={sortedActors || []}
-					slidesPerView={3}
-					slideKey={"id"}
-					showAllSlides={true}
-				/>
-			</div>
+			<SelectedMovieActors persons={persons} idForBtns={idForBtns + 2} />
 		</div>
 	);
 }

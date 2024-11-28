@@ -1,0 +1,47 @@
+.selectedMovieDetails-actors {
+	width: 50%;
+	height: 100%;
+}
+
+.selectedMovieDetails-actors .defaultCarousel-swiperContainer {
+	height: 100%;
+	align-items: stretch;
+}
+
+.selectedMovieDetails-actors .defaultCarousel-swiperContainer .swiper-horizontal {
+	padding: 10px;
+}
+
+.selectedMovieDetails-actors [class="swiper-wrapper"] {
+	align-items: flex-start;
+}
+
+.selectedMovieDetails-actors .swiper .swiper-wrapper .swiper-slide {
+	width: 200px;
+}
+
+@media (max-width: 768px) {
+
+
+	.ant-modal-wrap .selectedMovie-actorsModal {
+		padding-bottom: 0;
+		margin: 0 auto;
+	}
+
+	.selectedMovie-actorsModal [class="ant-modal-content"] {
+		padding: 20px 5px;
+	}
+
+	.selectedMovie-actorsModal [class="ant-modal-header"] {
+		padding: 0 20px;
+	}
+
+	.selectedMovieDetails-actors [class^="swiper-button-"] {
+		width: 30px;
+		height: unset;
+	}
+
+	.selectedMovieDetails-actors {
+		width: 100%;
+	}
+}

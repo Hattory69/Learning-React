@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { selectRatingStyle } from "../../HelperFunctions/selectRatingStyle";
+import { selectRatingStyle } from "~helperFunctions/selectRatingStyle";
 import {
 	useFetchMovieImagesQuery,
 	useFetchMovieQuery,
 	useFetchMovieReviewsQuery,
 	useFetchMovieSeasonsQuery,
 	useFetchSimilarMoviesQuery,
-} from "../../redux/kinopoiskApi";
-import { SelectedMovieAbout } from "../SelectedMovieAbout/SelectedMovieAbout";
-import { SelectedMovieDetails } from "../SelectedMovieDetails/SelectedMovieDetails";
-import { SelectedMovieNav } from "../SelectedMovieNav/SelectedMovieNav";
-import { SelectedMovieSequelsAndSimilar } from "../SelectedMovieSequelsAndSimilar/SelectedMovieSequelsAndSimilar";
-import { SelectedMovieSeries } from "../SelectedMovieSeries/SelectedMovieSeries";
+} from "~redux/kinopoiskApi";
+import { SelectedMovieAbout } from "../SelectedMovieAbout";
+import { SelectedMovieDetails } from "../SelectedMovieDetails";
+import { SelectedMovieNav } from "../SelectedMovieNav";
+import { SelectedMovieSequelsAndSimilar } from "../SelectedMovieSequelsAndSimilar";
+import { SelectedMovieSeries } from "../SelectedMovieSeries";
 import "./selectedMovie.css";
 
 export function SelectedMovie() {

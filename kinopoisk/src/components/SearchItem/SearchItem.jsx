@@ -1,8 +1,8 @@
 import React from "react";
-import { formatReleaseYear } from "../../HelperFunctions/formatReleaseYear";
-import { selectRatingStyle } from "../../HelperFunctions/selectRatingStyle";
-import { LinkComponent } from "../LinkComponent/LinkComponent";
-import { PosterComponent } from "../PosterComponent/PosterComponent";
+import { formatReleaseYear } from "~helperFunctions/formatReleaseYear";
+import { selectRatingStyle } from "~helperFunctions/selectRatingStyle";
+import { LinkComponent } from "../LinkComponent";
+import { PosterComponent } from "../PosterComponent";
 import "./searchItem.css";
 
 export function SearchItem({ movie }) {
@@ -13,19 +13,12 @@ export function SearchItem({ movie }) {
 
 	return (
 		<div className='searchItem-wrapper'>
-			<PosterComponent
-				poster={poster}
-				imgClassName={"searchItem-img"}
-				movieName={name || alternativeName}
-			/>
+			<PosterComponent poster={poster} imgClassName={"searchItem-img"} movieName={name || alternativeName} />
 			<div className='searchItem-about'>
 				<h4 className='searchItem-name'>{name || alternativeName}</h4>
 				<p className='searchItem-info'>
 					{movieRating > 0 && (
-						<span
-							style={movieRatingStyle}
-							className='searchItem-rating'
-						>
+						<span style={movieRatingStyle} className='searchItem-rating'>
 							{movieRating}
 						</span>
 					)}

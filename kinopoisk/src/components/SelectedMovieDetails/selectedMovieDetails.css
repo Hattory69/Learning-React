@@ -1,4 +1,5 @@
 .selectedMovieDetails-wrapper {
+	padding-left: var(--selectedMovie-padding);
 	display: flex;
 	align-items: center;
 	height: 100%;
@@ -7,14 +8,13 @@
 .selectedMovieDetails-left {
 	display: flex;
 	flex-direction: column;
-	width: 60%;
+	width: 50%;
 	height: 100%;
 	align-items: start;
 	justify-content: space-evenly;
 }
 
 .selectedMovieDetails-movieDetails {
-	max-width: 70%;
 	display: flex;
 	flex-direction: column;
 	align-items: start;
@@ -29,12 +29,12 @@
 }
 
 .selectedMovieDetails-posters .mySwiper {
-	width: 300px;
-	height: 350px;
+	width: 250px;
+	height: 300px;
 }
 
 .selectedMovieDetails-posters .mySwiper .swiper-wrapper {
-	height: 300px;
+	height: 250px;
 }
 
 .swiper-pagination .swiper-pagination-bullet {
@@ -55,13 +55,27 @@
 	font-size: 20px;
 }
 
-.selectedMovieDetails-actors {
-	width: 40%;
-	max-height: 400px;
-	width: 40%;
-	height: 100%;
+@media (max-width: 1024px) {
+	.selectedMovieDetails-description {
+		font-size: 15px;
+	}
 }
 
-.selectedMovieDetails-actors .defaultCarousel-swiperContainer {
-	height: 100%;
+@media (max-width: 768px) {
+	.selectedMovieDetails-wrapper {
+		padding: 0 var(--selectedMovie-padding);
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	.selectedMovieDetails-left {
+		width: 100%;
+		gap: 15px;
+	}
+}
+
+@media (max-width: 470px) {
+	.selectedMovie-reviewsModal .ant-modal-content {
+		padding: 15px;
+	}
 }

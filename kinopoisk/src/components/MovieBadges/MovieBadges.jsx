@@ -1,7 +1,7 @@
 import React from "react";
-import lightning from "../../images/lightning.svg";
-import olive from "../../images/olive-branch.svg";
-import { IconComponent } from "../IconComponent/IconComponent";
+import lightning from "~images/lightning.svg";
+import olive from "~images/olive-branch.svg";
+import { IconComponent } from "../IconComponent";
 import "./movieBadges.css";
 
 export function MovieBadges({ rating, top10, top250, showPlace }) {

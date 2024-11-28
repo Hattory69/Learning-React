@@ -5,10 +5,11 @@
 	align-items: center;
 	height: 25px;
 	font-weight: 600;
+	margin-bottom: 5px;
 }
 
-.movieBadge-wrapper > * {
-	margin: 0 5px 5px 0;
+.movieBadge-wrapper > :not(:last-child) {
+	margin-right: 5px;
 }
 
 .movieBadge-ratingWrapper {
@@ -52,7 +53,7 @@
 .movieBadge-topWrapper {
 	display: flex;
 	height: 100%;
-	padding: 5px 5px 5px 0;
+	padding-right: 5px;
 	box-sizing: border-box;
 	background-color: black;
 	color: #e2bce8;

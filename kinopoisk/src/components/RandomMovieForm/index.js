@@ -1,0 +1,1 @@
+export { RandomMovieForm } from "./RandomMovieForm";

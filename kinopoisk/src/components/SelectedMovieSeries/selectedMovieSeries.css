@@ -9,12 +9,12 @@
 	height: 100%;
 }
 
-.selectedMovieSeries-pagination .swiper-wrapper {
-	display: none;
+.selectedMovieSeries-pagination {
+	padding: 0 var(--selectedMovie-padding);
 }
 
-.selectedMovieSeries-pagination .swiper {
-	height: 60px;
+.selectedMovieSeries-pagination .swiper-wrapper {
+	display: none;
 }
 
 .selectedMovieSeries-pagination .swiper > .swiper-pagination {
@@ -23,6 +23,10 @@
 	align-items: center;
 	height: 100%;
 	bottom: 0;
+}
+
+.selectedMovieSeries-pagination .swiper > .swiper-pagination {
+	flex-wrap: wrap;
 }
 
 .selectedMovieSeries-pagination .swiper > .swiper-pagination .swiper-pagination-bullet {
@@ -43,4 +47,33 @@
 .selectedMovieSeries-pagination .swiper > .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
 	color: orange;
 	background-color: #131317;
+}
+
+.selectedMovieSeries-wrapper [class="swiper-wrapper"] .swiper-slide {
+	max-width: 300px;
+}
+
+@media (max-width: 768px) {
+	.selectedMovieSeries-pagination {
+		margin-bottom: 15px;
+	}
+
+	.selectedMovieSeries-pagination .swiper > .swiper-pagination .swiper-pagination-bullet {
+		padding: 5px;
+		height: unset;
+		font-size: 15px;
+	}
+
+	.selectedMovieSeries-wrapper > .defaultCarousel-swiperContainer {
+		height: 300px;
+	}
+}
+
+@media (max-width: 470px) {
+	.selectedMovieSeriesItem-about p {
+		-webkit-line-clamp: 3;
+	}
+	.selectedMovieSeries-pagination .swiper > .swiper-pagination .swiper-pagination-bullet {
+		font-size: 10px;
+	}
 }

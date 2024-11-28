@@ -1,0 +1,1 @@
+export { KinopoiskWrapper } from "./KinopoiskWrapper";

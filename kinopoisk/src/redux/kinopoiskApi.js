@@ -1,4 +1,4 @@
-import { TOP_10, TOP_250 } from "../data/constants";
+import { TOP_10, TOP_250 } from "~data/constants";
 import { testData } from "../testData/testData";
 import { testListOfSeries } from "../testData/testListOfSeries";
 import { testPosters } from "../testData/testPosters";
@@ -35,9 +35,9 @@ export const kinopoiskApi = createApi({
 				: {
 						query: ({ type, resultAmount }) => {
 							const top = type === TOP_250 || type === TOP_10 ? type : "";
-							return `movie?page=1&limit=${resultAmount}&notNullFields=externalId.kpHD${top ? `&notNullFields=${top}` : ""}${
-								top ? "" : `&type=${type}&rating.kp=7-10`
-							}`;
+							const searchForTop = `&notNullFields=${top}`;
+							const searchNotForTop = `&type=${type}&rating.kp=7-10`;
+							return `movie?page=1&limit=${resultAmount}&notNullFields=externalId.kpHD${top ? searchForTop : searchNotForTop}`;
 						},
 				  }
 		),
@@ -74,8 +74,7 @@ export const kinopoiskApi = createApi({
 				? { queryFn: () => ({ data: testData }) }
 				: {
 						query: ({ genres }) => {
-							const genresParams =
-								genres?.length > 0 ? genres.map((genre) => `genres.name=${encodeURIComponent(genre.toLowerCase())}`).join("&") : "";
+							const genresParams = genres.map((genre) => `genres.name=${encodeURIComponent(genre.toLowerCase())}`).join("&");
 							return `/movie?page=1&limit=10&notNullFields=externalId.kpHD${genresParams ? `&${genresParams}` : ""}`;
 						},
 				  }

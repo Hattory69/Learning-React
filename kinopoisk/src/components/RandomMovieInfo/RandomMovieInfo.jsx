@@ -1,9 +1,9 @@
 import React from "react";
-import { countVotes } from "../../HelperFunctions/CountVotes";
-import { formatReleaseYear } from "../../HelperFunctions/formatReleaseYear";
-import { LinkComponent } from "../LinkComponent/LinkComponent";
-import { MovieBadges } from "../MovieBadges/MovieBadges";
-import { PosterComponent } from "../PosterComponent/PosterComponent";
+import { countVotes } from "~helperFunctions/CountVotes";
+import { formatReleaseYear } from "~helperFunctions/formatReleaseYear";
+import { LinkComponent } from "../LinkComponent";
+import { MovieBadges } from "../MovieBadges";
+import { PosterComponent } from "../PosterComponent";
 import "./randomMovieInfo.css";
 
 export function RandomMovieInfo({ movie }) {
@@ -15,11 +15,7 @@ export function RandomMovieInfo({ movie }) {
 
 	return (
 		<div className='randomMovie-movieInfoWrapper fade-block'>
-			<PosterComponent
-				poster={poster}
-				imgClassName='randomMovie-poster'
-				movieName={name || alternativeName}
-			/>
+			<PosterComponent poster={poster} imgClassName='randomMovie-poster' movieName={name || alternativeName} />
 			<div className='randomMovie-movieInfo'>
 				<h2 className='randomMovie-movieTitle'>{name || alternativeName}</h2>
 				{countries?.name && <span>{countries.name}</span>}
@@ -37,12 +33,7 @@ export function RandomMovieInfo({ movie }) {
 					</span>
 				)}
 				{movieVotes > 0 && <span>Голосов: {movieVotes}</span>}
-				<MovieBadges
-					rating={movieRating}
-					top10={top10}
-					top250={top250}
-					showPlace={true}
-				/>
+				<MovieBadges rating={movieRating} top10={top10} top250={top250} showPlace={true} />
 				{description && <p className='randomMovie-description'>{description}</p>}
 				<LinkComponent url={`/about/${movie.id}`} />
 			</div>
