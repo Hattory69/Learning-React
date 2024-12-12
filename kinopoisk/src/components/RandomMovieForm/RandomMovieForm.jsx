@@ -21,6 +21,10 @@ export function RandomMovieForm({ handleMovieFetch }) {
 	});
 
 	function handleInputChange(name, value) {
+		if (name === "kpRating") {
+			const sanitizedValue = String(value).replace(/[^0-9]/g, "");
+			value = Math.max(1, Math.min(10, Number(sanitizedValue)));
+		}
 		setMovieFilters((prevState) => ({ ...prevState, [name]: value }));
 	}
 
@@ -29,6 +33,7 @@ export function RandomMovieForm({ handleMovieFetch }) {
 			className='randomMovie-form'
 			onSubmit={(e) => {
 				e.preventDefault();
+
 				handleMovieFetch(movieFilters);
 			}}
 		>
@@ -60,11 +65,13 @@ export function RandomMovieForm({ handleMovieFetch }) {
 						onChange={(value) => handleInputChange("production", value)}
 					/>
 					<InputNumber
-						placeholder='Рейтинг Кинопоиск'
-						min={0}
 						max={10}
+						min={1}
+						placeholder='Рейтинг Кинопоиск'
 						className='randomMovie-formInput randomMovie-kpRating'
-						onChange={(value) => handleInputChange("kpRating", value)}
+						onInput={(value) => handleInputChange("kpRating", value)}
+						value={movieFilters.kpRating}
+						name='kpRating'
 					/>
 				</div>
 				<RandomMovieSlider onChange={(value) => handleInputChange("year", value)} defaultYearValue={defaultYearValue} />

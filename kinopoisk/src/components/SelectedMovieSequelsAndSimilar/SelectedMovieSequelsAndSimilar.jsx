@@ -2,6 +2,7 @@ import React from "react";
 import { DefaultCarousel } from "../DefaultCarousel";
 import { MovieListItem } from "../MovieListItem";
 import "./selectedMovieSequelsAndSimilar.css";
+import { SWIPER_WINDOW_WIDE_BREAKPOINTS } from "~data/constants";
 
 export function SelectedMovieSequelsAndSimilar({ movieData, movieError, movieLoading, idForBtns, similarMovieData, isActive }) {
 	const updatedSimilarMovieData = [...(movieData?.sequelsAndPrequels || [])].concat(...(similarMovieData || []));
@@ -16,6 +17,7 @@ export function SelectedMovieSequelsAndSimilar({ movieData, movieError, movieLoa
 				renderSlide={(movie) => <MovieListItem movie={movie} />}
 				idForBtns={idForBtns}
 				slideKey={"id"}
+				breakpoints={SWIPER_WINDOW_WIDE_BREAKPOINTS}
 			/>
 		</div>
 	);

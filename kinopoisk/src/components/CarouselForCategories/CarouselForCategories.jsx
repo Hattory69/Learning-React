@@ -1,6 +1,7 @@
 import React from "react";
 import "swiper/css";
 import "swiper/css/navigation";
+import { SWIPER_WINDOW_WIDE_BREAKPOINTS } from "~data/constants";
 import arrow from "~images/smallArrow.svg";
 import { useFetchListQuery } from "~redux/kinopoiskApi";
 import { DefaultCarousel } from "../DefaultCarousel";
@@ -36,12 +37,7 @@ export function CarouselForCategories({ sectionHeader, searchType, top }) {
 				searchType={searchType}
 				showMoreBtn={true}
 				slideKey={"id"}
-				breakpoints={{
-					1024: {
-						simulateTouch: false,
-						allowTouchMove: false,
-					},
-				}}
+				breakpoints={SWIPER_WINDOW_WIDE_BREAKPOINTS}
 			/>
 		</section>
 	);

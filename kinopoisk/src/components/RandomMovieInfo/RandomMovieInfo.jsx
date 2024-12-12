@@ -34,8 +34,8 @@ export function RandomMovieInfo({ movie }) {
 				)}
 				{movieVotes > 0 && <span>Голосов: {movieVotes}</span>}
 				<MovieBadges rating={movieRating} top10={top10} top250={top250} showPlace={true} />
-				{description && <p className='randomMovie-description'>{description}</p>}
 				<LinkComponent url={`/about/${movie.id}`} />
+				{description && <p className='randomMovie-description'>{description}</p>}
 			</div>
 		</div>
 	);

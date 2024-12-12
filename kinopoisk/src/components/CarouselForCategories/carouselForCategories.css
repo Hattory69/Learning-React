@@ -42,8 +42,11 @@
 	height: 350px;
 }
 
-.carouselForCategories-categoryWrapper [class="swiper-wrapper"] .swiper-slide {
-	max-width: 250px;
+@media (min-width: 2550px) {
+	.carouselForCategories-categoryWrapper [class^="swiper-slide"] {
+		width: auto;
+		aspect-ratio: 1/1.5;
+	}
 }
 
 @media (min-width: 1440px) {

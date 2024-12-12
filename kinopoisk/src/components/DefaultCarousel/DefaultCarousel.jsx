@@ -41,7 +41,7 @@ export function DefaultCarousel({
 				<Swiper
 					ref={swiperRef}
 					modules={[Navigation]}
-					spaceBetween={SPACE_BETWEEN_SLIDES || 10}
+					spaceBetween={SPACE_BETWEEN_SLIDES}
 					slidesPerView='auto'
 					slidesPerGroupAuto={true}
 					speed={1000}

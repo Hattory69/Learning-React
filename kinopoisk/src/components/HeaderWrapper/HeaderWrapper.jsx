@@ -2,7 +2,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import kinopoiskLogo from "~images/Kinopoisk-Logo.svg";
+import kinopoiskLogo from "~images/KinopoiskLogo.svg";
 import { HeaderSearch } from "../HeaderSearch";
 import { HeaderUserInfo } from "../HeaderUserInfo";
 import { IconComponent } from "../IconComponent";

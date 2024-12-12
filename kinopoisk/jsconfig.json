@@ -1,8 +1,12 @@
 {
 	"compilerOptions": {
-		"baseUrl": "./",
+		"baseUrl": "./src",
 		"paths": {
-			"~components/*": ["src/components/*"]
+			"~components/*": ["components/*"],
+			"~images/*": ["images/*"],
+			"~redux/*": ["redux/*"],
+			"~data/*": ["data/*"],
+			"~helperFunctions/*": ["helperFunctions/*"]
 		},
 		"jsx": "react"
 	},

@@ -55,6 +55,17 @@
 	font-size: 20px;
 }
 
+@media (min-width: 1536px) {
+	.selectedMovieDetails-posters .mySwiper {
+		width: 400px;
+		height: 450px;
+	}
+
+	.selectedMovieDetails-posters .mySwiper .swiper-wrapper {
+		height: 400px;
+	}
+}
+
 @media (max-width: 1024px) {
 	.selectedMovieDetails-description {
 		font-size: 15px;
