@@ -6,7 +6,8 @@
 			"~images/*": ["images/*"],
 			"~redux/*": ["redux/*"],
 			"~data/*": ["data/*"],
-			"~helperFunctions/*": ["helperFunctions/*"]
+			"~helperFunctions/*": ["helperFunctions/*"],
+			"~testData/*": ["testData/*"]
 		},
 		"jsx": "react"
 	},

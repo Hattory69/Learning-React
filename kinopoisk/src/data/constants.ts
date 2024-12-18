@@ -1,7 +1,19 @@
-export const SPACE_BETWEEN_SLIDES = 15;
-export const TOP_10 = "top10";
-export const TOP_250 = "top250";
-export const SWIPER_WINDOW_WIDE_BREAKPOINTS = {
+interface SwiperBreakpointsSettings {
+	slidesPerView: number | "auto";
+	slidesPerGroup?: number;
+	slidesPerGroupAuto?: boolean;
+	simulateTouch?: boolean;
+	allowTouchMove?: boolean;
+}
+
+interface SwiperBreakpoints {
+	[breakpoint: number]: SwiperBreakpointsSettings;
+}
+
+export const SPACE_BETWEEN_SLIDES: 15 = 15;
+export const TOP_10: "top10" = "top10";
+export const TOP_250: "top250" = "top250";
+export const SWIPER_WINDOW_WIDE_BREAKPOINTS: SwiperBreakpoints = {
 	2550: {
 		slidesPerView: "auto",
 		slidesPerGroupAuto: true,

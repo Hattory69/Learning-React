@@ -1,4 +1,9 @@
-export const genresNames = [
+interface GenresNames {
+	value: string;
+	label: string;
+}
+
+export const genresNames: GenresNames[] = [
 	{
 		value: "Аниме",
 		label: "Аниме",

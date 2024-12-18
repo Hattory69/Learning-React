@@ -1,14 +1,14 @@
-import { TOP_10, TOP_250 } from "~data/constants";
-import { testData } from "../testData/testData";
-import { testListOfSeries } from "../testData/testListOfSeries";
-import { testPosters } from "../testData/testPosters";
-import { testReviews } from "../testData/testReviews";
-import { selectedMovie } from "../testData/testSelectedMovie";
-
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { TOP_10, TOP_250 } from "~data/constants";
+import { testListOfSeries } from "~testData/testListOfSeries";
+import { testLongListOfMovies } from "~testData/testLongListOfMovies";
+import { testPosters } from "~testData/testPosters";
+import { testReviews } from "~testData/testReviews";
+import { selectedMovie } from "~testData/testSelectedMovie";
+import { testShortListOfMovies } from "~testData/testShortListOfMovies";
 
 // eslint-disable-next-line no-undef
-const apiKey = process.env.TOKEN;
+const apiKey: string | "" = process.env.TOKEN || "";
 
 const isTest = true;
 
@@ -24,14 +24,21 @@ export const kinopoiskApi = createApi({
 	endpoints: (builder) => ({
 		searchItem: builder.query(
 			isTest
-				? { queryFn: () => ({ data: testData }) }
+				? { queryFn: () => ({ data: testLongListOfMovies }) }
 				: {
 						query: (searchData) => `movie/search?limit=10&notNullFields=externalId.kpHD&query=${encodeURIComponent(searchData)}`,
 				  }
 		),
 		fetchList: builder.query(
 			isTest
-				? { queryFn: () => ({ data: testData }) }
+				? {
+						queryFn: ({ resultAmount }) => {
+							if (resultAmount <= 14) {
+								return { data: testShortListOfMovies };
+							}
+							return { data: testLongListOfMovies };
+						},
+				  }
 				: {
 						query: ({ type, resultAmount }) => {
 							const top = type === TOP_250 || type === TOP_10 ? type : "";
@@ -71,10 +78,10 @@ export const kinopoiskApi = createApi({
 		),
 		fetchSimilarMovies: builder.query(
 			isTest
-				? { queryFn: () => ({ data: testData }) }
+				? { queryFn: () => ({ data: testShortListOfMovies }) }
 				: {
 						query: ({ genres }) => {
-							const genresParams = genres.map((genre) => `genres.name=${encodeURIComponent(genre.toLowerCase())}`).join("&");
+							const genresParams = genres.map((genre: string) => `genres.name=${encodeURIComponent(genre.toLowerCase())}`).join("&");
 							return `/movie?page=1&limit=10&notNullFields=externalId.kpHD${genresParams ? `&${genresParams}` : ""}`;
 						},
 				  }
@@ -86,11 +93,11 @@ export const kinopoiskApi = createApi({
 						query: ({ searchData }) => {
 							const { year, country, genre, type, production, kpRating } = searchData;
 							const yearRange = `${year[0]}-${year[1]}`;
-							const countriesParams = country ? "&" + country.map((c) => `countries.name=${encodeURIComponent(c)}`).join("&") : "";
-							const genresParams = genre ? "&" + genre.map((g) => `genres.name=${encodeURIComponent(g.toLowerCase())}`).join("&") : "";
-							const typeParams = type ? "&" + type.map((type) => `type=${encodeURIComponent(type.toLowerCase())}`).join("&") : "";
+							const countriesParams = country ? "&" + country.map((c: string) => `countries.name=${encodeURIComponent(c)}`).join("&") : "";
+							const genresParams = genre ? "&" + genre.map((g: string) => `genres.name=${encodeURIComponent(g.toLowerCase())}`).join("&") : "";
+							const typeParams = type ? "&" + type.map((type: string) => `type=${encodeURIComponent(type.toLowerCase())}`).join("&") : "";
 							const productionParams = production
-								? "&" + production.map((production) => `countries.name=${encodeURIComponent(production)}`).join("&")
+								? "&" + production.map((production: string) => `countries.name=${encodeURIComponent(production)}`).join("&")
 								: "";
 							const kpRatingParam = kpRating ? "&" + `rating.kp=${kpRating?.toFixed(1)}-10` : "";
 

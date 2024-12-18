@@ -16,7 +16,8 @@ module.exports = {
 			"~redux": path.resolve(__dirname, "../src/redux"),
 			"~data": path.resolve(__dirname, "../src/data"),
 			"~helperFunctions": path.resolve(__dirname, "../src/helperFunctions"),
+			"~testData": path.resolve(__dirname, "../src/testData"),
 		},
-		extensions: [".js", ".jsx"],
+		extensions: [".js", ".jsx", ".tsx", ".ts"],
 	},
 };

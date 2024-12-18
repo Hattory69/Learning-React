@@ -1,4 +1,9 @@
-export const mainPageCategories = [
+interface MainPageCategory {
+	sectionHeader: string;
+	searchType: string;
+}
+
+export const mainPageCategories: MainPageCategory[] = [
 	{
 		sectionHeader: "Топ 250",
 		searchType: "top250",

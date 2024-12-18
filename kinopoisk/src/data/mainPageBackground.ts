@@ -1,4 +1,4 @@
-export const mainPageBackground = [
+export const mainPageBackground: string[][] = [
 	[
 		"//avatars.mds.yandex.net/get-ott/1531675/2a0000019206f028199303af06c215edce19/375x234",
 		"//avatars.mds.yandex.net/get-ott/374297/2a000001924433925b74d0039677e0aa8c8e/375x234",
