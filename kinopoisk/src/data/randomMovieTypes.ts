@@ -1,9 +1,6 @@
-interface RandomMovieType {
-	value: string;
-	label: string;
-}
+import { IOption } from "~types/types";
 
-export const randomMovieTypes: RandomMovieType[] = [
+export const randomMovieTypes: IOption[] = [
 	{ value: "movie", label: "Кино" },
 	{ value: "tv-series", label: "Сериал" },
 	{ value: "cartoon", label: "Мультфильм" },

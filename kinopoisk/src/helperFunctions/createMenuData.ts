@@ -1,38 +1,30 @@
+import { IMovieCountry } from "~types/types";
+
 interface MovieData {
-	countries: MovieCountry[] | null;
+	countries: IMovieCountry[] | null;
 	ageRating: string | null;
 	year: number | null;
 }
 
-interface MovieCountry {
-	name: string;
-}
-
-interface MenuParentItem {
-	title: string;
-	value: string;
-	selectable: false;
-	children: MenuChildItem[];
-	key: string;
-}
-
-interface MenuChildItem {
+export interface IMenuItem {
 	title: string | number;
 	value: string | number;
-	isLeaf: true;
+	selectable: boolean;
+	children?: IMenuItem[];
+	isLeaf?: true;
 	key: string | number;
-	section: string;
+	section?: string;
 }
 
-const uniqueMenuChild = (children: MenuChildItem[], value: string | number | null, section: string): MenuChildItem | undefined => {
+const uniqueMenuChild = (children: IMenuItem[], value: string | number | null, section: string): IMenuItem | undefined => {
 	if (!children.some((child) => child?.value === value) && value !== null) {
-		return { title: value, value, isLeaf: true, key: value, section };
+		return { title: value, value, isLeaf: true, key: value, section, selectable: true };
 	}
 	return;
 };
 
 export function createMenuData(data: MovieData[]) {
-	const menuData: MenuParentItem[] = [
+	const menuData: IMenuItem[] = [
 		{
 			title: "Год выхода",
 			value: "year",
@@ -58,20 +50,20 @@ export function createMenuData(data: MovieData[]) {
 
 	data?.forEach((movie) => {
 		const { year, ageRating, countries } = movie;
-		const yearChild = uniqueMenuChild(menuData[0].children, year, "year");
-		if (yearChild) menuData[0].children.push(yearChild);
+		const yearChild = uniqueMenuChild(menuData[0].children ?? [], year, "year");
+		if (yearChild) menuData[0].children?.push(yearChild);
 
-		const ageRatingChild = uniqueMenuChild(menuData[1].children, ageRating, "ageRating");
-		if (ageRatingChild) menuData[1].children.push(ageRatingChild);
+		const ageRatingChild = uniqueMenuChild(menuData[1].children ?? [], ageRating, "ageRating");
+		if (ageRatingChild) menuData[1].children?.push(ageRatingChild);
 
 		countries?.forEach((country) => {
-			const countryChild = uniqueMenuChild(menuData[2].children, country.name, "countries");
-			if (countryChild) menuData[2].children.push(countryChild);
+			const countryChild = uniqueMenuChild(menuData[2].children ?? [], country.name, "countries");
+			if (countryChild) menuData[2].children?.push(countryChild);
 		});
 	});
 
 	menuData.forEach((param) => {
-		param.children?.sort((a: MenuChildItem, b: MenuChildItem) => {
+		param.children?.sort((a: IMenuItem, b: IMenuItem) => {
 			if (typeof a.value === "number" && typeof b.value === "number") {
 				return a.value - b.value;
 			} else if (typeof a.value === "string" && typeof b.value === "string") {

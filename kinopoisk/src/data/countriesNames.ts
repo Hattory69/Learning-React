@@ -1,9 +1,5 @@
-interface CountriesNames {
-	value: string;
-	label: string;
-}
-
-export const countriesNames: CountriesNames[] = [
+import { IOption } from "~types/types";
+export const countriesNames: IOption[] = [
 	{
 		value: "США",
 		label: "США",

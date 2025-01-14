@@ -1,22 +1,12 @@
-interface Movie {
-	type: string | null;
-	year: number | null;
-	releaseYears: ReleaseYears[];
-}
+import { ReleaseYears } from "~types/types";
 
-interface ReleaseYears {
-	start: number | null;
-	end: number | null;
-}
-
-export function formatReleaseYear(movie: Movie) {
-	if (movie?.type?.includes("series")) {
-		const releasePeriod = movie.releaseYears?.[0];
-
-		if (releasePeriod && releasePeriod.start != null) {
-			return `${releasePeriod.start} - ${releasePeriod.end || "..."}`;
+export function formatReleaseYear(type: string | null | undefined, releaseYears: ReleaseYears[] | undefined, year: number | null | undefined) {
+	if (typeof type === "string" && type.includes("series")) {
+		if (Array.isArray(releaseYears) && releaseYears.length > 0) {
+			const releaseYear = releaseYears[0];
+			return `${releaseYear.start} - ${releaseYear.end || "..."}`;
 		}
 	}
 
-	return movie.year || "";
+	return year || "";
 }

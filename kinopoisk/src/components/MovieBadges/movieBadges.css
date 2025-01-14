@@ -1,6 +1,5 @@
 .movieBadge-wrapper {
 	display: flex;
-	flex-wrap: wrap;
 	justify-content: flex-start;
 	align-items: center;
 	height: 25px;
@@ -57,11 +56,11 @@
 	box-sizing: border-box;
 	background-color: black;
 	color: #e2bce8;
-	width: fit-content;
 }
 
 .movieBadge-top {
 	align-content: center;
+	text-wrap-mode: nowrap;
 }
 
 .movieBadge-lightning {

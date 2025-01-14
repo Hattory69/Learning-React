@@ -8,7 +8,7 @@ import { selectedMovie } from "~testData/testSelectedMovie";
 import { testShortListOfMovies } from "~testData/testShortListOfMovies";
 
 // eslint-disable-next-line no-undef
-const apiKey: string | "" = process.env.TOKEN || "";
+const apiKey: string = process.env.TOKEN || "";
 
 const isTest = true;
 

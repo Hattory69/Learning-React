@@ -1,9 +1,6 @@
-interface GenresNames {
-	value: string;
-	label: string;
-}
+import { IOption } from "~types/types";
 
-export const genresNames: GenresNames[] = [
+export const genresNames: IOption[] = [
 	{
 		value: "Аниме",
 		label: "Аниме",
