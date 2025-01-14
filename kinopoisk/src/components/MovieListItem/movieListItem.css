@@ -1,0 +1,92 @@
+.movieListItem-wrapper {
+	display: flex;
+	position: relative;
+	box-sizing: border-box;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
+	transition-property: transform, box-shadow;
+
+	transition: transform 0.3s ease, z-index 0.3s ease;
+	position: relative;
+}
+
+.movieListItem-wrapper:active,
+.movieListItem-wrapper:hover,
+.movieListItem-wrapper:focus-within {
+	transform: scale(1.1);
+	z-index: 1;
+}
+
+.movieListItem-img {
+	object-fit: fill;
+	height: 100%;
+}
+
+.ant-image {
+	height: 100%;
+}
+
+.movieListItem-wrapper .ant-image .ant-image-img {
+	height: 100%;
+	width: 100%;
+	aspect-ratio: 1/1;
+}
+
+.movieListItem-badges {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	max-height: 25px;
+	height: 100%;
+	font-weight: 700;
+	min-width: 55px;
+	z-index: 1;
+}
+
+.movieListItem-itemInfo {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	visibility: hidden;
+	box-sizing: border-box;
+	padding: 10px;
+	color: white;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
+	transition-property: background, opacity, visibility;
+	font-weight: 600;
+	overflow: hidden;
+	box-shadow: inset 0px -100px 100px rgba(0, 0, 0, 1);
+	transform: scale(1.01);
+}
+
+.movieListItem-itemInfo > *:not(:last-child) {
+	margin-bottom: 5px;
+}
+
+.movieListItem-wrapper:active > .movieListItem-itemInfo,
+.movieListItem-wrapper:hover > .movieListItem-itemInfo,
+.movieListItem-wrapper:focus-within > .movieListItem-itemInfo {
+	visibility: visible;
+	opacity: 1;
+}
+
+.movieListItem-title {
+	font-size: medium;
+}
+
+.movieListItem-year,
+.movieListItem-genres {
+	font-size: small;
+	color: gray;
+}

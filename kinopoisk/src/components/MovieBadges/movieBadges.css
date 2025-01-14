@@ -1,0 +1,78 @@
+.movieBadge-wrapper {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	height: 25px;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+
+.movieBadge-wrapper > :not(:last-child) {
+	margin-right: 5px;
+}
+
+.movieBadge-ratingWrapper {
+	display: flex;
+	max-width: 60px;
+	height: inherit;
+	width: 100%;
+	justify-content: center;
+}
+
+.onTop {
+	background-color: #b38728;
+	color: black;
+}
+
+.goodRating {
+	background-color: green;
+}
+
+.averageRating {
+	background-color: gray;
+}
+
+.lowRating {
+	background-color: red;
+}
+
+.movieBadge-rating {
+	align-content: center;
+}
+
+.movieBadge-oliveBranch {
+	width: 20px;
+	height: 100%;
+}
+
+.rotateIcon {
+	transform: rotateY(180deg);
+}
+
+.movieBadge-topWrapper {
+	display: flex;
+	height: 100%;
+	padding-right: 5px;
+	box-sizing: border-box;
+	background-color: black;
+	color: #e2bce8;
+}
+
+.movieBadge-top {
+	align-content: center;
+	text-wrap-mode: nowrap;
+}
+
+.movieBadge-lightning {
+	width: 30px;
+}
+
+.movieBadge-placeInTop {
+	height: 100%;
+	aspect-ratio: 1 / 1;
+	text-align: center;
+	align-content: center;
+	background-color: #e2bce8;
+	border-radius: 50%;
+	color: black;
+}

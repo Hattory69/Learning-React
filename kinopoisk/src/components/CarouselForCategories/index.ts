@@ -1,0 +1,1 @@
+export { CarouselForCategories } from "./CarouselForCategories";

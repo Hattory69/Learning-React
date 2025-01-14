@@ -1,0 +1,56 @@
+.carouselForCategories-categoryWrapper {
+	width: 100%;
+}
+
+.carouselForCategories-categoryWrapper .defaultCarousel-swiperContainer {
+	height: 390px;
+}
+
+.carouselForCategories-titleWrapper {
+	position: relative;
+}
+
+.carouselForCategories-categoryWrapper:hover .arrowIcon,
+.carouselForCategories-categoryWrapper:focus-within .arrowIcon {
+	opacity: 1;
+	visibility: visible;
+}
+
+.carouselForCategories-categoryTitle {
+	display: flex;
+	margin: 0 0 10px 30px;
+	color: white;
+	font-weight: 900;
+	align-items: center;
+}
+
+.arrowIcon {
+	width: 30px;
+	height: 100%;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
+	transition-property: opacity, visibility;
+	visibility: hidden;
+	opacity: 0;
+	color: white;
+}
+
+.carouselForCategories-swiperContainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 350px;
+}
+
+@media (min-width: 2550px) {
+	.carouselForCategories-categoryWrapper [class^="swiper-slide"] {
+		width: auto;
+		aspect-ratio: 1/1.5;
+	}
+}
+
+@media (min-width: 1440px) {
+	.carouselForCategories-categoryTitle {
+		font-size: x-large;
+	}
+}

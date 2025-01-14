@@ -1,0 +1,160 @@
+.header-wrapper {
+	padding: 30px 20px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	display: flex;
+	width: calc(100vw - var(--scroll-width));
+	height: var(--header-height);
+	box-sizing: border-box;
+	transition: transform 0.3s ease-in-out;
+	align-items: center;
+	font-size: x-large;
+}
+
+.header-wrapper.modal-open {
+	padding-right: 30px;
+}
+
+.header-wrapper::after {
+	transition: all 0.3s ease-in-out;
+	content: "";
+	top: 0;
+	opacity: 0;
+	right: -10px;
+	height: 100%;
+	position: absolute;
+	z-index: -1;
+	width: calc(100% + var(--scroll-width));
+	background: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 1),
+		rgba(0, 0, 0, 0.98) 14.24%,
+		rgba(0, 0, 0, 0.96) 25.77%,
+		rgba(0, 0, 0, 0.94) 34.98%,
+		rgba(0, 0, 0, 0.92) 42.23%,
+		rgba(0, 0, 0, 0.9) 47.9%,
+		rgba(0, 0, 0, 0.85) 52.37%,
+		rgba(0, 0, 0, 0.8) 56%,
+		rgba(0, 0, 0, 0.75) 59.18%,
+		rgba(0, 0, 0, 0.7) 62.27%,
+		rgba(0, 0, 0, 0.65) 65.65%,
+		rgba(0, 0, 0, 0.6) 69.69%,
+		rgba(0, 0, 0, 0.55) 74.78%,
+		rgba(0, 0, 0, 0.5) 78%,
+		rgba(0, 0, 0, 0.4) 82%,
+		rgba(0, 0, 0, 0.3) 86%,
+		rgba(0, 0, 0, 0.2) 90%,
+		rgba(0, 0, 0, 0.1) 95%,
+		rgba(0, 0, 0, 0) 100%,
+		transparent
+	);
+}
+
+.header-wrapper.atTopPosition::after {
+	opacity: 0.7;
+}
+
+.header-wrapper.notAtTopPosition::after {
+	opacity: 1;
+}
+
+.header-wrapper.hidden {
+	transform: translateY(-200%);
+}
+
+.header-wrapper.visible {
+	transform: translateY(0);
+}
+
+.header-KinopoiskIcon {
+	align-self: flex-start;
+	height: 100%;
+}
+
+.header-search,
+.header-navLinksList {
+	grid-row: 1;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin: 0 15px;
+}
+
+.header-navLinksList {
+	display: flex;
+}
+
+.header-navLinksList li:not(:last-child) {
+	margin-right: 30px;
+}
+
+.header-navLink {
+	position: relative;
+	color: gray;
+	transition: color 0.3s ease;
+}
+
+.header-navLink:hover {
+	color: white;
+}
+
+.header-navLink.active {
+	color: white;
+	border-block-end-width: 2px;
+	border-block-end-style: solid;
+	border-block-end-color: orange;
+}
+
+.header-user {
+	color: gray;
+	transition: color 0.3s ease;
+}
+
+.header-user:hover,
+.header-user:active,
+.header-user:focus {
+	color: white;
+}
+
+.header-icons {
+	transition: color 0.3s ease;
+	color: gray;
+}
+
+.header-icons:hover {
+	color: white;
+}
+
+@media (max-width: 768px) {
+	.header-wrapper {
+		flex-wrap: wrap;
+		justify-content: space-between;
+		row-gap: 10px;
+		height: var(--tablet-headerHeight);
+		align-content: space-between;
+	}
+
+	.header-KinopoiskIcon {
+		height: 40px;
+		width: 40%;
+	}
+
+	.header-search,
+	.header-navLinksList {
+		order: 3;
+		width: 100%;
+		margin: 0;
+	}
+}
+
+@media (max-width: 470px) {
+	.header-wrapper {
+		padding: 15px 10px 15px 20px;
+		font-size: small;
+		height: var(--header-height);
+	}
+}

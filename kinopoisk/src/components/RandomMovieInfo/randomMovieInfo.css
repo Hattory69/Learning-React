@@ -1,0 +1,78 @@
+.randomMovie-movieInfoWrapper {
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	height: 55%;
+	width: 70%;
+	align-self: center;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+}
+
+.randomMovie-movieInfoWrapper .ant-image {
+	margin-right: 30px;
+}
+
+.randomMovie-movieInfoWrapper:hover  {
+	background-color: #131317;
+}
+
+.ant-image .randomMovie-poster {
+	height: 100%;
+}
+
+.randomMovie-movieInfo {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	height: 100%;
+	position: relative;
+	justify-content: center;
+}
+
+.randomMovie-movieInfo > *:not(:last-child) {
+	margin-bottom: 5px;
+}
+
+.randomMovie-movieTitle {
+	font-size: 30px;
+}
+
+.randomMovie-yearAndType {
+	color: gray;
+}
+
+.randomMovie-description {
+	font-size: 20px;
+}
+
+@media (max-width: 1024px) {
+	.randomMovie-description {
+		font-size: 18px;
+	}
+}
+
+@media (max-width: 768px) {
+	.randomMovie-movieInfoWrapper {
+		padding: 0 30px;
+		width: unset;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.randomMovie-movieInfoWrapper .ant-image {
+		height: 400px;
+		margin-right: 0;
+		margin-bottom: 10px;
+	}
+
+	.ant-image .randomMovie-poster {
+		object-fit: contain;
+		height: 100%;
+	}
+
+	.randomMovie-movieInfo {
+		width: 100%;
+	}
+}

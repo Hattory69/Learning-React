@@ -1,0 +1,41 @@
+.selectedMovie-reviewSlideWrapper > :not(:last-child) {
+	margin-bottom: 5px;
+}
+
+.selectedMovie-reviewAuthor {
+	font-size: 20px;
+}
+
+.positive {
+	color: green;
+}
+
+.neutral {
+	color: gray;
+}
+
+.negative {
+	color: red;
+}
+
+.selectedMovie-review {
+	max-height: 400px;
+	overflow-y: scroll;
+}
+
+.selectedMovie-reviewLikes {
+font-weight: 700;
+font-size: 15px;
+}
+
+.selectedMovie-reviewLikes > :not(:last-child) {
+	margin-right: 10px;
+}
+
+.selectedMovie-reviewLike {
+	color: green;
+}
+
+.selectedMovie-reviewDisLike {
+	color: red;
+}

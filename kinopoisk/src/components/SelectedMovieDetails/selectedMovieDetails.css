@@ -1,0 +1,92 @@
+.selectedMovieDetails-wrapper {
+	padding-left: var(--selectedMovie-padding);
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+.selectedMovieDetails-left {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	height: 100%;
+	align-items: start;
+	justify-content: space-evenly;
+}
+
+.selectedMovieDetails-movieDetails {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+}
+
+.selectedMovieDetails-movieDetails > :not(:last-child) {
+	margin-bottom: 10px;
+}
+
+.selectedMovieDetails-posters {
+	width: 100%;
+}
+
+.selectedMovieDetails-posters .mySwiper {
+	width: 250px;
+	height: 300px;
+}
+
+.selectedMovieDetails-posters .mySwiper .swiper-wrapper {
+	height: 250px;
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+	background-color: orange;
+	width: 15px;
+	height: 15px;
+}
+
+.selectedMovieDetails-votes {
+	font-weight: 900;
+	font-size: 15px;
+	color: hsla(0, 0%, 100%, 0.6);
+}
+
+.selectedMovieDetails-description {
+	margin-bottom: 30px;
+	font-weight: 600;
+	font-size: 20px;
+}
+
+@media (min-width: 1536px) {
+	.selectedMovieDetails-posters .mySwiper {
+		width: 400px;
+		height: 450px;
+	}
+
+	.selectedMovieDetails-posters .mySwiper .swiper-wrapper {
+		height: 400px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.selectedMovieDetails-description {
+		font-size: 15px;
+	}
+}
+
+@media (max-width: 768px) {
+	.selectedMovieDetails-wrapper {
+		padding: 0 var(--selectedMovie-padding);
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	.selectedMovieDetails-left {
+		width: 100%;
+		gap: 15px;
+	}
+}
+
+@media (max-width: 470px) {
+	.selectedMovie-reviewsModal .ant-modal-content {
+		padding: 15px;
+	}
+}

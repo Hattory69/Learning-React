@@ -1,0 +1,69 @@
+.randomMovie-form {
+	padding: 0 30px 15px 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.randomMovie-form > div {
+	margin-bottom: 5px;
+}
+
+.randomMovie-formInput .ant-input-number-handler-wrap {
+	display: none;
+}
+
+.randomMovie-formInput .ant-select-arrow,
+.randomMovie-formInput .ant-select-clear,
+.randomMovie-inputDropdown * .ant-select-item.ant-select-item-option > [class*="ant-select-item-option-state"] {
+	color: white;
+}
+
+.randomMovie-formInput .ant-select-clear:hover {
+	color: white;
+	opacity: 0.4;
+}
+
+.randomMovie-inputDropdown * .rc-virtual-list-holder-inner > [class*="ant-select-item-option-active"] {
+	background-color: gray;
+}
+
+.randomMovie-inputDropdown * .rc-virtual-list-holder-inner > [class*="ant-select-item-option-disabled"] {
+	color: gray;
+}
+
+.randomMovie-inputsWrapper {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	width: 80%;
+}
+
+.randomMovie-inputsWrapper > :not(:last-child) {
+	margin-bottom: 5px;
+}
+
+.randomMovie-inputsWrapper > :last-child {
+	grid-column: 1/3;
+}
+
+.randomMovie-kpRating {
+	display: flex;
+	justify-self: center;
+	width: 50%;
+}
+
+.randomMovie-kpRating .ant-input-number-input-wrap {
+	width: 100%;
+}
+
+@media (max-width: 768px) {
+	.randomMovie-inputsWrapper {
+		display: block;
+	}
+}
+
+@media (max-width: 470px) {
+	.randomMovie-inputsWrapper > :last-child {
+		width: 100%;
+	}
+}
